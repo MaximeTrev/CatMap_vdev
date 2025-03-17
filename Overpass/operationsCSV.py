@@ -216,6 +216,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
 
         if max_length is not None:
+            print("test")
             max_length=len(varName)+len(varName_)
             
         j=0
