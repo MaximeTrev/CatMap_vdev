@@ -24,66 +24,6 @@ def __suppr__(chain, Liste) : #sous-fonction
 
 ListeLabel = [" SE", " SARL", " EI", " EURL", " SASU", " SAS", " SA", " SNC", " SCS", " SCA"]
 
-def fromJSONtoDataFrame(Fichiers) : #Fichiers une liste de fichiers (JSON)
-    Name = []
-    Flag = []
-    Lat = []
-    Lon = []
-    Source = []
-    Amenity, Place, Shop, Power, Highway = [],[],[],[],[]
-    for i in range(len(Fichiers)) :
-        
-        booleen = True
-        
-        if ".json" not in Fichiers[i] :
-            booleen = False
-        else:
-            try:
-                with open("json/"+Fichiers[i], "r") as JSON:
-                    j = 1
-                    dico = json.load(JSON)
-                    for occ in dico :
-                        dic = dico["iteration "+str(j)]
-                        
-                        try: Amenity.append(dic["amenity"]) 
-                        #si amenity n'est pas renseigné cela renvoie une exception / erreur
-                        #on va donc l' "attraper" avec Except et lui définir une valeur pré-choisie
-                        except: Amenity.append("X")
-                        
-                        try: Source.append(dic["source"])
-                        except: Source.append("X")
-                        
-                        try: Place.append(dic["place"])
-                        except: Place.append("X")
-                        
-                        try: Shop.append(dic["shop"])
-                        except: Shop.append("X")
-                        
-                        try: Power.append(dic["power"])
-                        except: Power.append("X")
-                        
-                        try: Highway.append(dic["highway"])
-                        except: Highway.append("X")
-                        
-                        Name.append(dic["name"])
-                        Coordonnees = dic["coord"].split("/")
-                        Lat.append(Coordonnees[0])
-                        Lon.append(Coordonnees[1])
-                        Flag.append(dic["flag"])
-                        j+=1
-                        booleen = True
-            except:
-                print(Fichiers[i], "fichier vide.")
-                    
-    if booleen :
-        data = {"Source": Source, "Name": Name, "Amenity": Amenity, "Place": Place, "Shop": Shop, "Power": Power, "Highway": Highway, "Lat": Lat, "Long": Lon, "Flag": Flag}
-        df = pd.DataFrame(data)
-   
-        print("\n",booleen, ": File saved.")
-        return df
-    else:
-        print("\n",booleen, ": aucun fichier JSON trouvé.")
-
 def __var_name__(name, booleen = False): #sous-fonction
     out = [] # 0 --> nom initial et on boucle direct dessus ?
     out.append((name.upper()))
@@ -120,7 +60,7 @@ def __var_name__(name, booleen = False): #sous-fonction
 
 ##########################################################################################################################
 
-def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None) :
+def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
     
     """
     - Paramètres
@@ -177,11 +117,12 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #listeFichiers = []
         all_results = []  # Stocke tous les résultats pour concaténation
         
-
+        j = 0
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
-            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length)
+            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
+            j += 1
             if df_result is not None:
                 all_results.append(df_result)
 
@@ -216,17 +157,21 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         if max_length is None:
             max_length=len(varName)+len(varName_)
             
-        j=0 #reini a chaque entreprise si fichier ?? a modifier dans la fonction
+        #j=0 #reini a chaque entreprise si fichier ?? a modifier dans la fonction
+        first_iter = True
         for (var, flag) in varName :
-            j+=1         
+            #j+=1         
             osm_data = get_overpass_data(var)
-            if j <= 1:
+            #if j <= 1:
+            if first_iter:
+                first_iter = False
                 if osm_data:
                     df = process_osm_data(osm_data)
                     df["flag"] = flag   
                 else:
                     print("No data")
-            if j > 1:
+            #if j > 1:
+            else:
                 if osm_data:
                     df_trans = process_osm_data(osm_data)
                     df_trans["flag"] = flag   
