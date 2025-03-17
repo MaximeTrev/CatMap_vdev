@@ -46,6 +46,11 @@ def process_osm_data(result):
                 **extract_tags(node)  # Ajout des tags
             })
 
+    #Probleme ici car les relations ont parfois pas de coord directement. Possibilité :
+    #Si la relation contient des nœuds ou d'autres objets associés ayant des coordonnées, il te faut parcourir ces membres et extraire les coordonnées.
+    #Récupérer les coordonnées des nœuds : En supposant que chaque membre de la relation soit un nœud, tu peux récupérer les coordonnées de ce nœud.
+    #--> on risque cependant d'avoir les coord de chaque noeuds de la relation, entrainant de nombreux "duplicatats"
+    """
     # Traitement des relations (utilisation du "center" si dispo)
     for relation in result.relations:
         print(relation.tags)
@@ -70,7 +75,7 @@ def process_osm_data(result):
                     "lat": float(lat),
                     "long": float(lon),
                     **extract_tags(relation)  # Ajout des tags
-                })
+                })"""
 
     return pd.DataFrame(results)
 
