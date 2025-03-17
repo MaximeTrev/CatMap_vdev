@@ -104,10 +104,10 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         
         if uploaded_file is not None:
             # Initialisation des variable
-            uploaded_file_ini = uploaded_file
             listeFichiers, entreprises = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file)
             listeFichiers["name"] = listeFichiers["name"].str.upper()
-            print(uploaded_file_ini.str.upper())
+            print(uploaded_file)
+            
 
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
