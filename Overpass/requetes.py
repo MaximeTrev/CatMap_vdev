@@ -60,6 +60,7 @@ def process_osm_data(result):
                     **extract_tags(relation)  # Ajout des tags
                 })
             else:
+                print(relation)
                 # Si les coordonnées sont None, récupérer les coordonnées d'un nœud
                 node = relation.members[0]  # Supposons que le premier membre est un nœud
                 lat = node.lat
