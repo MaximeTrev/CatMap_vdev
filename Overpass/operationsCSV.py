@@ -120,7 +120,7 @@ def __var_name__(name, booleen = False): #sous-fonction
 
 ##########################################################################################################################
 
-def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, varName = None, varName_ = None) :
+def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None) :
     
     """
     - Paramètres
@@ -204,18 +204,18 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
         if max_length is None:
             max_length=len(varName)+len(varName_)
-            fname = __suppr__(NomEntreprise, ListeLabel) 
-            print("Name :", fname)
-            fName = fname
-            temps = 0.0
-            varName, varName_ = [], []
-            varName = __var_name__(fName) #avec accents
-            #print("varName :", varName)
-            fName_ = u.unidecode(fName)
-            if fName_ != fName :
-                varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
+        fname = __suppr__(NomEntreprise, ListeLabel) 
+        print("Name :", fname)
+        fName = fname
+        temps = 0.0
+        varName, varName_ = [], []
+        varName = __var_name__(fName) #avec accents
+        #print("varName :", varName)
+        fName_ = u.unidecode(fName)
+        if fName_ != fName :
+            varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
             print("test")
-            max_length=len(varName)+len(varName_)
+            #max_length=len(varName)+len(varName_)
             
         j=0
         for (var, flag) in varName :
