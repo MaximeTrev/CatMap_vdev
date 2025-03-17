@@ -49,13 +49,27 @@ def process_osm_data(result):
     # Traitement des relations (utilisation du "center" si dispo)
     for relation in result.relations:
         if hasattr(relation, "center_lat") and hasattr(relation, "center_lon"):
-            results.append({
-                "name": relation.tags.get("name", "Unknown"),
-                "type": "relation",
-                "lat": float(relation.center_lat),
-                "long": float(relation.center_lon),
-                **extract_tags(node)  # Ajout des tags
-            })
+            # Vérifier si les valeurs des attributs ne sont pas None
+            if relation.center_lat is not None and relation.center_lon is not None:
+                results.append({
+                    "name": relation.tags.get("name", "Unknown"),
+                    "type": "relation",
+                    "lat": float(relation.center_lat),
+                    "long": float(relation.center_lon),
+                    **extract_tags(relation)  # Ajout des tags
+                })
+            else:
+                # Si les coordonnées sont None, récupérer les coordonnées d'un nœud
+                node = relation.members[0]  # Supposons que le premier membre est un nœud
+                lat = node.lat
+                lon = node.lon
+                results.append({
+                    "name": relation.tags.get("name", "Unknown"),
+                    "type": "relation",
+                    "lat": float(lat),
+                    "long": float(lon),
+                    **extract_tags(relation)  # Ajout des tags
+                })
 
     return pd.DataFrame(results)
 
