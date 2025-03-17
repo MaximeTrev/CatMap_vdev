@@ -109,6 +109,8 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
 
             no_results=  []
             uploaded_df = pd.read_csv(uploaded_file)
+            st.write(f"test {uploaded_df.iloc[:, 0].str.upper()}")
+            st.write(f"test 2 {listeFichiers["name"]}")
             for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in listeFichiers["name"]:
                     no_results.append(name)
