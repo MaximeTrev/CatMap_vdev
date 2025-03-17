@@ -1,0 +1,79 @@
+.stAppHeader, p, section {
+    /*background-color:#404140;*/
+    color: #bd8e43;
+    font-family:sans-serif; 
+}
+
+.stAppHeader {
+    background-color:#404140;
+}
+
+.folium-map {
+    border: 5px solid darkblue;
+}
+
+
+input {
+    
+}
+
+st-bh {
+    display: none;
+}
+
+header {
+    background-color:#262730;
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0%;
+    background-color: #bd8e43;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 20px;
+    color: #404140;
+    font-weight: bold;
+    transition: width 0.5s;
+}
+.progress-container {
+    background-color: #bd8e43;
+    color: #404140;
+    padding : 2px 2px 2px 2px;
+    border-radius: 25px;
+}
+
+.stMainBlockContainer {
+    background-color: #f3f3f3;
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 5rem;
+    border: 0.2rem solid;
+    border-color: #bd8e43;
+}
+
+section {
+    background-color: #404140;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #404140;
+    border-radius: 25px;
+    padding: 3px;
+    margin-top: 10px;
+}
+
+.entreprise-container {
+    dislay:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px 5px 5px 5px;
+}
+
+.entreprise {
+    background-color: #bd8e43;
+    color: #404140;
+    font-weight: bold;
+    border-radius:10px;
+}
