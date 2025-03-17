@@ -48,7 +48,7 @@ def process_osm_data(result):
 
     # Traitement des relations (utilisation du "center" si dispo)
     for relation in result.relations:
-        print(relation)
+        print(relation.tags)
         if hasattr(relation, "center_lat") and hasattr(relation, "center_lon"):
             # Vérifier si les valeurs des attributs ne sont pas None
             if relation.center_lat is not None and relation.center_lon is not None:
@@ -60,7 +60,6 @@ def process_osm_data(result):
                     **extract_tags(relation)  # Ajout des tags
                 })
             else:
-                print(relation)
                 # Si les coordonnées sont None, récupérer les coordonnées d'un nœud
                 node = relation.members[0]  # Supposons que le premier membre est un nœud
                 lat = node.lat
