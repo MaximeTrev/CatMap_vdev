@@ -106,9 +106,8 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             # Initialisation des variable
             listeFichiers, entreprises = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file)
             listeFichiers["name"] = listeFichiers["name"].str.upper()
-            print(uploaded_file)
+            st.write(uploaded_file)
             
-
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
             st.write(f"Results: {dfOut.shape[0]}")
