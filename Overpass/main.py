@@ -109,10 +109,11 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
 
             no_results=  []
             uploaded_df = pd.read_csv(uploaded_file)
-            for name in uploaded_df.iloc[:, 0].str.upper()
+            for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in listeFichiers["name"]:
                     no_results.append(name)
             st.write(f"No result for {no_results}")
+            
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
