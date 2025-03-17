@@ -85,8 +85,9 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         )
         if entreprise != "":
             listeFichiers, _ = _csv.fromCSVtoJSON(option, progress_container, entreprise, "")
-            print(listeFichiers)
-            listeFichiers["name"] = listeFichiers["name"].str.upper()
+            #si pas de résultats, homogénéisation du nom plante
+            if not listeFichiers.empty:
+                listeFichiers["name"] = listeFichiers["name"].str.upper()
             #dfOut = _csv.fromJSONtoDataFrame(listeFichiers)
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
