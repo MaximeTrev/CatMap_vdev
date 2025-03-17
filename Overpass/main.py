@@ -113,11 +113,6 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 if name not in listeFichiers["name"]:
                     no_results.append(name)
             st.write(f"No result for {no_results}")
-                
-            if "name" in uploaded_df.columns:
-                uploaded_df["name"] = uploaded_df["name"].str.upper()  # Appliquer str.upper() à la colonne "name"
-            else:
-                st.write("Le fichier téléchargé ne contient pas de colonne 'name'.")
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
