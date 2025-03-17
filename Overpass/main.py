@@ -108,7 +108,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
             no_results=  []
-            for name in uploaded_df.name.upper():
+            for name in uploaded_file.name.upper():
                 if name not in listeFichiers["name"]:
                     no_results.append(name)
             st.write(f"No result for {no_results}")
