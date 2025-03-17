@@ -106,7 +106,17 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             # Initialisation des variable
             listeFichiers, entreprises = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file)
             listeFichiers["name"] = listeFichiers["name"].str.upper()
-            print(uploaded_file.name.upper())
+
+            no_results=  []
+            for name in uploaded_df.name.upper():
+                if name not in listeFichiers["name"]:
+                    no_results.append(name)
+            st.write(f"No result for {no_results}")
+                
+            if "name" in uploaded_df.columns:
+                uploaded_df["name"] = uploaded_df["name"].str.upper()  # Appliquer str.upper() à la colonne "name"
+            else:
+                st.write("Le fichier téléchargé ne contient pas de colonne 'name'.")
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
