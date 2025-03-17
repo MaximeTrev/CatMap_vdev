@@ -159,11 +159,9 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
 
         liste_entreprises = df_entreprises.iloc[:, 0].tolist()
         fName, varName, varName_ = [], [], []
-        #IndNomInitial, nomInitial, _ = [], [], []
         i = 0
         for entreprise in liste_entreprises:
             fName.append(__suppr__(entreprise, ListeLabel))
-            #print("Name :", fName[i])
             varName.append(__var_name__(fName[i])) #avec accents
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
@@ -199,11 +197,12 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
     
     elif NomEntreprise != "" :
         #listeFichiers = []
-        
+        print(f"in {max_length}")
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
         if max_length is None:
             max_length=len(varName)+len(varName_)
+            print(f"none {max_length}"
         fname = __suppr__(NomEntreprise, ListeLabel) 
         print("Name :", fname)
         fName = fname
