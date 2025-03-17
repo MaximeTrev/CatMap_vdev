@@ -171,22 +171,19 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             i += 1
       
         temps = 0.0
-        compteurRequetes, compteurBatiments = 0, 0
         
         max_length=len(varName)+len(varName_)
 
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
-        listeFichiers = []
+        #listeFichiers = []
         all_results = []  # Stocke tous les résultats pour concaténation
         
 
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
-
             df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length)
-            
             if df_result is not None:
                 all_results.append(df_result)
 
@@ -201,32 +198,29 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         return df_final, df_entreprises.iloc[:, 0].tolist()
     
     elif NomEntreprise != "" :
-        listeFichiers = []
+        #listeFichiers = []
         
-        fname = __suppr__(NomEntreprise, ListeLabel) 
-        print("Name :", fname)
-        fName = fname
-        
-        temps = 0.0
-        compteurRequetes, compteurBatiments = 0, 0
-        
-        varName, varName_ = [], []
-        varName = __var_name__(fName) #avec accents
-        #print("varName :", varName)
-        
-        fName_ = u.unidecode(fName)
-        if fName_ != fName :
-            varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
-            #print("varName_ :",varName_)
+        #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
+        #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
+        if max_length is None:
+            max_length=len(varName)+len(varName_)
+            fname = __suppr__(NomEntreprise, ListeLabel) 
+            print("Name :", fname)
+            fName = fname
+            temps = 0.0
+            varName, varName_ = [], []
+            varName = __var_name__(fName) #avec accents
+            #print("varName :", varName)
+            fName_ = u.unidecode(fName)
+            if fName_ != fName :
+                varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
 
-        #IndNomInitial = varName.index((fName, 0))
-        #(nomInitial, _) = varName[IndNomInitial]
         if max_length is not None:
             max_length=len(varName)+len(varName_)
+            
         j=0
         for (var, flag) in varName :
             j+=1         
-            #pas sur, a virer ?
             osm_data = get_overpass_data(var)
             if j <= 1:
                 if osm_data:
@@ -279,9 +273,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             </div>""",
                 unsafe_allow_html=True
             )
-
-        #print("Nombre de requêtes exécutées :",compteurRequetes)            
-        #print("Nombre de bâtiments trouvés :",compteurBatiments) 
         
         print("Temps de génération fichier/s :", str(round(temps-2))+" secondes.\n") #-2 car on a fait time.sleep(1)*2
         print("Building(s): ", len(df))
