@@ -202,6 +202,9 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
+        print("Test 0", varName)
+        print("Test 01", varName_)
+        print("Test 02", max_length)
         if max_length is None:
             max_length=len(varName)+len(varName_)
             fname = __suppr__(NomEntreprise, ListeLabel) 
