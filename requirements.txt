@@ -1,0 +1,9 @@
+streamlit
+pandas
+geopandas
+unidecode
+folium
+streamlit_folium
+shapely
+plotly
+overpy
