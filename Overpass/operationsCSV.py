@@ -120,7 +120,7 @@ def __var_name__(name, booleen = False): #sous-fonction
 
 ##########################################################################################################################
 
-def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1) :
+def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None) :
     
     """
     - Paramètres
@@ -163,9 +163,8 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         i = 0
         for entreprise in liste_entreprises:
             fName.append(__suppr__(entreprise, ListeLabel))
-            print("Name :", fName[i])
+            #print("Name :", fName[i])
             varName.append(__var_name__(fName[i])) #avec accents
-            print(varName)
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
                 varName_.append(__var_name__(fName_, True)) #True -> pas d'accent, donc le nom initial n'est pas présent
@@ -186,7 +185,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
 
-            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise)
+            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length)
             
             if df_result is not None:
                 all_results.append(df_result)
@@ -222,8 +221,8 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
 
         #IndNomInitial = varName.index((fName, 0))
         #(nomInitial, _) = varName[IndNomInitial]
-
-        max_length=len(varName)+len(varName_)
+        if max_length is not None:
+            max_length=len(varName)+len(varName_)
         j=0
         for (var, flag) in varName :
             j+=1         
@@ -242,7 +241,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df = pd.concat([df, df_trans], ignore_index=True)
                 else:
                     print("No data")
-            
+
             progress=j/max_length*100
             progress=round(progress)
             progress_container.markdown(
