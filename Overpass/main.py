@@ -88,8 +88,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             #si pas de résultats, homogénéisation du nom plante
             if not listeFichiers.empty:
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
-            #dfOut = _csv.fromJSONtoDataFrame(listeFichiers)
-            dfOut, Pays = mc.findCountry(listeFichiers)
+                dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
             st.write(f"Results: {dfOut.shape[0]}")
             st.dataframe(dfOut)
