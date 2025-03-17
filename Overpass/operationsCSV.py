@@ -120,7 +120,7 @@ def __var_name__(name, booleen = False): #sous-fonction
 
 ##########################################################################################################################
 
-def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None) :
+def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, varName = None, varName_ = None) :
     
     """
     - Paramètres
@@ -183,7 +183,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
-            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length)
+            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, varName = varName, varName_ = varName_)
             if df_result is not None:
                 all_results.append(df_result)
 
@@ -216,10 +216,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
             print("test")
             max_length=len(varName)+len(varName_)
-
-        """if max_length is not None:
-            print("test")
-            max_length=len(varName)+len(varName_)"""
             
         j=0
         for (var, flag) in varName :
