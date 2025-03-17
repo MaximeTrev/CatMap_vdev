@@ -139,7 +139,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
     chaque entreprise.
     """
     
-    print("Options :s \n 1 - Générer un fichier CSV depuis un autre fichier CSV. \n 2 - Générer un fichier CSV depuis une seule entreprise. \n")
+    #print("Options :s \n 1 - Générer un fichier CSV depuis un autre fichier CSV. \n 2 - Générer un fichier CSV depuis une seule entreprise. \n")
     
     entreprises = []
         
@@ -202,7 +202,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
         if max_length is None:
             max_length=len(varName)+len(varName_)
-            print(f"none {max_length}"
+            print(f"none {max_length}")
         fname = __suppr__(NomEntreprise, ListeLabel) 
         print("Name :", fname)
         fName = fname
