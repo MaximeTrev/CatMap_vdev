@@ -112,7 +112,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             st.write(f"test {uploaded_df.iloc[:, 0].str.upper()}")
             st.write(f"test 2 {listeFichiers["name"]}")
             for name in uploaded_df.iloc[:, 0].str.upper():
-                if name not in listeFichiers["name"]:
+                if name not in set(listeFichiers["name"]):
                     no_results.append(name)
             st.write(f"No result for {no_results}")
             
