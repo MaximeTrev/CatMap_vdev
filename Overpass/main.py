@@ -107,15 +107,13 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             listeFichiers, entreprises = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file)
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
+            #Check si des noms n'ont pas de résultats et les faire afficher 
             no_results=  []
             uploaded_df = pd.read_csv(uploaded_file)
-            st.write(f"test {uploaded_df.iloc[:, 0].str.upper()}")
-            st.write(f"test 2 {listeFichiers["name"]}")
             for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in set(listeFichiers["name"]):
                     no_results.append(name)
-            st.write(f"No result for {no_results}")
-            
+            st.write(f"No result for: {no_results}")
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(download)
