@@ -108,7 +108,8 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         st.write(liste_entreprises)
         st.write(varName)
         st.write(varName_)
-        max_length=len(varName)+len(varName_)
+        #max_length=len(varName)+len(varName_)
+        max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
         st.write(f'In csv max_lenght: {max_length}')
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
