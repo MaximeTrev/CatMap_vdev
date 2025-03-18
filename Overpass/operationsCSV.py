@@ -4,18 +4,18 @@ import json
 import time
 import unidecode as u
 import os
-
 from requetes import Requetes as R
 from requetes import *
 
 
-
-def __suppr__(chain, Liste) : #sous-fonction
+# Fonction
+def __suppr__(chain) : #sous-fonction
+    ListeLabel = [" SE", " SARL", " EI", " EURL", " SASU", " SAS", " SA", " SNC", " SCS", " SCA"]
     ch = chain.upper()
-    occ, i = Liste[0], 1
+    occ, i = ListeLabel[0], 1
     lengthListe = len(Liste)
     while occ not in ch and i<lengthListe:
-        occ = Liste[i]
+        occ = ListeLabel[i]
         i+=1
     if i==lengthListe :
         return chain
@@ -97,7 +97,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         fName, varName, varName_ = [], [], []
         i = 0
         for entreprise in liste_entreprises:
-            fName.append(__suppr__(entreprise, ListeLabel))
+            fName.append(__suppr__(entreprise))
             varName.append(__var_name__(fName[i])) #avec accents
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
@@ -138,7 +138,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
     
             #print(f"none {max_length}")
-        fname = __suppr__(NomEntreprise, ListeLabel) 
+        fname = __suppr__(NomEntreprise) 
         print("Name :", fname)
         fName = fname
         temps = 0.0
