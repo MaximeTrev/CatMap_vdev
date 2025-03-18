@@ -78,26 +78,22 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
     Crée un fichier JSON pour 
     chaque entreprise.
     """
-    
-    #print("Options :s \n 1 - Générer un fichier CSV depuis un autre fichier CSV. \n 2 - Générer un fichier CSV depuis une seule entreprise. \n")
-    
+        
     entreprises = []
         
     if FichierCSV != "":
-
         FichierCSV.seek(0)  # Revenir au début du fichier
-
         # Lire le fichier en ignorant le BOM UTF-8
         file_content = FichierCSV.getvalue().decode("utf-8-sig")
-    
         # Lire le CSV en tant que DataFrame pandas
         try:
             df_entreprises = pd.read_csv(pd.io.common.StringIO(file_content), sep="|")
         except Exception as e:
             st.error(f"Erreur de lecture du fichier CSV : {e}")
             return None, []
-
         liste_entreprises = df_entreprises.iloc[:, 0].tolist()
+
+        #Détermination des variations des noms d'entreprises + correction bruits (SE, SARL...)
         fName, varName, varName_ = [], [], []
         i = 0
         for entreprise in liste_entreprises:
@@ -111,12 +107,9 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         temps = 0.0
         
         max_length=len(varName)+len(varName_)
-
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
-        #listeFichiers = []
         all_results = []  # Stocke tous les résultats pour concaténation
-        
         #soucis avec les j, on recommence iter
         j = 0
         for idx, row in df_entreprises.iterrows():
@@ -161,7 +154,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #j=0 #reini a chaque entreprise si fichier ?? a modifier dans la fonction
         first_iter = True
         for (var, flag) in varName :
-            #j+=1         
+            j+=1         
             osm_data = get_overpass_data(var)
             #if j <= 1:
             if first_iter:
