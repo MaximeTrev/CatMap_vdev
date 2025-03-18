@@ -116,6 +116,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
+            st.write(f'In csv: {j}')
             #j += 1
             if df_result is not None:
                 all_results.append(df_result)
@@ -153,8 +154,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             
         #j=0 #reini a chaque entreprise si fichier ?? a modifier dans la fonction
         first_iter = True
-        for (var, flag) in varName :
-            j+=1         
+        for (var, flag) in varName :         
             osm_data = get_overpass_data(var)
             #if j <= 1:
             if first_iter:
@@ -173,6 +173,8 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 else:
                     print("No data")
 
+            st.write(f'In varName: {j}')
+            j+=1
             progress=j/max_length*100
             progress=round(progress)
             progress_container.markdown(
@@ -186,7 +188,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         
         first_iter = True
         for (var, flag) in varName_ :
-            j+=1         
             #pas sur, a virer ?
             osm_data = get_overpass_data(var)
             if first_iter:
@@ -203,7 +204,8 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df = pd.concat([df, df_trans], ignore_index=True)
                 else:
                     print("No data")
-            
+            st.write(f'In varName_: {j}')
+            j+=1
             progress=j/max_length*100
             progress=round(progress)
             progress_container.markdown(
