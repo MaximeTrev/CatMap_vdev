@@ -116,7 +116,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
-            j += 1
+            #j += 1
             if df_result is not None:
                 all_results.append(df_result)
 
@@ -184,17 +184,19 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
 
         time.sleep(1)
         
+        first_iter = True
         for (var, flag) in varName_ :
             j+=1         
             #pas sur, a virer ?
             osm_data = get_overpass_data(var)
-            if j <= 1:
+            if first_iter:
+                first_iter = False
                 if osm_data:
                     df = process_osm_data(osm_data)
                     df["flag"] = flag   
                 else:
                     print("No data")
-            if j > 1:
+             else:
                 if osm_data:
                     df_trans = process_osm_data(osm_data)
                     df_trans["flag"] = flag   
