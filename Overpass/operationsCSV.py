@@ -13,7 +13,7 @@ def __suppr__(chain) : #sous-fonction
     ListeLabel = [" SE", " SARL", " EI", " EURL", " SASU", " SAS", " SA", " SNC", " SCS", " SCA"]
     ch = chain.upper()
     occ, i = ListeLabel[0], 1
-    lengthListe = len(Liste)
+    lengthListe = len(ListeLabel)
     while occ not in ch and i<lengthListe:
         occ = ListeLabel[i]
         i+=1
@@ -21,8 +21,6 @@ def __suppr__(chain) : #sous-fonction
         return chain
     ch = ch.replace(occ, "")
     return ch.capitalize()
-
-ListeLabel = [" SE", " SARL", " EI", " EURL", " SASU", " SAS", " SA", " SNC", " SCS", " SCA"]
 
 def __var_name__(name, booleen = False): #sous-fonction
     out = [] # 0 --> nom initial et on boucle direct dessus ?
