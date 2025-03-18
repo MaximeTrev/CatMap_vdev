@@ -20,14 +20,10 @@ with open(css_path) as f:
 def pieChart(pays,entreprise, _effectif, effectif) :
     EffectifMax = sum(effectif)
     seuil = int(0.02 * EffectifMax)
-    
     _effectif = _effectif[_effectif >= seuil]
-    
-    
-    fig = go.Figure(
-        data=[go.Pie(labels=_effectif.index, values=_effectif, hole=0.3)],
-        layout_title_text=f"""PieChart {entreprise}"""
-    )
+    fig = go.Figure(data=[go.Pie(labels=_effectif.index, 
+                                 values=_effectif, hole=0.3)],
+                    layout_title_text=f"PieChart {entreprise}")
     return fig
 
 # Fonction pour compter les occurrences (mise en cache pour optimiser)
@@ -37,25 +33,21 @@ def get_pays_counts(df):
     pays_counts.columns = ["pays", "count"]
     return pays_counts
 
+#A adapter plus tard en fonction de la target: amenity + shop
 def get_amenity_counts(df):
     amenity_counts = df["amenity"].value_counts().reset_index()
     amenity_counts.columns = ["amenity", "count"]
     return amenity_counts
-
+#occ ?
 def show_map(df):
     m = folium.Map(location=[48.8566, 2.3522], zoom_start=5)
     occ = 0
     for _, row in df.iterrows():
-        #if occ >500 :
-            #break
         _popup=str(row["lat"]) + " " + str(row["long"]) + "\n"
         _popup +="name:"+row["name"]+"\n"
         _popup += "amenity:"+row["amenity"]
         cssClassPopup = css.__CssClassPopup()
-        _popup = f"""
-        <div style="{cssClassPopup}">
-            {_popup}
-        </div>"""
+        _popup = f"<div style="{cssClassPopup}">{_popup}</div>"
             
         iframe = IFrame(_popup, width=105, height=80)  # Ajuster la taille ici
         popup = folium.Popup(iframe, max_width=250)  # Ajuster la largeur max du popup
