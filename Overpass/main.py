@@ -47,7 +47,7 @@ def show_map(df):
         _popup +="name:"+row["name"]+"\n"
         _popup += "amenity:"+row["amenity"]
         cssClassPopup = css.__CssClassPopup()
-        _popup = f"<div style="{cssClassPopup}">{_popup}</div>"
+        _popup = f"""<div style="{cssClassPopup}">{_popup}</div>"""
             
         iframe = IFrame(_popup, width=105, height=80)  # Ajuster la taille ici
         popup = folium.Popup(iframe, max_width=250)  # Ajuster la largeur max du popup
