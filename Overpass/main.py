@@ -38,10 +38,10 @@ def get_amenity_counts(df):
     amenity_counts = df["amenity"].value_counts().reset_index()
     amenity_counts.columns = ["amenity", "count"]
     return amenity_counts
-#occ ?
+
 def show_map(df):
     m = folium.Map(location=[48.8566, 2.3522], zoom_start=5)
-    occ = 0
+    #occ = 0
     for _, row in df.iterrows():
         _popup=str(row["lat"]) + " " + str(row["long"]) + "\n"
         _popup +="name:"+row["name"]+"\n"
@@ -61,7 +61,7 @@ def show_map(df):
             fill_opacity=0.6,
             popup=popup
         ).add_to(m)
-        occ+=1
+        #occ+=1
     folium_static(m)
 
 def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
