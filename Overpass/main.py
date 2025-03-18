@@ -75,7 +75,6 @@ def show_map(df):
 def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
     listeFichiers, entreprise = [], ""
     dfOut = pd.DataFrame()
-    #download = "Preview (download available)"
     
     if option == NomEntreprise:
         entreprise = st.text_input("Company name")
@@ -89,9 +88,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             if not listeFichiers.empty:
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
                 dfOut, Pays = mc.findCountry(listeFichiers)
-            #st.write(download)
-            #st.write("Preview (download available)")
-            #st.write(f"Results: {dfOut.shape[0]}")
+                
             st.write(f"Preview (download available): {dfOut.shape[0]} result(s).")
             st.dataframe(dfOut)
             show_map(dfOut)
@@ -115,12 +112,10 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in set(listeFichiers["name"]):
                     no_results.append(name)
-            #st.write(f"No result for: {no_results}")
             
             dfOut, Pays = mc.findCountry(listeFichiers)
-            #st.write(download)
-            st.write(f"Preview (download available): {dfOut.shape[0]} result(s).\nNo result for: {no_results}")
-            #st.write(f"Results: {dfOut.shape[0]} . No result for: \n{no_results}")
+            st.write(f"Preview (download available): {dfOut.shape[0]} result(s).")
+            st.write(f"No result for: {no_results}")
             entreprises.pop()
             st.dataframe(dfOut)
             show_map(dfOut) 
