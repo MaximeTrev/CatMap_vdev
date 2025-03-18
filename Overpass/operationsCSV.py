@@ -105,12 +105,9 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             i += 1
       
         temps = 0.0
-        st.write(liste_entreprises)
-        st.write(varName)
-        st.write(varName_)
+  
         #max_length=len(varName)+len(varName_)
         max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
-        st.write(f'In csv max_lenght: {max_length}')
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
         all_results = []  # Stocke tous les résultats pour concaténation
@@ -120,8 +117,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
-            st.write(f'2 - In csv max_lenght: {max_length}')
-            st.write(f'In csv: {j}')
             #j += 1
             if df_result is not None:
                 all_results.append(df_result)
@@ -178,8 +173,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 else:
                     print("No data")
 
-            st.write(f'In varName: {j}')
-            st.write(f'In ind max_lenght: {max_length}')
             j+=1
             progress=j/max_length*100
             progress=round(progress)
@@ -210,7 +203,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df = pd.concat([df, df_trans], ignore_index=True)
                 else:
                     print("No data")
-            st.write(f'In varName_: {j}')
             j+=1
             progress=j/max_length*100
             progress=round(progress)
