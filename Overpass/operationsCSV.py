@@ -8,9 +8,14 @@ from requetes import Requetes as R
 from requetes import *
 
 
-# Fonction
-def __suppr__(chain) : #sous-fonction
+def __suppr__(chain) : 
+    """
+    Haute sensibilité àa la casse de la méthode : Total != TOTAL != total ...
+    Fonction ayant pour objectif de supprimer les bruits potentiels au sein du/des nom(s) en input, commes les appelations juridiques (Fr)
+    """
+    #Liste des éléments à supprimer des noms
     ListeLabel = [" SE", " SARL", " EI", " EURL", " SASU", " SAS", " SA", " SNC", " SCS", " SCA"]
+    
     ch = chain.upper()
     occ, i = ListeLabel[0], 1
     lengthListe = len(ListeLabel)
@@ -20,41 +25,57 @@ def __suppr__(chain) : #sous-fonction
     if i==lengthListe :
         return chain
     ch = ch.replace(occ, "")
+    #On retourne un nom normalisé
     return ch.capitalize()
 
 def __var_name__(name, booleen = False): #sous-fonction
-    out = [] # 0 --> nom initial et on boucle direct dessus ?
-    out.append((name.upper()))
-    out.append((name.lower()))
-    out.append((name.capitalize()))
-    tests = [" ", "-","_"]
-    test_esp = False
-    for test in tests:
-        #BLoc pour vérifier si 2 mots (ou plus) dans la chaîne
-        #marche pas si plusieurs "sépérateurs" pour une chaîne
-        if test in name:
-            #bloc pour le test "mots composés"
-            test_esp = test
-            #ICI bloc pour le test "classique"
-            #espace = test
-            tests.remove(test)
-            break
-        
-    for espace in tests:
-        if test_esp :
-            newName = name.replace(test_esp, espace)
-            out.append((newName.upper()))
-            out.append((newName.lower()))
-            out.append((newName.capitalize()))
+    """
+    - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
+    - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
+    - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
+    - Flag : 
+        - 1, 2, 3 (XXX, xxx, Xxx)
+        - 4, 5, 5, 7 (XXX XXX, xxx xxx, Xxx xxx, Xxx Xxx) a adapter la norme change en fonction des espaces
+        - 8, 9, 10, 11 (XXX-XXX, xxx-xxx, Xxx-xxx, Xxx-Xxx)
+        - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
+    """
+    variations = [] # 0 --> nom initial et on boucle direct dessus ?
+    variations.append((name.upper())) #XXX
+    variations.append((name.lower())) #xxx
+    variations.append((name.capitalize())) #Xxx
     
-    liste = []
+    separateurs = [" ", "-","_"] #test des séparateurs
+
+    # Bloc pour vérifier la présence uniquement d'un type séparateur. Si 2 types, on détecte que le 1er
+    # On check la présence d'un type, on le stock dans test_sep afin de le remplacer par les types restants
+    # Tester si plusieurs avec test_sep comme array ?
+    detected_sep = None
+    for sep in separateurs:
+        if sep in name:
+            detected_sep = sep
+            break          
+    if detected_sep:
+        # Déterminer la base flag selon le séparateur détecté
+        if detected_sep != " ":
+            base_flag = 4  # Pour les noms avec espace
+            variations.append((name.replace(detected_sep," ").upper(), base_flag))        
+            variations.append((name.replace(detected_sep," ").lower(), base_flag + 1))     
+            variations.append((name.replace(detected_sep," ").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep," ").title(), base_flag + 3))    
+        elif detected_sep != "-":
+            base_flag = 8  # Pour les noms avec tiret
+            variations.append((name.replace(detected_sep,"-").upper(), base_flag))        
+            variations.append((name.replace(detected_sep,"-").lower(), base_flag + 1))     
+            variations.append((name.replace(detected_sep,"-").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep,"-").title(), base_flag + 3))      
+        elif detected_sep != "_":
+            base_flag = 12  # Pour les noms avec underscore
+            variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
+            variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
+            variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))    
     
-    i = 1
-    for val in out :
-        val = (val, i)
-        liste.append(val)
-        i += 1
-    return liste # --> set avec toutes les variations de noms
+    return variations # --> set avec toutes les variations de noms
 
 ##########################################################################################################################
 
