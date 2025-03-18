@@ -92,7 +92,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             #st.write(download)
             #st.write("Preview (download available)")
             #st.write(f"Results: {dfOut.shape[0]}")
-            st.write("Preview (download available): {dfOut.shape[0]} result(s).")
+            st.write(f"Preview (download available): {dfOut.shape[0]} result(s).")
             st.dataframe(dfOut)
             show_map(dfOut)
                
@@ -119,7 +119,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             #st.write(download)
-            st.write("Preview (download available): {dfOut.shape[0]} result(s).\nNo result for: {no_results}")
+            st.write(f"Preview (download available): {dfOut.shape[0]} result(s).\nNo result for: {no_results}")
             #st.write(f"Results: {dfOut.shape[0]} . No result for: \n{no_results}")
             entreprises.pop()
             st.dataframe(dfOut)
