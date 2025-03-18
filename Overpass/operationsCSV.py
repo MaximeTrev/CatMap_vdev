@@ -197,7 +197,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df["flag"] = flag   
                 else:
                     print("No data")
-             else:
+            else:
                 if osm_data:
                     df_trans = process_osm_data(osm_data)
                     df_trans["flag"] = flag   
