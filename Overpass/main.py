@@ -107,7 +107,6 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(f"{dfOut.shape[0]} results (download available)")
-            #st.write(f"No result for: {no_results}")
             st.write(f"No result for: {', '.join(no_results)}")
             entreprises.pop()
             st.dataframe(dfOut)
