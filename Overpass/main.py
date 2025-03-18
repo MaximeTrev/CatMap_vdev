@@ -41,7 +41,7 @@ def get_amenity_counts(df):
 
 def show_map(df):
     m = folium.Map(location=[48.8566, 2.3522], zoom_start=5)
-    #occ = 0
+    
     for _, row in df.iterrows():
         _popup=str(row["lat"]) + " " + str(row["long"]) + "\n"
         _popup +="name:"+row["name"]+"\n"
@@ -61,7 +61,6 @@ def show_map(df):
             fill_opacity=0.6,
             popup=popup
         ).add_to(m)
-        #occ+=1
     folium_static(m)
 
 def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
@@ -70,12 +69,14 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
     
     if option == NomEntreprise:
         entreprise = st.text_input("Company name")
+        
         progress_container.markdown(
             '<span class="progress-bar-container">Loading ...<div class="progress-bar" id="progress"></div></span>',
-            unsafe_allow_html=True
-        )
+            unsafe_allow_html=True)
+            
         if entreprise != "":
             listeFichiers, _, iter = _csv.fromCSVtoJSON(option, progress_container, entreprise, "")
+            
             #si pas de résultats, homogénéisation du nom plante
             if not listeFichiers.empty:
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
@@ -90,15 +91,14 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         uploaded_file = st.file_uploader("Select CSV file", type=["csv"])   
         progress_container.markdown(
             '<span class="progress-bar-container">Loading ...<div class="progress-bar" id="progress"></div></span>',
-            unsafe_allow_html=True
-        )
+            unsafe_allow_html=True)
         
         if uploaded_file is not None:
             # Initialisation des variable
             listeFichiers, entreprises, iter = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file)
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
-            #Check si des noms n'ont pas de résultats et les faire afficher 
+            #Check si des noms n'ont pas de résultats 
             no_results=  []
             uploaded_df = pd.read_csv(uploaded_file)
             for name in uploaded_df.iloc[:, 0].str.upper():
@@ -111,6 +111,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             entreprises.pop()
             st.dataframe(dfOut)
             show_map(dfOut) 
+            
     try:
         if dfOut is not None:
             st.session_state.dfOut = dfOut
@@ -119,14 +120,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         col_fig1, col_fig2 = st.columns(2)
         
         with col_fig1:
-            # Interface utilisateur - Sélection des "Name"
-            #st.write("Select companie(s)")
+            # Plot camembert de la repartition de la sélection par pays en fonction des noms
             with st.expander("Select companie(s)", expanded=False):
                 selected_names = st.multiselect(
                     "Companie(s):", 
                     options=st.session_state.dfOut["name"].unique(),
-                    default=st.session_state.dfOut["name"].unique()  # Tout sélectionné par défaut
-                )
+                    default=st.session_state.dfOut["name"].unique()  # Tout sélectionné par défaut)
             # Appliquer le filtre sur dfOut
             filtered_df = st.session_state.dfOut[st.session_state.dfOut["name"].isin(selected_names)]
             pays_counts = get_pays_counts(filtered_df)
@@ -145,14 +144,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             fig = px.pie(pays_counts, names="pays", values="count")
             fig.update_layout(
                 legend=dict(font=dict(size=8)),
-                margin=dict(l=5, r=50)
-            )
+                margin=dict(l=5, r=50))
             fig.update_traces(texttemplate="%{percent:.0%}")
             st.plotly_chart(fig, use_container_width=True)
 
-
         with col_fig2:
-            #st.write("Select country(ies)")
+            # Plot camembert de la repartition amenity (à modifier plus tard) en fonction du pays
             with st.expander("Select country(ies)", expanded=False):
                 selected_country = st.multiselect(
                     "Country(ies):", 
@@ -186,7 +183,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
     
     
 def load() :
-    # Création de la disposition en trois colonnes
+    # Création de la disposition en trois colonnes pour la bannière
     col1, col2, col3 = st.columns([1, 4, 1])  # Colonnes de tailles différentes
     with col2:
         st.image("Overpass/PNG/TopBanner.png", width=1500)
@@ -198,9 +195,6 @@ def load() :
     
     # Conteneur pour la barre de progression
     barre_de_chargement = st.empty()
-    
-    # Exécuter la classe Test
-    #T = Test(barre_de_chargement, option, NomEntreprise, FichierCSV)
     
     __main__(barre_de_chargement, option, NomEntreprise, FichierCSV)
     
