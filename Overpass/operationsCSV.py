@@ -117,11 +117,12 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         #listeFichiers = []
         all_results = []  # Stocke tous les résultats pour concaténation
         
+        #soucis avec les j, on recommence iter
         j = 0
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
-            df_result, _ = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
+            df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             j += 1
             if df_result is not None:
                 all_results.append(df_result)
@@ -220,4 +221,4 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         print("Temps de génération fichier/s :", str(round(temps-2))+" secondes.\n") #-2 car on a fait time.sleep(1)*2
         print("Building(s): ", len(df))
         print(df)
-        return df, []
+        return df, [], j
