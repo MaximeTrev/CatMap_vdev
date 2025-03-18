@@ -125,7 +125,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 selected_names = st.multiselect(
                     "Companie(s):", 
                     options=st.session_state.dfOut["name"].unique(),
-                    default=st.session_state.dfOut["name"].unique()  # Tout sélectionné par défaut)
+                    default=st.session_state.dfOut["name"].unique())  # Tout sélectionné par défaut)
             # Appliquer le filtre sur dfOut
             filtered_df = st.session_state.dfOut[st.session_state.dfOut["name"].isin(selected_names)]
             pays_counts = get_pays_counts(filtered_df)
