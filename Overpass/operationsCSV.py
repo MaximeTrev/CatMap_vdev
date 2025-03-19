@@ -10,7 +10,7 @@ from requetes import *
 
 def __suppr__(chain) : 
     """
-    Haute sensibilité àa la casse de la méthode : Total != TOTAL != total ...
+    Haute sensibilité à la casse de la méthode : Total != TOTAL != total ...
     Fonction ayant pour objectif de supprimer les bruits potentiels au sein du/des nom(s) en input, commes les appelations juridiques (Fr)
     """
     #Liste des éléments à supprimer des noms
@@ -31,6 +31,7 @@ def __suppr__(chain) :
 def __var_name__(name, booleen = False): #sous-fonction
     """
     - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
+    - /!\ On ne prend pas les accents TO DATE
     - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
     - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
     - Flag : 
@@ -40,9 +41,11 @@ def __var_name__(name, booleen = False): #sous-fonction
         - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
     """
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
+    #variations.append((name, 0)) #nom initial + rajouter drop duplicate
     variations.append((name.upper(), 1)) #XXX
     variations.append((name.lower(), 2)) #xxx
     variations.append((name.capitalize(), 3)) #Xxx
+    variations
     
     separateurs = [" ", "-","_"] #test des séparateurs
 
@@ -73,11 +76,8 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
             variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
             variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
-            variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))          
-    
+            variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
     return variations # --> set avec toutes les variations de noms
-
-##########################################################################################################################
 
 def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
     """
@@ -94,7 +94,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
     - max_length : Nombre total de variations de noms (calculé si non fourni).
     - j : Compteur de progression.
 
-    Retourne :
+    Return :
     --------------------------------------------------------------
     - Un DataFrame contenant les résultats de requêtes Overpass Turbo.
     - Une liste des entreprises traitées.
@@ -119,7 +119,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         i = 0
         for entreprise in liste_entreprises:
             fName.append(__suppr__(entreprise))
-            varName.append(__var_name__(fName[i])) #avec accents
+            varName.append(__var_name__(fName[i]))
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
                 varName_.append(__var_name__(fName_, True)) #True -> pas d'accent, donc le nom initial n'est pas présent
