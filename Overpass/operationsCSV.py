@@ -73,34 +73,35 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
             variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
             variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
-            variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))    
-            
+            variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))          
     
     return variations # --> set avec toutes les variations de noms
 
 ##########################################################################################################################
 
 def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
+   """
+    Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
+    et en récupérant des données via Overpass Turbo.
     
-    """
-    - Paramètres
+    Paramètres :
     --------------------------------------------------------------
-    fichierCSV : TYPE
-        Fichier CSV
-        Format fichier CSV :
-            - Nom de l'entreprise
-            - Nom de l'entreprise à concaténer au nom du fichier en sortie
-            - Requête (Overpass turbo)
-            - délimiteur : | (sans espaces)
-    
-    - Tâche
+    - option : Sélection du mode "by name" (NomEntreprise) ou "by csv file" (FichierCSV)
+    - progress_container : Composant Streamlit pour afficher la progression.
+    - NomEntreprise : Nom d'une entreprise spécifique (si aucun fichier CSV n'est fourni).
+    - FichierCSV : Fichier CSV contenant une liste d'entreprises.
+    - i : Indice de boucle initial (défaut = 1).
+    - max_length : Nombre total de variations de noms (calculé si non fourni).
+    - j : Compteur de progression.
+
+    Retourne :
     --------------------------------------------------------------
-    Crée un fichier JSON pour 
-    chaque entreprise.
+    - Un DataFrame contenant les résultats de requêtes Overpass Turbo.
+    - Une liste des entreprises traitées.
+    - La valeur mise à jour de j (progression).
     """
         
-    entreprises = []
-        
+    entreprises = []       
     if FichierCSV != "":
         FichierCSV.seek(0)  # Revenir au début du fichier
         # Lire le fichier en ignorant le BOM UTF-8
@@ -123,21 +124,17 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
             if fName_ != fName[i] :
                 varName_.append(__var_name__(fName_, True)) #True -> pas d'accent, donc le nom initial n'est pas présent
             i += 1
-      
-        temps = 0.0
-  
-        #max_length=len(varName)+len(varName_)
+
+        temps = 0.0  
         max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
         all_results = []  # Stocke tous les résultats pour concaténation
-        #soucis avec les j, on recommence iter
         j = 0
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
-            #j += 1
             if df_result is not None:
                 all_results.append(df_result)
 
@@ -148,36 +145,26 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         else:
             df_final = pd.DataFrame()
             print("Aucune donnée extraite.")
-
         return df_final, df_entreprises.iloc[:, 0].tolist(), j
     
     elif NomEntreprise != "" :
-        #listeFichiers = []
-        #print(f"in {max_length}")
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
-        #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv
-    
-            #print(f"none {max_length}")
+        #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv    
         fname = __suppr__(NomEntreprise) 
         print("Name :", fname)
         fName = fname
         temps = 0.0
         varName, varName_ = [], []
         varName = __var_name__(fName) #avec accents
-        st.write(f"1: {varName}")
-        #print("varName :", varName)
         fName_ = u.unidecode(fName)
         if fName_ != fName :
             varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
-            #max_length=len(varName)+len(varName_)
         if max_length is None:
             max_length=len(varName)+len(varName_)
             
-        #j=0 #reini a chaque entreprise si fichier ?? a modifier dans la fonction
         first_iter = True
         for (var, flag) in varName :         
             osm_data = get_overpass_data(var)
-            #if j <= 1:
             if first_iter:
                 first_iter = False
                 if osm_data:
@@ -185,7 +172,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df["flag"] = flag   
                 else:
                     print("No data")
-            #if j > 1:
             else:
                 if osm_data:
                     df_trans = process_osm_data(osm_data)
@@ -193,7 +179,6 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                     df = pd.concat([df, df_trans], ignore_index=True)
                 else:
                     print("No data")
-
             j+=1
             progress=j/max_length*100
             progress=round(progress)
@@ -201,9 +186,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 f"""<div class="progress-bar" style="width: {progress}%;">
                 {progress}%
             </div>""",
-                unsafe_allow_html=True
-            )
-
+                unsafe_allow_html=True)
         time.sleep(1)
         
         first_iter = True
@@ -231,8 +214,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
                 f"""<div class="progress-bar" style="width: {progress}%;">
                 {progress}%
             </div>""",
-                unsafe_allow_html=True
-            )
+                unsafe_allow_html=True)
         
         print("Temps de génération fichier/s :", str(round(temps-2))+" secondes.\n") #-2 car on a fait time.sleep(1)*2
         print("Building(s): ", len(df))
