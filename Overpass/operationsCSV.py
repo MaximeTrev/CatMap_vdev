@@ -80,7 +80,7 @@ def __var_name__(name, booleen = False): #sous-fonction
 ##########################################################################################################################
 
 def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
-   """
+    """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
     et en récupérant des données via Overpass Turbo.
     
