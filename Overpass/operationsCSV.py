@@ -60,19 +60,19 @@ def __var_name__(name, booleen = False): #sous-fonction
             base_flag = 4  # Pour les noms avec espace
             variations.append((name.replace(detected_sep," ").upper(), base_flag))        
             variations.append((name.replace(detected_sep," ").lower(), base_flag + 1))     
-            variations.append((name.replace(detected_sep," ").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep," ").capitalize(), base_flag + 2))
             variations.append((name.replace(detected_sep," ").title(), base_flag + 3))    
         elif detected_sep != "-":
             base_flag = 8  # Pour les noms avec tiret
             variations.append((name.replace(detected_sep,"-").upper(), base_flag))        
             variations.append((name.replace(detected_sep,"-").lower(), base_flag + 1))     
-            variations.append((name.replace(detected_sep,"-").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep,"-").capitalize(), base_flag + 2))
             variations.append((name.replace(detected_sep,"-").title(), base_flag + 3))      
         elif detected_sep != "_":
             base_flag = 12  # Pour les noms avec underscore
             variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
             variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
-            variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2) 
+            variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
             variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))    
     
     return variations # --> set avec toutes les variations de noms
