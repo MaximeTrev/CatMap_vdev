@@ -43,7 +43,8 @@ def process_osm_data(result):
                 "type": "way",
                 "lat": float(way.center_lat),
                 "long": float(way.center_lon),
-                **extract_tags(node)  # Ajout des tags
+                **extract_tags(way)  # Ajout des tags
+                #**extract_tags(node)  # Ajout des tags
             })
 
     #Probleme ici car les relations ont parfois pas de coord directement. Possibilité :
