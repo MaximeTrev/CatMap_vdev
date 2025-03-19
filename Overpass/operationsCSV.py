@@ -40,9 +40,9 @@ def __var_name__(name, booleen = False): #sous-fonction
         - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
     """
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
-    variations.append((name.upper())) #XXX
-    variations.append((name.lower())) #xxx
-    variations.append((name.capitalize())) #Xxx
+    variations.append((name.upper(), 1)) #XXX
+    variations.append((name.lower(), 2)) #xxx
+    variations.append((name.capitalize(), 3)) #Xxx
     
     separateurs = [" ", "-","_"] #test des séparateurs
 
@@ -74,6 +74,7 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
             variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
             variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))    
+            
     
     return variations # --> set avec toutes les variations de noms
 
