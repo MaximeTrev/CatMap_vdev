@@ -163,6 +163,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         temps = 0.0
         varName, varName_ = [], []
         varName = __var_name__(fName) #avec accents
+        st.write(f"1: {varName}")
         #print("varName :", varName)
         fName_ = u.unidecode(fName)
         if fName_ != fName :
