@@ -10,8 +10,6 @@ import CSS as css
 import mergeCountries as mc
 import operationsCSV as _csv
 
-# """ ADD TEXT HERE"""
-
 css_path = os.path.join(os.path.dirname(__file__), "styles.css")
 with open(css_path) as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
