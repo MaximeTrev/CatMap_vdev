@@ -12,9 +12,6 @@ def get_overpass_data(company_name):
     api = overpy.Overpass()
     query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"]);out center;"""
     # Ajout de "out center;" pour forcer le centre des ways et relations
-    # query sur tout ci-dessous
-    #query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"];relation["name"="{company_name}"];);out center;"""
-
     try:
         result = api.query(query)
         return result
@@ -26,7 +23,12 @@ def process_osm_data(result):
     """
     Traite les données OSM pour extraire :
     - Les nodes avec leurs coordonnées
-    - Le centre des ways et relations
+    - Le centre des ways
+    - Si volonté d'extraire les relations --> pas de centre / coordonnées directement, il faut parcouris les membres la composant, donc: 
+        - soit extraire ses noeuds et en faire la moyenne arithmétique,
+        - soit extraire ses ways et extraire son centre
+    --> il faut également adapter la query
+    /!\ Relations ajoute un bruitage similaire à son gain de volumétrie sur nos exemples (ajout d'arrêt de bus...)
     """
     results = []
 
@@ -51,37 +53,6 @@ def process_osm_data(result):
                 **extract_tags(way)  # Ajout des tags
                 #**extract_tags(node)  # Ajout des tags
             })
-
-    #Probleme ici car les relations ont parfois pas de coord directement. Possibilité :
-    #Si la relation contient des nœuds ou d'autres objets associés ayant des coordonnées, il te faut parcourir ces membres et extraire les coordonnées.
-    #Récupérer les coordonnées des nœuds : En supposant que chaque membre de la relation soit un nœud, tu peux récupérer les coordonnées de ce nœud.
-    #--> on risque cependant d'avoir les coord de chaque noeuds de la relation, entrainant de nombreux "duplicatats"
-    """
-    # Traitement des relations (utilisation du "center" si dispo)
-    for relation in result.relations:
-        print(relation.tags)
-        if hasattr(relation, "center_lat") and hasattr(relation, "center_lon"):
-            # Vérifier si les valeurs des attributs ne sont pas None
-            if relation.center_lat is not None and relation.center_lon is not None:
-                results.append({
-                    "name": relation.tags.get("name", "Unknown"),
-                    "type": "relation",
-                    "lat": float(relation.center_lat),
-                    "long": float(relation.center_lon),
-                    **extract_tags(relation)  # Ajout des tags
-                })
-            else:
-                # Si les coordonnées sont None, récupérer les coordonnées d'un nœud
-                node = relation.members[0]  # Supposons que le premier membre est un nœud
-                lat = node.lat
-                lon = node.lon
-                results.append({
-                    "name": relation.tags.get("name", "Unknown"),
-                    "type": "relation",
-                    "lat": float(lat),
-                    "long": float(lon),
-                    **extract_tags(relation)  # Ajout des tags
-                })"""
 
     return pd.DataFrame(results)
 
