@@ -4,11 +4,16 @@ import pandas as pd
 
 def get_overpass_data(company_name):
     """
-    Interroge l'API Overpass avec overpy pour récupérer les données OSM d'une entreprise.
+    - Interroge l'API Overpass avec overpy pour récupérer les données OSM d'une entreprise.
+    - Considère uniquement les nodes et les ways actuellement. 
+    - Les relations ne sont pas prises en charges au regard du bruits qu'elles induisent
+    
     """
     api = overpy.Overpass()
-    query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"];relation["name"="{company_name}"];);out center;"""
+    query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"]);out center;"""
     # Ajout de "out center;" pour forcer le centre des ways et relations
+    # query sur tout ci-dessous
+    #query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"];relation["name"="{company_name}"];);out center;"""
 
     try:
         result = api.query(query)
