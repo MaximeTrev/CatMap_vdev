@@ -98,7 +98,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
 
             #Check si des noms n'ont pas de résultats 
             no_results=  []
-            uploaded_df = pd.readntg(uploaded_file)
+            uploaded_df = pd.read_csv(uploaded_file)
             for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in set(listeFichiers["name"]):
                     no_results.append(name)
