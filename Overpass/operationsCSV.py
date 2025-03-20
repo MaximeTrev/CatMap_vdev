@@ -4,8 +4,6 @@ import json
 import time
 import unidecode as u
 import os
-from requetes import Requetes as R
-from requetes import *
 
 
 def __suppr__(chain) : 
