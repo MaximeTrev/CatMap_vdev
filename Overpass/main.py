@@ -8,7 +8,7 @@ import plotly.express as px
 import os
 import CSS as css
 import mergeCountries as mc
-import operationsCSV as _csv
+import name_to_georef as ntg
 
 css_path = os.path.join(os.path.dirname(__file__), "styles.css")
 with open(css_path) as f:
@@ -73,7 +73,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             unsafe_allow_html=True)
             
         if entreprise != "":
-            listeFichiers, _, iter = _csv.georef(option, progress_container, entreprise, "")
+            listeFichiers, _, iter = ntg.georef(option, progress_container, entreprise, "")
             
             #si pas de résultats, homogénéisation du nom plante
             if not listeFichiers.empty:
@@ -93,12 +93,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         
         if uploaded_file is not None:
             # Initialisation des variable
-            listeFichiers, entreprises, iter = _csv.georef(option, progress_container, "", uploaded_file) #possible de virer les ""
+            listeFichiers, entreprises, iter = ntg.georef(option, progress_container, "", uploaded_file) #possible de virer les ""
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
             #Check si des noms n'ont pas de résultats 
             no_results=  []
-            uploaded_df = pd.read_csv(uploaded_file)
+            uploaded_df = pd.readntg(uploaded_file)
             for name in uploaded_df.iloc[:, 0].str.upper():
                 if name not in set(listeFichiers["name"]):
                     no_results.append(name)
