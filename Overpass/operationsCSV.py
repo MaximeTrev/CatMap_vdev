@@ -77,10 +77,11 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
     return variations # --> set avec toutes les variations de noms
 
-def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
+def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
     et en récupérant des données via Overpass Turbo.
+    Récursivité si FichierCSV: on boucle sur le mode NomEntreprise sur chaque nom du fichier
     
     Paramètres :
     --------------------------------------------------------------
@@ -132,7 +133,7 @@ def fromCSVtoJSON(option, progress_container, NomEntreprise="", FichierCSV="", i
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}")
-            df_result, _, j = fromCSVtoJSON(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
+            df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             if df_result is not None:
                 all_results.append(df_result)
 
