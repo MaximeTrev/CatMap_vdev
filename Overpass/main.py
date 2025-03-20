@@ -73,7 +73,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             unsafe_allow_html=True)
             
         if entreprise != "":
-            listeFichiers, _, iter = _csv.fromCSVtoJSON(option, progress_container, entreprise, "")
+            listeFichiers, _, iter = _csv.georef(option, progress_container, entreprise, "")
             
             #si pas de résultats, homogénéisation du nom plante
             if not listeFichiers.empty:
@@ -93,7 +93,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         
         if uploaded_file is not None:
             # Initialisation des variable
-            listeFichiers, entreprises, iter = _csv.fromCSVtoJSON(option, progress_container, "", uploaded_file) #possible de virer les ""
+            listeFichiers, entreprises, iter = _csv.georef(option, progress_container, "", uploaded_file) #possible de virer les ""
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
             #Check si des noms n'ont pas de résultats 
