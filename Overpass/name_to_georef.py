@@ -24,7 +24,7 @@ def timing_decorator(func):
         result = func(*args, **kwargs)  # Exécution de la fonction
         end_time = time.time()  # Fin du chronomètre
         elapsed_time = end_time - start_time  # Calcul du temps écoulé
-        #st.write(f"Computing time: {round(elapsed_time)} s")
+        func._timing_done = True # Marquer que le chronométrage a été effectué
         st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
         return result
     return wrapper
