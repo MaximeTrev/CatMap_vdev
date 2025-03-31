@@ -80,7 +80,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
                 dfOut, Pays = mc.findCountry(listeFichiers)
                 
-            st.write(f"{dfOut.shape[0]} results (download available)")
+            st.write(f"{dfOut.shape[0]} results")
             st.dataframe(dfOut)
             show_map(dfOut)
                
