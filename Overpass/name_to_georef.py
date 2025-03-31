@@ -6,6 +6,17 @@ import unidecode as u
 import os
 from requetes import *
 
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()  # Début du chronomètre
+        result = func(*args, **kwargs)  # Exécution de la fonction
+        end_time = time.time()  # Fin du chronomètre
+        elapsed_time = end_time - start_time  # Calcul du temps écoulé
+        st.write(f"Computing time: {round(elapsed_time, 2)} seconds")
+        return result
+    return wrapper
+
 def __suppr__(chain) : 
     """
     Haute sensibilité à la casse de la méthode : Total != TOTAL != total ...
@@ -77,6 +88,7 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
     return variations # --> set avec toutes les variations de noms
 
+@timing_decorator
 def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
@@ -124,7 +136,6 @@ def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max
                 varName_.append(__var_name__(fName_, True)) #True -> pas d'accent, donc le nom initial n'est pas présent
             i += 1
 
-        temps = 0.0  
         max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
         df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
 
@@ -152,7 +163,6 @@ def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max
         fname = __suppr__(NomEntreprise) 
         print("Name :", fname)
         fName = fname
-        temps = 0.0
         varName, varName_ = [], []
         varName = __var_name__(fName) #avec accents
         fName_ = u.unidecode(fName)
@@ -214,8 +224,4 @@ def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max
                 {progress}%
             </div>""",
                 unsafe_allow_html=True)
-        
-        print("Temps de génération fichier/s :", str(round(temps-2))+" secondes.\n") #-2 car on a fait time.sleep(1)*2
-        print("Building(s): ", len(df))
-        print(df)
         return df, [], j
