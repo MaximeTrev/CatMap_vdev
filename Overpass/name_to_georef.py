@@ -14,6 +14,7 @@ def timing_decorator(func):
         NomEntreprise = kwargs.get('NomEntreprise', '')
         if FichierCSV != "" and NomEntreprise != "":
             # Si les variables sont renseignées, on ne fait pas le chronométrage
+            st.write(f"ok -{FichierCSV}- -{NomEntreprise}-")
             return func(*args, **kwargs)
             
         start_time = time.time()  # Début du chronomètre
