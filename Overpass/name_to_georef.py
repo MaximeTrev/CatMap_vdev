@@ -9,7 +9,7 @@ from requetes import *
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
-        if "timing_done" in st.session_state and st.session_state.timing_done::
+        if "timing_done" in st.session_state and st.session_state.timing_done:
             # Si le chronométrage a déjà été effectué, on appelle simplement la fonction
             return func(*args, **kwargs)
             
