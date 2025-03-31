@@ -14,7 +14,7 @@ def timing_decorator(func):
         end_time = time.time()  # Fin du chronomètre
         elapsed_time = end_time - start_time  # Calcul du temps écoulé
         #st.write(f"Computing time: {round(elapsed_time)} s")
-        st.markdown(f'<p style="font-size:12px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:14px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
         return result
     return wrapper
 
