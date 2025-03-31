@@ -7,7 +7,7 @@ import os
 from requetes import *
 
 
-def timing_decorator(func):
+"""def timing_decorator(func):
     def wrapper(*args, **kwargs):
         if hasattr(func, '_timing_done') and func._timing_done:
             # Si le chronométrage a déjà été effectué, on appelle simplement la fonction
@@ -18,6 +18,25 @@ def timing_decorator(func):
         end_time = time.time()  # Fin du chronomètre
         elapsed_time = end_time - start_time  # Calcul du temps écoulé
         func._timing_done = True # Marquer que le chronométrage a été effectué
+        st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
+        return result
+    return wrapper"""
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        # Générer une clé unique basée sur les paramètres pour identifier l'état du chronométrage
+        key = f"timing_done_{func.__name__}_{hash(str(args) + str(kwargs))}"
+        # Vérifier si le chronométrage a déjà été fait pour cet ensemble de paramètres
+        if key in st.session_state and st.session_state[key]:
+            return func(*args, **kwargs)
+        # Lancer le chronométrage
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        # Marquer ce set de paramètres comme chronométré
+        st.session_state[key] = True
+        # Affichage du temps de calcul
         st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
         return result
     return wrapper
