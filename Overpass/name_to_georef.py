@@ -13,7 +13,7 @@ def timing_decorator(func):
         result = func(*args, **kwargs)  # Exécution de la fonction
         end_time = time.time()  # Fin du chronomètre
         elapsed_time = end_time - start_time  # Calcul du temps écoulé
-        st.write(f"Computing time: {round(elapsed_time, 2)} seconds")
+        st.write(f"Computing time: {round(elapsed_time)} s")
         return result
     return wrapper
 
