@@ -7,21 +7,7 @@ import os
 from requetes import *
 
 
-"""def timing_decorator(func):
-    def wrapper(*args, **kwargs):
-        if hasattr(func, '_timing_done') and func._timing_done:
-            # Si le chronométrage a déjà été effectué, on appelle simplement la fonction
-            return func(*args, **kwargs)
-            
-        start_time = time.time()  # Début du chronomètre
-        result = func(*args, **kwargs)  # Exécution de la fonction
-        end_time = time.time()  # Fin du chronomètre
-        elapsed_time = end_time - start_time  # Calcul du temps écoulé
-        func._timing_done = True # Marquer que le chronométrage a été effectué
-        st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
-        return result
-    return wrapper"""
-
+"""
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
         # Générer une clé unique basée sur les paramètres pour identifier l'état du chronométrage
@@ -39,7 +25,39 @@ def timing_decorator(func):
         # Affichage du temps de calcul
         st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
         return result
+    return wrapper"""
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        # Vérifier si on est dans le mode FichierCSV (mode récursif)
+        FichierCSV = kwargs.get('FichierCSV', None)
+        NomEntreprise = kwargs.get('NomEntreprise', None)
+
+        if FichierCSV:  # Mode FichierCSV (potentiellement récursif)
+            if "timing_start" not in st.session_state:  
+                # Premier appel en mode FichierCSV => On démarre le chronomètre
+                st.session_state.timing_start = time.time()
+            
+            result = func(*args, **kwargs)  # Exécution de la fonction
+            
+            # Fin du chronomètre uniquement pour le premier appel
+            if "timing_start" in st.session_state:
+                elapsed_time = time.time() - st.session_state.timing_start
+                st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
+                del st.session_state["timing_start"]  # Réinitialisation du timer
+            return result
+
+        elif NomEntreprise:  # Mode NomEntreprise (un seul appel, pas de récursion)
+            start_time = time.time()
+            result = func(*args, **kwargs)
+            elapsed_time = time.time() - start_time
+            st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
+            return result
+        else:
+            return func(*args, **kwargs)  # Cas où ni NomEntreprise ni FichierCSV ne sont fournis
     return wrapper
+
+
 
 def __suppr__(chain) : 
     """
