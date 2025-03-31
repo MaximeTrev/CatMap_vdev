@@ -9,7 +9,7 @@ from requetes import *
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
-         if hasattr(func, '_timing_done') and func._timing_done:
+        if hasattr(func, '_timing_done') and func._timing_done:
             # Si le chronométrage a déjà été effectué, on appelle simplement la fonction
             return func(*args, **kwargs)
             
