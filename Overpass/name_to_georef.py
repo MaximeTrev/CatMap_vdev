@@ -39,31 +39,32 @@ def timing_decorator(func):
             if "timing_start" not in st.session_state:  
                 # Premier appel en mode FichierCSV => On démarre le chronomètre
                 st.session_state.timing_start = time.time()
-                st.session_state.is_first_call = True  # Indiquer que c'est le premier appel
-            else:
-                st.session_state.is_first_call = False  # Appels récursifs
-
+                st.session_state.is_first_call = True  # Marquer comme premier appel
+            
             result = func(*args, **kwargs)  # Exécution de la fonction
             
-            # Fin du chronomètre UNIQUEMENT pour le premier appel
             if st.session_state.is_first_call:
+                # Afficher le temps total une seule fois (quand le premier appel termine)
                 elapsed_time = time.time() - st.session_state.timing_start
-                st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
-                del st.session_state["timing_start"]  # Réinitialisation du timer après l'exécution
+                st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
+                
+                # Réinitialiser pour la prochaine exécution
+                del st.session_state["timing_start"]
                 del st.session_state["is_first_call"]
+
             return result
 
         elif NomEntreprise and FichierCSV is None:  # Mode NomEntreprise (et FichierCSV n'est PAS renseigné)
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
-            st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
+            st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
             return result
 
         else:
             return func(*args, **kwargs)  # Cas où ni NomEntreprise ni FichierCSV ne sont fournis
-    return wrapper
 
+    return wrapper
 
 def __suppr__(chain) : 
     """
