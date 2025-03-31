@@ -12,7 +12,6 @@ def timing_decorator(func):
         # Vérifier les variables FichierCSV et NomEntreprise
         FichierCSV = kwargs.get('FichierCSV', '')
         NomEntreprise = kwargs.get('NomEntreprise', '')
-        st.write(f"{FichierCSV} + {NomEntreprise}")
         if FichierCSV != "" and NomEntreprise != "":
             # Si les variables sont renseignées, on ne fait pas le chronométrage
             return func(*args, **kwargs)
