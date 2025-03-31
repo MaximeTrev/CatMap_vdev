@@ -9,6 +9,10 @@ from requetes import *
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
+        if FichierCSV != "" and NomEntreprise != "":
+            # Si les variables sont renseignées, on ne fait pas le chronométrage
+            return func(*args, **kwargs)
+            
         start_time = time.time()  # Début du chronomètre
         result = func(*args, **kwargs)  # Exécution de la fonction
         end_time = time.time()  # Fin du chronomètre
