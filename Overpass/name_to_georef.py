@@ -12,7 +12,6 @@ def timing_decorator(func):
         # Vérifier les variables FichierCSV et NomEntreprise
         FichierCSV = kwargs.get('FichierCSV', '')
         NomEntreprise = kwargs.get('NomEntreprise', '')
-        st.write(f"ok -{FichierCSV}- -{NomEntreprise}-")
         if "FichierCSV" in kwargs and kwargs["FichierCSV"] != "" and "NomEntreprise" in kwargs and kwargs["NomEntreprise"] != "":
         #if FichierCSV != "" and NomEntreprise != "":
             # Si les variables sont renseignées, on ne fait pas le chronométrage
@@ -100,7 +99,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     return variations # --> set avec toutes les variations de noms
 
 @timing_decorator
-def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max_length = None, j = 0) :
+def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None, j = 0) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
     et en récupérant des données via Overpass Turbo.
@@ -124,7 +123,7 @@ def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max
     """
         
     entreprises = []       
-    if FichierCSV != "":
+    if FichierCSV:
         FichierCSV.seek(0)  # Revenir au début du fichier
         # Lire le fichier en ignorant le BOM UTF-8
         file_content = FichierCSV.getvalue().decode("utf-8-sig")
@@ -168,7 +167,7 @@ def georef(option, progress_container, NomEntreprise="", FichierCSV="", i=1, max
             print("Aucune donnée extraite.")
         return df_final, df_entreprises.iloc[:, 0].tolist(), j
     
-    elif NomEntreprise != "" :
+    elif NomEntreprise :
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv    
         fname = __suppr__(NomEntreprise) 
