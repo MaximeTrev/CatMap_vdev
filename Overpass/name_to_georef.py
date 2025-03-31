@@ -9,10 +9,7 @@ from requetes import *
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
-        # Vérifier les variables FichierCSV et NomEntreprise
-        FichierCSV = kwargs.get('FichierCSV', '')
-        NomEntreprise = kwargs.get('NomEntreprise', '')
-        if hasattr(func, '_timing_done') and func._timing_done:
+        if "timing_done" in st.session_state and st.session_state.timing_done::
             # Si le chronométrage a déjà été effectué, on appelle simplement la fonction
             return func(*args, **kwargs)
             
@@ -20,7 +17,7 @@ def timing_decorator(func):
         result = func(*args, **kwargs)  # Exécution de la fonction
         end_time = time.time()  # Fin du chronomètre
         elapsed_time = end_time - start_time  # Calcul du temps écoulé
-        func._timing_done = True # Marquer que le chronométrage a été effectué
+        st.session_state.timing_done = True # Marquer que le chronométrage a été effectué
         st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
         return result
     return wrapper
