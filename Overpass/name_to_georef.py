@@ -37,7 +37,6 @@ def timing_decorator(func):
             if "timing_start" not in st.session_state:  
                 # Premier appel en mode FichierCSV => On démarre le chronomètre
                 st.session_state.timing_start = time.time()
-            
             result = func(*args, **kwargs)  # Exécution de la fonction
             
             # Fin du chronomètre uniquement pour le premier appel
@@ -47,7 +46,7 @@ def timing_decorator(func):
                 del st.session_state["timing_start"]  # Réinitialisation du timer
             return result
 
-        elif NomEntreprise:  # Mode NomEntreprise (un seul appel, pas de récursion)
+        elif NomEntreprise and FichierCSV is None:  # Mode NomEntreprise (et FichierCSV n'est PAS renseigné)
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
