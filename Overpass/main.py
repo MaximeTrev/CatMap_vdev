@@ -79,8 +79,9 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             if not listeFichiers.empty:
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
                 dfOut, Pays = mc.findCountry(listeFichiers)
-                
-            st.write(f"{dfOut.shape[0]} results")
+
+            st.markdown(f'<span style="font-size:12px; margin-left:10px;">{dfOut.shape[0]} results</span>')
+            #st.write(f"{dfOut.shape[0]} results")
             st.dataframe(dfOut)
             show_map(dfOut)
                
