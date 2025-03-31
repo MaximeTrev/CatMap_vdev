@@ -15,9 +15,11 @@ def timing_decorator(func):
         # Vérifier si le chronométrage a déjà été fait pour cet ensemble de paramètres
         if key in st.session_state and st.session_state[key]:
             return func(*args, **kwargs)
+            
         # Lancer le chronométrage
         start_time = time.time()
         result = func(*args, **kwargs)
+        
         end_time = time.time()
         elapsed_time = end_time - start_time
         # Marquer ce set de paramètres comme chronométré
@@ -29,21 +31,26 @@ def timing_decorator(func):
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
-        # Vérifier si on est dans le mode FichierCSV (mode récursif)
+        # Récupérer les valeurs de NomEntreprise et FichierCSV
         FichierCSV = kwargs.get('FichierCSV', None)
         NomEntreprise = kwargs.get('NomEntreprise', None)
 
-        if FichierCSV:  # Mode FichierCSV (potentiellement récursif)
+        if FichierCSV:  # Mode FichierCSV (avec appels récursifs)
             if "timing_start" not in st.session_state:  
                 # Premier appel en mode FichierCSV => On démarre le chronomètre
                 st.session_state.timing_start = time.time()
+                st.session_state.is_first_call = True  # Indiquer que c'est le premier appel
+            else:
+                st.session_state.is_first_call = False  # Appels récursifs
+
             result = func(*args, **kwargs)  # Exécution de la fonction
             
-            # Fin du chronomètre uniquement pour le premier appel
-            if "timing_start" in st.session_state:
+            # Fin du chronomètre UNIQUEMENT pour le premier appel
+            if st.session_state.is_first_call:
                 elapsed_time = time.time() - st.session_state.timing_start
                 st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
-                del st.session_state["timing_start"]  # Réinitialisation du timer
+                del st.session_state["timing_start"]  # Réinitialisation du timer après l'exécution
+                del st.session_state["is_first_call"]
             return result
 
         elif NomEntreprise and FichierCSV is None:  # Mode NomEntreprise (et FichierCSV n'est PAS renseigné)
@@ -52,10 +59,10 @@ def timing_decorator(func):
             elapsed_time = time.time() - start_time
             st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
             return result
+
         else:
             return func(*args, **kwargs)  # Cas où ni NomEntreprise ni FichierCSV ne sont fournis
     return wrapper
-
 
 
 def __suppr__(chain) : 
@@ -129,7 +136,7 @@ def __var_name__(name, booleen = False): #sous-fonction
             variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
     return variations # --> set avec toutes les variations de noms
 
-@timing_decorator
+#@timing_decorator
 def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None, j = 0) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
@@ -152,7 +159,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
     - Une liste des entreprises traitées.
     - La valeur mise à jour de j (progression).
     """
-        
+    
     entreprises = []       
     if FichierCSV:
         FichierCSV.seek(0)  # Revenir au début du fichier
