@@ -80,7 +80,8 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 listeFichiers["name"] = listeFichiers["name"].str.upper()
                 dfOut, Pays = mc.findCountry(listeFichiers)
 
-            st.markdown(f'<span style="font-size:12px; margin-left:10px;">{dfOut.shape[0]} results</span>')
+            st.markdown(f'<span style="font-size:12px; margin-left:10px;">Next info here</span>', unsafe_allow_html=True)
+            #st.markdown(f'<span style="font-size:12px; margin-left:10px;"> {dfOut.shape[0]} results </span>', unsafe_allow_html=True)
             #st.write(f"{dfOut.shape[0]} results")
             st.dataframe(dfOut)
             show_map(dfOut)
