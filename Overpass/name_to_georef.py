@@ -98,12 +98,9 @@ def __var_name__(name, booleen = False): #sous-fonction
         - 8, 9, 10, 11 (XXX-XXX, xxx-xxx, Xxx-xxx, Xxx-Xxx)
         - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
     """
+    
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
     #variations.append((name, 0)) #nom initial + rajouter drop duplicate
-    variations.append((name.upper(), 1)) #XXX
-    variations.append((name.lower(), 2)) #xxx
-    variations.append((name.capitalize(), 3)) #Xxx
-    variations
     
     separateurs = [" ", "-","_"] #test des séparateurs
 
@@ -135,6 +132,12 @@ def __var_name__(name, booleen = False): #sous-fonction
         variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
         variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
         variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
+
+    else:
+        variations.append((name.upper(), 1)) #XXX
+        variations.append((name.lower(), 2)) #xxx
+        variations.append((name.capitalize(), 3)) #Xxx
+        variations
     return variations # --> set avec toutes les variations de noms
 
 #@timing_decorator
