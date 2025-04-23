@@ -104,9 +104,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     
     separateurs = [" ", "-","_"] #test des séparateurs
 
-    # Bloc pour vérifier la présence uniquement d'un type séparateur. Si 2 types, on détecte que le 1er
-    # On check la présence d'un type, on le stock dans test_sep afin de le remplacer par les types restants
-    # Tester si plusieurs avec test_sep comme array ?
+    # Bloc pour vérifier la présence uniquement d'un type séparateur.
     detected_sep = None
     for sep in separateurs:
         if sep in name:
@@ -114,19 +112,18 @@ def __var_name__(name, booleen = False): #sous-fonction
             break          
     if detected_sep:
         # Déterminer la base flag selon le séparateur détecté
-    #if detected_sep = " ":
         base_flag = 4  # Pour les noms avec espace
         variations.append((name.replace(detected_sep," ").upper(), base_flag))        
         variations.append((name.replace(detected_sep," ").lower(), base_flag + 1))     
         variations.append((name.replace(detected_sep," ").capitalize(), base_flag + 2))
         variations.append((name.replace(detected_sep," ").title(), base_flag + 3))    
-    #elif detected_sep = "-":
+
         base_flag = 8  # Pour les noms avec tiret
         variations.append((name.replace(detected_sep,"-").upper(), base_flag))        
         variations.append((name.replace(detected_sep,"-").lower(), base_flag + 1))     
         variations.append((name.replace(detected_sep,"-").capitalize(), base_flag + 2))
         variations.append((name.replace(detected_sep,"-").title(), base_flag + 3))      
-    #elif detected_sep = "_":
+
         base_flag = 12  # Pour les noms avec underscore
         variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
         variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
@@ -138,6 +135,7 @@ def __var_name__(name, booleen = False): #sous-fonction
         variations.append((name.lower(), 2)) #xxx
         variations.append((name.capitalize(), 3)) #Xxx
         variations
+        
     return variations # --> set avec toutes les variations de noms
 
 #@timing_decorator
