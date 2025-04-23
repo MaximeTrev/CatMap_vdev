@@ -11,6 +11,7 @@ def get_overpass_data(company_name):
     """
     api = overpy.Overpass()
     query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"];);out center;"""
+    st.write(query)
     # Ajout de "out center;" pour forcer le centre des ways et relations
     try:
         result = api.query(query)
