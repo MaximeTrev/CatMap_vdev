@@ -56,7 +56,7 @@ def process_osm_data(result):
                 **extract_tags(way)  # Ajout des tags
                 #**extract_tags(node)  # Ajout des tags
             })
-
+    st.write(pd.DataFrame(results))
     return pd.DataFrame(results)
 
 def extract_tags(element):
