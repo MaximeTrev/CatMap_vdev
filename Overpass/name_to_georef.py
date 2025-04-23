@@ -116,10 +116,12 @@ def __var_name__(name, booleen = False): #sous-fonction
         variations.append((name.capitalize(), 3)) #Xxx
 
     #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
-    print(variations, type(variations))
-    var_noduplicata = [variations[0][0]]
+    print(variations, )
+    var_noduplicata = [variations[0][0]] # Référence (flag 0)
     for name, flag in variations:
+        print(name, flag)
         if variations[0][0] != name :
+            print("added")
             var_noduplicata.append((name, flag))
     print(var_noduplicata, type(var_noduplicata))  
     return var_noduplicata # --> set avec toutes les variations de noms
