@@ -63,7 +63,7 @@ def __suppr__(chain) :
     #On retourne un nom normalisé
     return ch.capitalize()
 
-def __var_name__(name, booleen = False): #sous-fonction
+def __var_name__(name): #sous-fonction
     """
     - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
     - /!\ On considère uniquement les accents si dans le nom initial
@@ -118,14 +118,9 @@ def __var_name__(name, booleen = False): #sous-fonction
 
     #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
     var_noduplicata = [variations[0]] # Référence (flag 0)
-    st.write("ini")
-    st.write(var_noduplicata)
     for name, flag in variations:
-        st.write(name,flag)
         if variations[0][0] != name :
             var_noduplicata.append((name, flag))
-    st.write("After")
-    st.write(var_noduplicata)
     return var_noduplicata # --> set avec toutes les variations de noms
 
 #@timing_decorator
@@ -173,7 +168,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             varName.append(__var_name__(fName[i]))
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
-                varName_.append(__var_name__(fName_, True)) #True -> pas d'accent, donc le nom initial n'est pas présent
+                varName_.append(__var_name__(fName_)) #True -> pas d'accent, donc le nom initial n'est pas présent
             i += 1
 
         max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
@@ -205,9 +200,11 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         fName = fname
         varName, varName_ = [], []
         varName = __var_name__(fName) #avec accents
-        fName_ = u.unidecode(fName)
+        st.write(varName)
+        fName_ = u.unidecode(fName) #on check caractère spéciaux
         if fName_ != fName :
-            varName_ = __var_name__(fName_, True) #True -> pas d'accent, donc le nom initial n'est pas présent
+            varName_ = __var_name__(fName_) #True -> pas d'accent, donc le nom initial n'est pas présent
+        st.write(varName_)
         if max_length is None:
             max_length=len(varName)+len(varName_)
             
