@@ -121,6 +121,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     for name, flag in variations:
         if variations[0][0] != name :
             var_noduplicata.append((name, flag))
+    st.write(var_noduplicata)
     return var_noduplicata # --> set avec toutes les variations de noms
 
 #@timing_decorator
