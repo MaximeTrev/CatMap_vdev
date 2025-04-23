@@ -119,7 +119,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     var_noduplicata = [variations[0][0]]
     for name, flag in variations:
         if variations[0][0] != name :
-            var_noduplicata.append((name,flag))
+            var_noduplicata.append((name, flag))
         
     return var_noduplicata # --> set avec toutes les variations de noms
 
