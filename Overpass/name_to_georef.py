@@ -119,9 +119,9 @@ def __var_name__(name, booleen = False): #sous-fonction
     print(variations, )
     var_noduplicata = [variations[0][0]] # Référence (flag 0)
     for name, flag in variations:
-        print(name, flag)
+        st.write(name, flag)
         if variations[0][0] != name :
-            print("added")
+            st.write("added")
             var_noduplicata.append((name, flag))
     print(var_noduplicata, type(var_noduplicata))  
     return var_noduplicata # --> set avec toutes les variations de noms
