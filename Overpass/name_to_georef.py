@@ -121,7 +121,7 @@ def __var_name__(name, booleen = False): #sous-fonction
         if variations[0][0] != name :
             var_noduplicata.append((name,flag))
         
-    return variations # --> set avec toutes les variations de noms
+    return var_noduplicata # --> set avec toutes les variations de noms
 
 #@timing_decorator
 def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None, j = 0) :
