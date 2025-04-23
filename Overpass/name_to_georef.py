@@ -118,7 +118,9 @@ def __var_name__(name, booleen = False): #sous-fonction
 
     #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
     var_noduplicata = [(variations[0][0], 0)] # Référence (flag 0)
+    st.write(var_noduplicata)
     for name, flag in variations:
+        st.write(name,flag)
         if variations[0][0] != name :
             var_noduplicata.append((name, flag))
     st.write(var_noduplicata)
