@@ -241,15 +241,15 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             if first_iter:
                 first_iter = False
                 if osm_data:
-                    df = process_osm_data(osm_data)
-                    df["flag"] = flag   
+                    df_ = process_osm_data(osm_data)
+                    df_["flag"] = flag   
                 else:
                     print("No data")
             else:
                 if osm_data:
                     df_trans = process_osm_data(osm_data)
                     df_trans["flag"] = flag   
-                    df = pd.concat([df, df_trans], ignore_index=True)
+                    df_ = pd.concat([df_, df_trans], ignore_index=True)
                 else:
                     print("No data")
             j+=1
@@ -260,4 +260,5 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
                 {progress}%
             </div>""",
                 unsafe_allow_html=True)
+            df = pd.concat([df, df_], ignore_index=True)
         return df, [], j
