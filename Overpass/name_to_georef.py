@@ -97,6 +97,8 @@ def __var_name__(name, booleen = False): #sous-fonction
         - 4, 5, 5, 7 (XXX XXX, xxx xxx, Xxx xxx, Xxx Xxx) a adapter la norme change en fonction des espaces
         - 8, 9, 10, 11 (XXX-XXX, xxx-xxx, Xxx-xxx, Xxx-Xxx)
         - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
+
+        Pas sur que les espaces en - et _ soient utiles..
     """
     
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
