@@ -1,6 +1,8 @@
 import overpy, time
 from extractionDonnees import loadDatas
 import pandas as pd
+import streamlit as st
+
 
 def get_overpass_data(company_name):
     """
