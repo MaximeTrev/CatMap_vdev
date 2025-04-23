@@ -68,6 +68,7 @@ def __var_name__(name): #sous-fonction
     - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
     - /!\ On considère uniquement les accents si dans le nom initial
     - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
+    - Check si caractère spéciaux (accents..), si oui prend également la version sans accents. Les flags ne tiennent pas compte de la présence ou non d'accents.
     - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
     - Flag : 
         - 0 (nom original, prioritaire sur le reste si doublon)
@@ -200,11 +201,9 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         fName = fname
         varName, varName_ = [], []
         varName = __var_name__(fName) #avec accents
-        st.write(varName)
         fName_ = u.unidecode(fName) #on check caractère spéciaux
         if fName_ != fName :
             varName_ = __var_name__(fName_) #True -> pas d'accent, donc le nom initial n'est pas présent
-        st.write(varName_)
         if max_length is None:
             max_length=len(varName)+len(varName_)
             
