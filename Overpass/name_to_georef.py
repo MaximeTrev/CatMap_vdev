@@ -66,7 +66,7 @@ def __suppr__(chain) :
 def __var_name__(name, booleen = False): #sous-fonction
     """
     - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
-    - /!\ On ne prend pas les accents TO DATE
+    - /!\ On considère uniquement les accents si dans le nom initial
     - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
     - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
     - Flag : 
@@ -77,6 +77,7 @@ def __var_name__(name, booleen = False): #sous-fonction
         - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
 
         Pas sur que les espaces en - et _ soient utiles..
+        A rajouter: vérifier si caractère spécial, si oui on le rend en ASCII et on chèque combi
     """
     
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
@@ -116,14 +117,14 @@ def __var_name__(name, booleen = False): #sous-fonction
         variations.append((name.capitalize(), 3)) #Xxx
 
     #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
-    print(variations, )
+    st.write(variations)
     var_noduplicata = [variations[0][0]] # Référence (flag 0)
+    st.write(var_noduplicata)
     for name, flag in variations:
         st.write(name, flag)
         if variations[0][0] != name :
-            st.write("added")
+            st.write(var_noduplicata)
             var_noduplicata.append((name, flag))
-    print(var_noduplicata, type(var_noduplicata))  
     return var_noduplicata # --> set avec toutes les variations de noms
 
 #@timing_decorator
