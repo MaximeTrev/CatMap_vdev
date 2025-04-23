@@ -6,29 +6,6 @@ import unidecode as u
 import os
 from requetes import *
 
-
-"""
-def timing_decorator(func):
-    def wrapper(*args, **kwargs):
-        # Générer une clé unique basée sur les paramètres pour identifier l'état du chronométrage
-        key = f"timing_done_{func.__name__}_{hash(str(args) + str(kwargs))}"
-        # Vérifier si le chronométrage a déjà été fait pour cet ensemble de paramètres
-        if key in st.session_state and st.session_state[key]:
-            return func(*args, **kwargs)
-            
-        # Lancer le chronométrage
-        start_time = time.time()
-        result = func(*args, **kwargs)
-        
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        # Marquer ce set de paramètres comme chronométré
-        st.session_state[key] = True
-        # Affichage du temps de calcul
-        st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time)} s</p>', unsafe_allow_html=True)
-        return result
-    return wrapper"""
-
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
         # Récupérer les valeurs de NomEntreprise et FichierCSV
@@ -93,6 +70,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
     - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
     - Flag : 
+        - 0 (nom original, prioritaire sur le reste si doublon)
         - 1, 2, 3 (XXX, xxx, Xxx)
         - 4, 5, 5, 7 (XXX XXX, xxx xxx, Xxx xxx, Xxx Xxx) a adapter la norme change en fonction des espaces
         - 8, 9, 10, 11 (XXX-XXX, xxx-xxx, Xxx-xxx, Xxx-Xxx)
@@ -102,7 +80,7 @@ def __var_name__(name, booleen = False): #sous-fonction
     """
     
     variations = [] # 0 --> nom initial et on boucle direct dessus ?
-    #variations.append((name, 0)) #nom initial + rajouter drop duplicate
+    variations.append((name, 0)) #nom initial + rajouter drop duplicate
     
     separateurs = [" ", "-","_"] #test des séparateurs
 
@@ -136,7 +114,12 @@ def __var_name__(name, booleen = False): #sous-fonction
         variations.append((name.upper(), 1)) #XXX
         variations.append((name.lower(), 2)) #xxx
         variations.append((name.capitalize(), 3)) #Xxx
-        variations
+
+    #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
+    var_noduplicata = [variations[0][0]]
+    for name, flag in variations:
+        if variations[0][0] != name :
+            var_noduplicata.append((name,flag))
         
     return variations # --> set avec toutes les variations de noms
 
