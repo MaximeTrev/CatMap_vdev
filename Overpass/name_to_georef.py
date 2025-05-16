@@ -152,8 +152,8 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
     if FichierCSV:
         FichierCSV.seek(0)  # Revenir au début du fichier
         # Lire le fichier en ignorant le BOM UTF-8
-        #file_content = FichierCSV.getvalue().decode("utf-8-sig")
-        file_content = FichierCSV.getvalue().decode("latin-1")
+        file_content = FichierCSV.getvalue().decode("utf-8-sig")
+        #file_content = FichierCSV.getvalue().decode("latin-1")
         # Lire le CSV en tant que DataFrame pandas
         try:
             df_entreprises = pd.read_csv(pd.io.common.StringIO(file_content), sep="|")
