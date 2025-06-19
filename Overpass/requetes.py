@@ -13,6 +13,8 @@ def get_overpass_data(company_name):
     """
     api = overpy.Overpass()
     query = f"""[out:json][timeout:180];(node["name"~"{company_name}"];way["name"~"{company_name}"];);out center;"""
+    # Mettre ~ à la place de = si on veut qu'il contienne le mot plutôt qu'il soit identique. Méthode pratique pour avoir les noms avec mot parasite (market, city...)
+    # Non implémenté car induit beaucoup de bruit 
     # Ajout de "out center;" pour forcer le centre des ways et relations
     try:
         result = api.query(query)
