@@ -50,8 +50,9 @@ def get_overpass_data(company_name):
     """
     api = overpy.Overpass()
     regex = build_company_name_regex(company_name)
+    # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
     query = f"""[out:json][timeout:180];
-    ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"]; # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
+    ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];
       way["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];);
       out center;""" # Ajout de "out center;" pour forcer le centre des ways et relations
 
