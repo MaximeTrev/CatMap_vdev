@@ -1,21 +1,60 @@
-import overpy, time
+import overpy, time, unicodedata
 from extractionDonnees import loadDatas
 import pandas as pd
 import streamlit as st
 
+def normalize_char_variants(char):
+    """Retourne une classe regex regroupant le caractère et ses variantes accentuées."""
+    variants = {char.lower(), char.upper()}
+    for form in ['NFD', 'NFKD']:
+        decomposed = unicodedata.normalize(form, char)
+        base = decomposed[0]
+        if base.isalpha():
+            variants.add(base.lower())
+            variants.add(base.upper())
+    accent_map = {
+        'a': 'aàáâäãåā',
+        'e': 'eèéêëēėę',
+        'i': 'iìíîïīį',
+        'o': 'oòóôõöøō',
+        'u': 'uùúûüū',
+        'c': 'cçćč',
+        'n': 'nñń',
+        'y': 'yÿý',}
+    char_lc = char.lower()
+    if char_lc in accent_map:
+        for c in accent_map[char_lc]:
+            variants.add(c)
+            variants.add(c.upper())
+    return '[' + ''.join(sorted(variants)) + ']'
+
+def build_company_name_regex(company_name: str) -> str:
+    """Construit une regex robuste pour rechercher le nom dans Overpass."""
+    regex_parts = []
+    for char in company_name:
+        if char.isalpha():
+            regex_parts.append(normalize_char_variants(char))
+        elif char.isspace():
+            regex_parts.append('[\\s\\-_]+')
+        else:
+            regex_parts.append(re.escape(char))
+    core = ''.join(regex_parts)
+    return f"(^|[\\s\\-_]){core}" # (^|[\\s\\-_]) permet de s'assurer que le mot est en 1ère position ou précédé d'un séparateur (espace, tiret..)
 
 def get_overpass_data(company_name):
     """
-    - Interroge l'API Overpass avec overpy pour récupérer les données OSM d'une entreprise.
+    - Interroge l'API Overpass avec overpy à partir d'une requête REGEX pour récupérer les données OSM d'une entreprise.
     - Considère uniquement les nodes et les ways actuellement. 
     - Les relations ne sont pas prises en charges au regard du bruits qu'elles induisent
     
     """
     api = overpy.Overpass()
-    query = f"""[out:json][timeout:180];(node["name"="{company_name}"];way["name"="{company_name}"];);out center;"""
-    # Mettre ~ à la place de = si on veut qu'il contienne le mot plutôt qu'il soit identique. Méthode pratique pour avoir les noms avec mot parasite (market, city...)
-    # Non implémenté car induit beaucoup de bruit 
-    # Ajout de "out center;" pour forcer le centre des ways et relations
+    regex = build_company_name_regex(company_name)
+    query = f"""[out:json][timeout:180];
+    ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"]; # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
+      way["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];);
+      out center;""" # Ajout de "out center;" pour forcer le centre des ways et relations
+    
     try:
         result = api.query(query)
         return result
