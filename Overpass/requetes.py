@@ -54,7 +54,6 @@ def get_overpass_data(company_name):
     ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"]; # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
       way["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];);
       out center;""" # Ajout de "out center;" pour forcer le centre des ways et relations
-    print(query)
     try:
         result = api.query(query)
         return result
