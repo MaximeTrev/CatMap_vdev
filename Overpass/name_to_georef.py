@@ -66,7 +66,7 @@ def __suppr__(chain) :
 def __var_name__(name): #sous-fonction
     """
     - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
-    - /!\ On considère uniquement les accents si dans le nom initial
+    - ! On considère uniquement les accents si dans le nom initial
     - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
     - Check si caractère spéciaux (accents..), si oui prend également la version sans accents. Les flags ne tiennent pas compte de la présence ou non d'accents.
     - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
