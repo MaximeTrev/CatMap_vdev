@@ -167,6 +167,8 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         i = 0
         for entreprise in liste_entreprises:
             fName.append(__suppr__(entreprise))
+
+            
             varName.append(__var_name__(fName[i]))
             fName_ = u.unidecode(fName[i])
             if fName_ != fName[i] :
@@ -200,66 +202,11 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         fname = __suppr__(NomEntreprise) 
         print("Name :", fname)
         fName = fname
-        varName, varName_ = [], []
-        varName = __var_name__(fName) #avec accents
-        fName_ = u.unidecode(fName) #on check caractère spéciaux
-        if fName_ != fName :
-            varName_ = __var_name__(fName_) #True -> pas d'accent, donc le nom initial n'est pas présent
-        if max_length is None:
-            max_length=len(varName)+len(varName_)
-            
-        first_iter = True
-        for (var, flag) in varName :         
-            osm_data = get_overpass_data(var)
-            if first_iter:
-                first_iter = False
-                if osm_data:
+        osm_data = get_overpass_data(fname)
+        if osm_data:
                     df = process_osm_data(osm_data)
                     df["flag"] = flag   
                 else:
                     print("No data")
-            else:
-                if osm_data:
-                    df_trans = process_osm_data(osm_data)
-                    df_trans["flag"] = flag   
-                    df = pd.concat([df, df_trans], ignore_index=True)
-                else:
-                    print("No data")
-            j+=1
-            progress=j/max_length*100
-            progress=round(progress)
-            progress_container.markdown(
-                f"""<div class="progress-bar" style="width: {progress}%;">
-                {progress}%
-            </div>""",
-                unsafe_allow_html=True)
-        time.sleep(1)
-        
-        first_iter = True
-        for (var, flag) in varName_ :
-            #pas sur, a virer ?
-            osm_data = get_overpass_data(var)
-            if first_iter:
-                first_iter = False
-                if osm_data:
-                    df_ = process_osm_data(osm_data)
-                    df_["flag"] = flag   
-                else:
-                    print("No data")
-            else:
-                if osm_data:
-                    df_trans = process_osm_data(osm_data)
-                    df_trans["flag"] = flag   
-                    df_ = pd.concat([df_, df_trans], ignore_index=True)
-                else:
-                    print("No data")
-            j+=1
-            progress=j/max_length*100
-            progress=round(progress)
-            progress_container.markdown(
-                f"""<div class="progress-bar" style="width: {progress}%;">
-                {progress}%
-            </div>""",
-                unsafe_allow_html=True)
-            df = pd.concat([df, df_], ignore_index=True)
+        j = 1
         return df, [], j
