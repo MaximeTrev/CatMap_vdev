@@ -205,7 +205,6 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         print(osm_data)
         if osm_data:
             df = process_osm_data(osm_data)
-            df["flag"] = flag   
         else:
             print("No data")
         j = 1
