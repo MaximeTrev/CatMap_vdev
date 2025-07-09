@@ -73,7 +73,7 @@ def process_osm_data(result):
         - soit extraire ses noeuds et en faire la moyenne arithmétique,
         - soit extraire ses ways et extraire son centre
     --> il faut également adapter la query
-    /!\ Relations ajoute un bruitage similaire à son gain de volumétrie sur nos exemples (ajout d'arrêt de bus...)
+    !  Relations ajoute un bruitage similaire à son gain de volumétrie sur nos exemples (ajout d'arrêt de bus...)
     """
     results = []
 
