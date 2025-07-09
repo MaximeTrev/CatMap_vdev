@@ -201,11 +201,11 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv    
         fname = __suppr__(NomEntreprise) 
         print("Name :", fname)
-        fName = fname
         osm_data = get_overpass_data(fname)
+        print(osm_data)
         if osm_data:
-                    df = process_osm_data(osm_data)
-                    df["flag"] = flag   
+            df = process_osm_data(osm_data)
+            df["flag"] = flag   
         else:
             print("No data")
         j = 1
