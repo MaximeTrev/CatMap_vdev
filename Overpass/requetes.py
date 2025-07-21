@@ -72,8 +72,7 @@ def get_overpass_data(company_name):
     out center;"""
     
 
-    print(query)
-    st.code(query)
+    st.code(repr(query))
     try:
         result = api.query(query)
         st.write(result.nodes)
