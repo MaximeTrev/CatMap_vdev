@@ -51,11 +51,12 @@ def get_overpass_data(company_name):
     api = overpy.Overpass()
     regex = build_company_name_regex(company_name)
     # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
+    regex_operator = '~' 
     query = f"""
     [out:json][timeout:180];
     (
-      node["name"~"{regex}\\b",i][!"highway"][!"place"][!"junction"];
-      way["name"~"{regex}\\b",i][!"highway"][!"place"][!"junction"];
+      node["name{regex_operator}{regex}\\b",i][!"highway"][!"place"][!"junction"];
+      way["name{regex_operator}{regex}\\b",i][!"highway"][!"place"][!"junction"];
     );
     out center;
     """ 
