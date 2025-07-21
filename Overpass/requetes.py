@@ -51,17 +51,21 @@ def get_overpass_data(company_name):
     api = overpy.Overpass()
     regex = build_company_name_regex(company_name)
     # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
-    query = f"""[out:json][timeout:180];
-    ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];
-      way["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];);
-      out center;""" 
+    query = f"""
+    [out:json][timeout:180];
+    (
+      node["name"~"{regex}\\b",i][!"highway"][!"place"][!"junction"];
+      way["name"~"{regex}\\b",i][!"highway"][!"place"][!"junction"];
+    );
+    out center;
+    """ 
     # Ajout de "out center;" pour forcer le centre des ways et relations
 
     print(query)
     st.write(query)
     try:
         result = api.query(query)
-        st.write(result)
+        st.write(result.nodes)
         return result
     except Exception as e:
         print(f"Erreur lors de la requête Overpass : {e}")
