@@ -54,11 +54,14 @@ def get_overpass_data(company_name):
     query = f"""[out:json][timeout:180];
     ( node["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];
       way["name"~"{regex}\\b",i] [!"highway"][!"place"][!"junction"];);
-      out center;""" # Ajout de "out center;" pour forcer le centre des ways et relations
+      out center;""" 
+    # Ajout de "out center;" pour forcer le centre des ways et relations
 
     print(query)
+    st.write(query)
     try:
         result = api.query(query)
+        st.write(result)
         return result
     except Exception as e:
         print(f"Erreur lors de la requête Overpass : {e}")
