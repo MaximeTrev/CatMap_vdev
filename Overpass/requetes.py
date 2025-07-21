@@ -63,14 +63,13 @@ def get_overpass_data(company_name):
     # Ajout de "out center;" pour forcer le centre des ways et relations
 
 
-    query = f"""
+    query = """
     [out:json][timeout:180];
     (
-      node["name{Celio}\\b",i][!"highway"][!"place"][!"junction"];
-      way["name{Celio}\\b",i][!"highway"][!"place"][!"junction"];
+      node["name"~"Celio\\b",i][!"highway"][!"place"][!"junction"];
+      way["name"~"Celio\\b",i][!"highway"][!"place"][!"junction"];
     );
-    out center;
-    """ 
+    out center;"""
     
 
     print(query)
