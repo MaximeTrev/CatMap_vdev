@@ -66,8 +66,8 @@ def get_overpass_data(company_name):
     query = """
     [out:json][timeout:180];
     (
-      node["name"~"Celio\\b",i][!"highway"][!"place"][!"junction"];
-      way["name"~"Celio\\b",i][!"highway"][!"place"][!"junction"];
+      node["name"~"Celio\\\\b",i][!"highway"][!"place"][!"junction"];
+      way["name"~"Celio\\\\b",i][!"highway"][!"place"][!"junction"];
     );
     out center;"""
     
