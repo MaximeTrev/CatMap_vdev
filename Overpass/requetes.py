@@ -55,21 +55,14 @@ def get_overpass_data(company_name):
     query = f"""
     [out:json][timeout:180];
     (
-      node["name"{regex_operator}"{regex}\\b",i][!"highway"][!"place"][!"junction"];
-      way["name"{regex_operator}"{regex}\\b",i][!"highway"][!"place"][!"junction"];
+      node["name"{regex_operator}"{regex}\\\\b",i][!"highway"][!"place"][!"junction"];
+      way["name"{regex_operator}"{regex}\\\\b",i][!"highway"][!"place"][!"junction"];
     );
     out center;
     """ 
     # Ajout de "out center;" pour forcer le centre des ways et relations
-
-
-    query = """
-    [out:json][timeout:180];
-    (
-      node["name"~"Celio\\\\b",i][!"highway"][!"place"][!"junction"];
-      way["name"~"Celio\\\\b",i][!"highway"][!"place"][!"junction"];
-    );
-    out center;"""
+    # \\\\ pour avoir \\ dans la requête overpy
+    # ~ pour indiquer match regex
     
 
     st.code(repr(query))
