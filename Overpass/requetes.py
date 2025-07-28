@@ -29,7 +29,13 @@ def normalize_char_variants(char):
     return '[' + ''.join(sorted(variants)) + ']'
 
 def build_company_name_regex(company_name: str) -> str:
-    """Construit une regex robuste pour rechercher le nom dans Overpass."""
+    """
+    Construit une regex robuste pour rechercher le nom dans Overpass.
+    On verifie si le nom en input à un espace, si oui on ajoute une classe de caractère : espace (" ", "\n"..), "-" et "_".
+    On essayera de match également cette classe sur la requête Overpy.
+    On fait en sorte de ne pas capter le résultat si le nom est inclus (ex: xxIKEAxxx ne match pas).
+    """
+    
     regex_parts = []
     for char in company_name:
         if char.isalpha():
@@ -39,7 +45,8 @@ def build_company_name_regex(company_name: str) -> str:
         else:
             regex_parts.append(re.escape(char))
     core = ''.join(regex_parts)
-    return f"(^|[\\s\\-_]){core}" # (^|[\\s\\-_]) permet de s'assurer que le mot est en 1ère position ou précédé d'un séparateur (espace, tiret..)
+    # On veut que le nom soit en 1ère posituion ("^") ou qu'il soit suivi d'une classe de séparateurs.
+    return f"(^|[\\s\\-_]){core}"
 
 def get_overpass_data(company_name):
     """
@@ -55,20 +62,17 @@ def get_overpass_data(company_name):
     query = f"""
     [out:json][timeout:180];
     (
-      node["name"{regex_operator}"{regex}\\\\b",i][!"highway"][!"place"][!"junction"];
-      way["name"{regex_operator}"{regex}\\\\b",i][!"highway"][!"place"][!"junction"];
+      node["name"{regex_operator}"{regex}([\\s\\-_])",i][!"highway"][!"place"][!"junction"];
+      way["name"{regex_operator}"{regex}([\\s\\-_])",i][!"highway"][!"place"][!"junction"];
     );
     out center;
     """ 
     # Ajout de "out center;" pour forcer le centre des ways et relations
     # \\\\ pour avoir \\ dans la requête overpy
-    # ~ pour indiquer match regex
+    # ~ pour indiquer match regex. A part car il fait planter la requête sinon (complexité)
     
-
-    st.code(repr(query))
     try:
         result = api.query(query)
-        st.write(result.nodes)
         return result
     except Exception as e:
         print(f"Erreur lors de la requête Overpass : {e}")
