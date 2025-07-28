@@ -46,7 +46,7 @@ def build_company_name_regex(company_name: str) -> str:
             regex_parts.append(re.escape(char))
     core = ''.join(regex_parts)
     # On veut que le nom soit en 1ère posituion ("^") ou qu'il soit suivi d'une classe de séparateurs.
-    return f"((^|[\\s\\-_]){core}\\b)"
+    return f"((^|[\\s\\-_]){core}\\\\b)"
 
 def get_overpass_data(company_name):
     """
