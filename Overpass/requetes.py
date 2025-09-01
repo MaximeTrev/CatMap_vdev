@@ -69,6 +69,7 @@ def get_overpass_data(company_name):
     
     # Ajout de "out center;" pour forcer le centre des ways et relations
     # ~ pour indiquer match regex. A part car il fait planter la requête sinon (complexité)
+    # On match lorsque le mot est inclu --> ex: IKEA (input) match également avec IKEA XX
 
     # On reteste 3 fois max si le serveur est saturé 
     for attempt in range(3):
