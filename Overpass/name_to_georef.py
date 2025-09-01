@@ -24,7 +24,8 @@ def timing_decorator(func):
             if st.session_state.is_first_call:
                 # Afficher le temps total une seule fois (quand le premier appel termine)
                 elapsed_time = time.time() - st.session_state.timing_start
-                st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
+                #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
+                print(f"Total Computing time: {round(elapsed_time, 2)} s", flush = True)
                 
                 # Réinitialiser pour la prochaine exécution
                 del st.session_state["timing_start"]
@@ -36,7 +37,8 @@ def timing_decorator(func):
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
-            st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
+            #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
+            print(f"Total Computing time: {round(elapsed_time, 2)} s", flush = True)
             return result
 
         else:
@@ -115,7 +117,6 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"Traitement de l'entreprise : {entreprise}", flush = True)
-            st.write(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             if df_result is not None:
                 all_results.append(df_result)
@@ -123,10 +124,10 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
-            print("Données combinées pour toutes les entreprises du fichier.")
+            print("Données combinées pour toutes les entreprises du fichier.", flush = True)
         else:
             df_final = pd.DataFrame()
-            print("Aucune donnée extraite.")
+            print("Aucune donnée extraite.", flush = True)
         return df_final, df_entreprises.iloc[:, 0].tolist(), j
     
     elif NomEntreprise :
@@ -137,6 +138,6 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         if osm_data:
             df = process_osm_data(osm_data)
         else:
-            print("No data")
+            print("No data", flush = True)
             df = pd.DataFrame()  # dataframe vide par défaut
         return df, [], j
