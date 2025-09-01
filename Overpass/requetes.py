@@ -65,17 +65,25 @@ def get_overpass_data(company_name):
       node["name"{regex_operator}"{regex}",i][!"highway"][!"place"][!"junction"];
       way["name"{regex_operator}"{regex}",i][!"highway"][!"place"][!"junction"];
     );
-    out center;
-    """ 
+    out center;""" 
+    
     # Ajout de "out center;" pour forcer le centre des ways et relations
     # ~ pour indiquer match regex. A part car il fait planter la requête sinon (complexité)
-    
-    try:
-        result = api.query(query)
-        return result
-    except Exception as e:
-        print(f"Erreur lors de la requête Overpass : {e}")
-        return None
+
+    # On reteste 3 fois max si le serveur est saturé 
+     for attempt in range(3):
+        try:
+            result = api.query(query)
+            return result
+        except overpy.exception.OverpassTooManyRequests:
+            wait_time = 5 + random.randint(0,5)  # attendre 5-10 secondes
+            print(f"Serveur saturé, nouvelle tentative dans {wait_time}s...", flush = True)
+            time.sleep(wait_time)
+        except Exception as e:
+            print(f"Erreur lors de la requête Overpass : {e}", flush = True)
+            return None
+    print("Échec après plusieurs tentatives.", flush = True)
+    return None
 
 def process_osm_data(result):
     """
