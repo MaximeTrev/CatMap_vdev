@@ -5,6 +5,7 @@ import time
 import unidecode as u
 import os
 from requetes import *
+import logging
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
@@ -62,69 +63,8 @@ def __suppr__(chain) :
     ch = ch.replace(occ, "")
     #On retourne un nom normalisé
     return ch.capitalize()
-
-def __var_name__(name): #sous-fonction
-    """
-    - Détermination des combinaisons potentielles des noms (xxx, Xxx, XXX) 
-    - ! On considère uniquement les accents si dans le nom initial
-    - Détermination si nom composé (" ", -, _) et réalisation des combinaisons potentielles
-    - Check si caractère spéciaux (accents..), si oui prend également la version sans accents. Les flags ne tiennent pas compte de la présence ou non d'accents.
-    - Attribution d'un flag normalisé à chaque type de nom pour contrôler la qualité des résultats
-    - Flag : 
-        - 0 (nom original, prioritaire sur le reste si doublon)
-        - 1, 2, 3 (XXX, xxx, Xxx)
-        - 4, 5, 5, 7 (XXX XXX, xxx xxx, Xxx xxx, Xxx Xxx) a adapter la norme change en fonction des espaces
-        - 8, 9, 10, 11 (XXX-XXX, xxx-xxx, Xxx-xxx, Xxx-Xxx)
-        - 12, 13, 14, 15 (XXX_XXX, xxx_xxx, Xxx_xxx, Xxx_Xxx)
-
-        Pas sur que les espaces en - et _ soient utiles..
-        A rajouter: vérifier si caractère spécial, si oui on le rend en ASCII et on chèque combi
-    """
     
-    variations = [] # 0 --> nom initial et on boucle direct dessus ?
-    variations.append((name, 0)) #nom initial + rajouter drop duplicate
-    
-    separateurs = [" ", "-","_"] #test des séparateurs
-
-    # Bloc pour vérifier la présence uniquement d'un type séparateur.
-    detected_sep = None
-    for sep in separateurs:
-        if sep in name:
-            detected_sep = sep
-            break          
-    if detected_sep:
-        # Déterminer la base flag selon le séparateur détecté
-        base_flag = 4  # Pour les noms avec espace
-        variations.append((name.replace(detected_sep," ").upper(), base_flag))        
-        variations.append((name.replace(detected_sep," ").lower(), base_flag + 1))     
-        variations.append((name.replace(detected_sep," ").capitalize(), base_flag + 2))
-        variations.append((name.replace(detected_sep," ").title(), base_flag + 3))    
-
-        base_flag = 8  # Pour les noms avec tiret
-        variations.append((name.replace(detected_sep,"-").upper(), base_flag))        
-        variations.append((name.replace(detected_sep,"-").lower(), base_flag + 1))     
-        variations.append((name.replace(detected_sep,"-").capitalize(), base_flag + 2))
-        variations.append((name.replace(detected_sep,"-").title(), base_flag + 3))      
-
-        base_flag = 12  # Pour les noms avec underscore
-        variations.append((name.replace(detected_sep,"_").upper(), base_flag))        
-        variations.append((name.replace(detected_sep,"_").lower(), base_flag + 1))     
-        variations.append((name.replace(detected_sep,"_").capitalize(), base_flag + 2))
-        variations.append((name.replace(detected_sep,"_").title(), base_flag + 3))
-
-    else:
-        variations.append((name.upper(), 1)) #XXX
-        variations.append((name.lower(), 2)) #xxx
-        variations.append((name.capitalize(), 3)) #Xxx
-
-    #Suppression des doublons avec le Flag 0, et si doublon on garde le Flag 0
-    var_noduplicata = [variations[0]] # Référence (flag 0)
-    for name, flag in variations:
-        if variations[0][0] != name :
-            var_noduplicata.append((name, flag))
-    return var_noduplicata # --> set avec toutes les variations de noms
-
-#@timing_decorator
+@timing_decorator
 def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None, j = 0) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
@@ -168,12 +108,14 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             fName.append(__suppr__(entreprise))
         max_length = len(liste_entreprises)
         df_entreprises = pd.DataFrame(fName, columns=["Nom"])
+        print(df_entreprises, flush = True)
 
         all_results = []  # Stocke tous les résultats pour concaténation
         j = 0
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
-            print(f"Traitement de l'entreprise : {entreprise}")
+            print(f"Traitement de l'entreprise : {entreprise}", flush = True)
+            st.write(f"Traitement de l'entreprise : {entreprise}")
             df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             if df_result is not None:
                 all_results.append(df_result)
