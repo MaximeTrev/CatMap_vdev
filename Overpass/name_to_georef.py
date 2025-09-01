@@ -54,12 +54,6 @@ def timing_decorator(func):
 
     return wrapper"""
 
-
-import time
-import datetime
-import streamlit as st
-from functools import wraps
-
 def timing_decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -76,7 +70,7 @@ def timing_decorator(func):
 
         # Affichage du temps individuel
         elapsed_str = str(datetime.timedelta(seconds=int(elapsed_time)))
-        print(f"[Solo] Temps exécution : {elapsed_str}", flush=True)
+        print(f"Temps exécution : {elapsed_str}\n", flush=True)
 
         # Si mode multi, mettre à jour le cumul global
         if FichierCSV:
@@ -167,7 +161,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
-            print("\nDonnées combinées pour toutes les entreprises du fichier.", flush = True)
+            print("\n\nDonnées combinées pour toutes les entreprises du fichier.", flush = True, end = ' ')
         else:
             df_final = pd.DataFrame()
             print("Aucune donnée extraite.", flush = True)
