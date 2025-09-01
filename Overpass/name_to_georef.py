@@ -55,13 +55,17 @@ def timing_decorator(func):
     return wrapper"""
 
 
+import time
+import datetime
+import streamlit as st
+from functools import wraps
+
 def timing_decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         FichierCSV = kwargs.get('FichierCSV', None)
-        NomEntreprise = kwargs.get('NomEntreprise', None)
 
-        # Initialisation du temps total global (mode multi)
+        # Initialisation du cumul global si ce n'est pas déjà fait
         if "timing_total" not in st.session_state:
             st.session_state.timing_total = 0
 
@@ -70,21 +74,20 @@ def timing_decorator(func):
         result = func(*args, **kwargs)
         elapsed_time = time.time() - start_time
 
-        # Format HH:MM:SS
-        elapsed_str = str(datetime.timedelta(seconds=int(elapsed_time)))
-
         # Affichage du temps individuel
+        elapsed_str = str(datetime.timedelta(seconds=int(elapsed_time)))
         print(f"[Solo] Temps exécution : {elapsed_str}", flush=True)
 
-        # Si mode multi (FichierCSV), ajouter au temps global
+        # Si mode multi, mettre à jour le cumul global
         if FichierCSV:
             st.session_state.timing_total += elapsed_time
             total_str = str(datetime.timedelta(seconds=int(st.session_state.timing_total)))
-            print(f"[Multi] Temps total cumulé jusqu'ici : {total_str}", flush=True)
+            print(f"[Multi] Temps total cumulé : {total_str}", flush=True)
 
         return result
 
     return wrapper
+
 
 
 def __suppr__(chain) : 
@@ -156,7 +159,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         j = 0
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
-            print(f"Traitement de l'entreprise : {entreprise}", flush = True)
+            print(f"\nTraitement de l'entreprise : {entreprise}", flush = True)
             df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             if df_result is not None:
                 all_results.append(df_result)
