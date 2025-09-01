@@ -46,7 +46,7 @@ def build_company_name_regex(company_name: str) -> str:
             regex_parts.append(re.escape(char))
     core = ''.join(regex_parts)
     # On veut que le nom soit en 1ère posituion ("^") ou qu'il soit suivi d'une classe de séparateurs.
-    return f"((^|[\\s\\-_]){core}\\\\b)"
+    return f"((^|[\\s\\-_]){core}\\\\b)" # \\b indique que le mot se termine ici, \\\\ pour avoir \\ dans la requête overpy
 
 def get_overpass_data(company_name):
     """
@@ -57,7 +57,7 @@ def get_overpass_data(company_name):
     """
     api = overpy.Overpass()
     regex = build_company_name_regex(company_name)
-    # [!"XX"] sert a exclure les résultats avec le tag renseigné, \\b indique que le mot se termine ici
+    # [!"XX"] sert a exclure les résultats avec le tag renseigné
     regex_operator = '~' 
     query = f"""
     [out:json][timeout:180];
@@ -68,7 +68,6 @@ def get_overpass_data(company_name):
     out center;
     """ 
     # Ajout de "out center;" pour forcer le centre des ways et relations
-    # \\\\ pour avoir \\ dans la requête overpy
     # ~ pour indiquer match regex. A part car il fait planter la requête sinon (complexité)
     
     try:
@@ -110,7 +109,6 @@ def process_osm_data(result):
                 "lat": float(way.center_lat),
                 "long": float(way.center_lon),
                 **extract_tags(way)  # Ajout des tags
-                #**extract_tags(node)  # Ajout des tags
             })
     return pd.DataFrame(results)
 
