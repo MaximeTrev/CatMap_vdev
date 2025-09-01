@@ -158,6 +158,13 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             if df_result is not None:
                 all_results.append(df_result)
             j += 1
+            progress=j/max_length*100
+            progress=round(progress)
+            progress_container.markdown(
+                f"""<div class="progress-bar" style="width: {progress}%;">
+                {progress}%
+            </div>""",
+                unsafe_allow_html=True)
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
