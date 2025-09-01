@@ -5,13 +5,17 @@ import time
 import unidecode as u
 import os
 from requetes import *
-import logging
+import datetime
 
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
         # Récupérer les valeurs de NomEntreprise et FichierCSV
         FichierCSV = kwargs.get('FichierCSV', None)
         NomEntreprise = kwargs.get('NomEntreprise', None)
+
+        # Initialisation du chronomètre cumulé
+        if "timing_total" not in st.session_state:
+            st.session_state.timing_total = 0
 
         if FichierCSV:  # Mode FichierCSV (avec appels récursifs)
             if "timing_start" not in st.session_state:  
@@ -24,8 +28,10 @@ def timing_decorator(func):
             if st.session_state.is_first_call:
                 # Afficher le temps total une seule fois (quand le premier appel termine)
                 elapsed_time = time.time() - st.session_state.timing_start
+                st.session_state.timing_total += elapsed_time
+                timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
                 #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
-                print(f"Total Computing time: {round(elapsed_time, 2)} s", flush = True)
+                print(f"Computing time: {round(elapsed_time, 2)} s \n Total time: {timing_total_datetime}", flush = True)
                 
                 # Réinitialiser pour la prochaine exécution
                 del st.session_state["timing_start"]
