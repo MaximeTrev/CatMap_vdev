@@ -59,7 +59,7 @@ def __suppr__(chain) :
     return ch.capitalize()
     
 @timing_decorator
-def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None, j = 0) :
+def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1, max_length = None) :
     """
     Fonction pour convertir un fichier CSV en JSON en générant des variations de noms d'entreprises
     et en récupérant des données via Overpass Turbo.
@@ -108,7 +108,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"\nTraitement de l'entreprise : {entreprise}", flush = True)
-            df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
+            df_result, _ = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length)
             if df_result is not None:
                 all_results.append(df_result)
             j += 1
@@ -126,7 +126,12 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         else:
             df_final = pd.DataFrame()
             print("Aucune donnée extraite.", flush = True)
-        return df_final, df_entreprises.iloc[:, 0].tolist(), j
+            progress_container.markdown(
+                f"""<div class="progress-bar" style="width: 100%;">
+                100%
+            </div>""",
+                unsafe_allow_html=True)
+        return df_final, df_entreprises.iloc[:, 0].tolist()
     
     elif NomEntreprise :
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
@@ -138,4 +143,4 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         else:
             print("No data", flush = True)
             df = pd.DataFrame()  # dataframe vide par défaut
-        return df, [], j
+        return df, []
