@@ -72,14 +72,27 @@ def get_overpass_data(company_name):
     # On match lorsque le mot est inclu --> ex: IKEA (input) match également avec IKEA XX
 
     # On reteste 3 fois max si le serveur est saturé 
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             result = api.query(query)
             return result
+            
         except overpy.exception.OverpassTooManyRequests:
-            wait_time = 5 + random.randint(0,5)  # attendre 5-10 secondes
-            print(f"Serveur saturé, nouvelle tentative dans {wait_time}s...", flush = True)
+            wait_time = 5 + random.randint(0,5)
+            print(f"Trop de requêtes, nouvelle tentative dans {wait_time}s...", flush = True)
             time.sleep(wait_time)
+
+        except overpy.exception.OverpassError as e:
+            if "load too high" in str(e).lower():
+                wait_time = 5 + random.randint(0,5)
+                print(f"Serveur saturé, nouvelle tentative dans {wait_time}s...", flush = True)
+                time.sleep(wait_time)
+                continue
+            else:
+                # Autre erreur Overpass → abandon
+                print(f"Erreur Overpass: {e}", flush=True)
+                return None
+            
         except Exception as e:
             print(f"Erreur lors de la requête Overpass : {e}", flush = True)
             return None
