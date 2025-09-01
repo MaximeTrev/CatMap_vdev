@@ -196,4 +196,5 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             df = process_osm_data(osm_data)
         else:
             print("No data")
+            df = pd.DataFrame()  # dataframe vide par défaut
         return df, [], j
