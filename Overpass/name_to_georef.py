@@ -6,7 +6,9 @@ import unidecode as u
 import os
 from requetes import *
 import datetime
+from functools import wraps
 
+"""
 def timing_decorator(func):
     def wrapper(*args, **kwargs):
         # Récupérer les valeurs de NomEntreprise et FichierCSV
@@ -50,7 +52,40 @@ def timing_decorator(func):
         else:
             return func(*args, **kwargs)  # Cas où ni NomEntreprise ni FichierCSV ne sont fournis
 
+    return wrapper"""
+
+
+def timing_decorator(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        FichierCSV = kwargs.get('FichierCSV', None)
+        NomEntreprise = kwargs.get('NomEntreprise', None)
+
+        # Initialisation du temps total global (mode multi)
+        if "timing_total" not in st.session_state:
+            st.session_state.timing_total = 0
+
+        # Chronométrage de l'appel courant (mode solo)
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        elapsed_time = time.time() - start_time
+
+        # Format HH:MM:SS
+        elapsed_str = str(datetime.timedelta(seconds=int(elapsed_time)))
+
+        # Affichage du temps individuel
+        print(f"[Solo] Temps exécution : {elapsed_str}", flush=True)
+
+        # Si mode multi (FichierCSV), ajouter au temps global
+        if FichierCSV:
+            st.session_state.timing_total += elapsed_time
+            total_str = str(datetime.timedelta(seconds=int(st.session_state.timing_total)))
+            print(f"[Multi] Temps total cumulé jusqu'ici : {total_str}", flush=True)
+
+        return result
+
     return wrapper
+
 
 def __suppr__(chain) : 
     """
@@ -129,7 +164,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
-            print("Données combinées pour toutes les entreprises du fichier.", flush = True)
+            print("\nDonnées combinées pour toutes les entreprises du fichier.", flush = True)
         else:
             df_final = pd.DataFrame()
             print("Aucune donnée extraite.", flush = True)
