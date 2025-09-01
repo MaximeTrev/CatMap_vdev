@@ -161,7 +161,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
-            print("\n\nDonnées combinées pour toutes les entreprises du fichier.", flush = True, end = ' ')
+            print("\n\nDonnées combinées pour toutes les entreprises du fichier.", flush = True)
         else:
             df_final = pd.DataFrame()
             print("Aucune donnée extraite.", flush = True)
