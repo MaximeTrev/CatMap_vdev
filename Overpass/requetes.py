@@ -71,7 +71,7 @@ def get_overpass_data(company_name):
     # ~ pour indiquer match regex. A part car il fait planter la requête sinon (complexité)
 
     # On reteste 3 fois max si le serveur est saturé 
-     for attempt in range(3):
+    for attempt in range(3):
         try:
             result = api.query(query)
             return result
