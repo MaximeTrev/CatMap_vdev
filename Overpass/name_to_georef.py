@@ -30,8 +30,7 @@ def timing_decorator(func):
                 elapsed_time = time.time() - st.session_state.timing_start
                 st.session_state.timing_total += elapsed_time
                 timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
-                #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
-                print(f"Computing time: {round(elapsed_time, 2)} s (Total: {timing_total_datetime})", flush = True)
+                print(f"Computing time: {round(elapsed_time, 0)} s (Total: {timing_total_datetime})", flush = True)
                 
                 # Réinitialiser pour la prochaine exécution
                 del st.session_state["timing_start"]
@@ -43,8 +42,9 @@ def timing_decorator(func):
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
-            #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
-            print(f"Total Computing time: {round(elapsed_time, 2)} s", flush = True)
+            st.session_state.timing_total += elapsed_time
+            timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
+            print(f"Computing time: {round(elapsed_time, 0)} s (Total: {timing_total_datetime})", flush = True)
             return result
 
         else:
@@ -116,7 +116,6 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             fName.append(__suppr__(entreprise))
         max_length = len(liste_entreprises)
         df_entreprises = pd.DataFrame(fName, columns=["Nom"])
-        print(df_entreprises, flush = True)
 
         all_results = []  # Stocke tous les résultats pour concaténation
         j = 0
