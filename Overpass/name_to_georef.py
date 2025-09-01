@@ -148,7 +148,8 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
     - La valeur mise à jour de j (progression).
     """
     
-    entreprises = []       
+    entreprises = []     
+    j = 1
     if FichierCSV:
         FichierCSV.seek(0)  # Revenir au début du fichier
         # Lire le fichier en ignorant le BOM UTF-8
@@ -162,21 +163,11 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             return None, []
         liste_entreprises = df_entreprises.iloc[:, 0].tolist()
 
-        #Détermination des variations des noms d'entreprises + correction bruits (SE, SARL...)
-        fName, varName, varName_ = [], [], []
-        i = 0
+        fName = []
         for entreprise in liste_entreprises:
             fName.append(__suppr__(entreprise))
-
-            
-            varName.append(__var_name__(fName[i]))
-            fName_ = u.unidecode(fName[i])
-            if fName_ != fName[i] :
-                varName_.append(__var_name__(fName_)) #True -> pas d'accent, donc le nom initial n'est pas présent
-            i += 1
-
-        max_length = sum(len(name) for name in varName) + sum(len(name) for name in varName_)
-        df_entreprises = pd.DataFrame(liste_entreprises, columns=["Nom"])
+        max_length = len(liste_entreprises)
+        df_entreprises = pd.DataFrame(fName, columns=["Nom"])
 
         all_results = []  # Stocke tous les résultats pour concaténation
         j = 0
@@ -186,7 +177,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
             df_result, _, j = georef(option, progress_container, NomEntreprise=entreprise, max_length = max_length, j = j)
             if df_result is not None:
                 all_results.append(df_result)
-
+            j += 1
         # Concaténer tous les résultats en un seul DataFrame
         if all_results:
             df_final = pd.concat(all_results, ignore_index=True)
@@ -200,12 +191,9 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         #pas opti on fait ce bloque 2 fois dans ce cas, une fois dans fichiercsv puis fois dans NomEntreprise a chaque itération du for
         #On s'assure de pas refaire 2 fois, car max_length uniquement en entrée de la fonction si fichier csv    
         fname = __suppr__(NomEntreprise) 
-        print("Name :", fname)
         osm_data = get_overpass_data(fname)
-        print(osm_data)
         if osm_data:
             df = process_osm_data(osm_data)
         else:
             print("No data")
-        j = 1
         return df, [], j
