@@ -8,51 +8,6 @@ from requetes import *
 import datetime
 from functools import wraps
 
-"""
-def timing_decorator(func):
-    def wrapper(*args, **kwargs):
-        # Récupérer les valeurs de NomEntreprise et FichierCSV
-        FichierCSV = kwargs.get('FichierCSV', None)
-        NomEntreprise = kwargs.get('NomEntreprise', None)
-
-        # Initialisation du chronomètre cumulé
-        if "timing_total" not in st.session_state:
-            st.session_state.timing_total = 0
-
-        if FichierCSV:  # Mode FichierCSV (avec appels récursifs)
-            if "timing_start" not in st.session_state:  
-                # Premier appel en mode FichierCSV => On démarre le chronomètre
-                st.session_state.timing_start = time.time()
-                st.session_state.is_first_call = True  # Marquer comme premier appel
-            
-            result = func(*args, **kwargs)  # Exécution de la fonction
-            
-            if st.session_state.is_first_call:
-                # Afficher le temps total une seule fois (quand le premier appel termine)
-                elapsed_time = time.time() - st.session_state.timing_start
-                st.session_state.timing_total += elapsed_time
-                timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
-                print(f"Computing time: {round(elapsed_time, 0)} s (Total: {timing_total_datetime})", flush = True)
-                
-                # Réinitialiser pour la prochaine exécution
-                del st.session_state["timing_start"]
-                del st.session_state["is_first_call"]
-
-            return result
-
-        elif NomEntreprise and FichierCSV is None:  # Mode NomEntreprise (et FichierCSV n'est PAS renseigné)
-            start_time = time.time()
-            result = func(*args, **kwargs)
-            elapsed_time = time.time() - start_time
-            st.session_state.timing_total += elapsed_time
-            timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
-            print(f"Computing time: {round(elapsed_time, 0)} s (Total: {timing_total_datetime})", flush = True)
-            return result
-
-        else:
-            return func(*args, **kwargs)  # Cas où ni NomEntreprise ni FichierCSV ne sont fournis
-
-    return wrapper"""
 
 def timing_decorator(func):
     @wraps(func)
@@ -79,7 +34,6 @@ def timing_decorator(func):
             print(f"[Multi] Temps total cumulé : {total_str}", flush=True)
 
         return result
-
     return wrapper
 
 
@@ -150,7 +104,7 @@ def georef(option, progress_container, NomEntreprise=None, FichierCSV=None, i=1,
         df_entreprises = pd.DataFrame(fName, columns=["Nom"])
 
         all_results = []  # Stocke tous les résultats pour concaténation
-        j = 0
+        j = 1
         for idx, row in df_entreprises.iterrows():
             entreprise = row.iloc[0]  # Nom de l'entreprise
             print(f"\nTraitement de l'entreprise : {entreprise}", flush = True)
