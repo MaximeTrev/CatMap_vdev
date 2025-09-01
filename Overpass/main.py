@@ -73,7 +73,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             unsafe_allow_html=True)
             
         if entreprise != "":
-            listeFichiers, _, iter = ntg.georef(option, progress_container, entreprise, "")
+            listeFichiers, _, = ntg.georef(option, progress_container, entreprise, "")
             
             #si pas de résultats, homogénéisation du nom plante
             if not listeFichiers.empty:
@@ -94,7 +94,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         
         if uploaded_file is not None:
             # Initialisation des variable
-            listeFichiers, entreprises, iter = ntg.georef(option, progress_container, "", uploaded_file) #possible de virer les ""
+            listeFichiers, entreprises = ntg.georef(option, progress_container, "", uploaded_file) #possible de virer les ""
             listeFichiers["name"] = listeFichiers["name"].str.upper()
 
             #Check si des noms n'ont pas de résultats 
