@@ -31,7 +31,7 @@ def timing_decorator(func):
                 st.session_state.timing_total += elapsed_time
                 timing_total_datetime = str(datetime.timedelta(seconds=int(elapsed_time)))
                 #st.markdown(f'<p style="font-size:14px;margin-bottom: 2px;">Total Computing time: {round(elapsed_time, 2)} s</p>', unsafe_allow_html=True)
-                print(f"Computing time: {round(elapsed_time, 2)} s \n Total time: {timing_total_datetime}", flush = True)
+                print(f"Computing time: {round(elapsed_time, 2)} s (Total: {timing_total_datetime})", flush = True)
                 
                 # Réinitialiser pour la prochaine exécution
                 del st.session_state["timing_start"]
