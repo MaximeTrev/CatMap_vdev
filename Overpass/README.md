@@ -1,7 +1,7 @@
 # Documentation
 """
 Created on Wed Jan 15 15:43:08 2025
-@author: jerome.hertzog_squar
+@author: Maxime TREVISANI
 *- coding: utf-8 -*
 """
 
