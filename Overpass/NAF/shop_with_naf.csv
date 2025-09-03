@@ -1,0 +1,366 @@
+shop,description,vector,naf_division
+alcohol,Shop selling alcohol to take away,"[-0.20218145  0.27515758  0.68982329 -0.3678965   0.70657053 -0.03650204
+ -0.1878867  -0.18139373  0.01475975]",Restauration
+bakery,Shop focused on selling bread,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]","Commerce de détail, à l’exception des automobiles et des motocycles"
+beverages,Shop focused on selling alcoholic and non-alcoholic beverages. See also shop=alcohol.,"[-0.20781231  0.22741146  0.61021293 -0.34915904  0.62893928 -0.02513583
+ -0.17009111 -0.19766382  0.01452392]",Autres industries extractives
+brewing_supplies,"Shop focused on selling supplies for home brewing of beer, wine and spirits (where permitted).","[-1.76094147e-01  2.21200007e-01  6.02176282e-01 -3.28061860e-01
+  6.08890669e-01 -2.02834073e-02 -1.57715757e-01 -2.35680320e-01
+ -2.65999956e-05]",Autres industries extractives
+butcher,Shop focused on selling meat,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+cheese,Shop focused on selling cheese.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+chocolate,Shop focused on selling chocolate.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+coffee,Shop focused on selling coffee.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+confectionery,Shop focused on selling sweets or candy,"[-0.2065693   0.23143982  0.58155226 -0.30364127  0.62396745 -0.0445706
+ -0.11499609 -0.19741058 -0.00078189]",Autres industries manufacturières
+convenience,A small local shop carrying a small subset of the items you would find in a supermarket,"[-0.22307407  0.23670156  0.60497914 -0.39637502  0.63699584 -0.00933702
+ -0.20097266 -0.2276837  -0.00564566]","Commerce de détail, à l’exception des automobiles et des motocycles"
+dairy,Shop focused on selling dairy products.,"[-0.23872586  0.24145885  0.57977147 -0.30153795  0.5687432  -0.05336978
+ -0.10171243 -0.14635446 -0.01593178]",Industries alimentaires
+deli,"Shop focused on selling delicatessen (fine foods, gourmet foods), possibly also fine wine. Not to be confused with the US delis.","[-0.20337447  0.24465479  0.5870805  -0.31568444  0.60734021 -0.02131904
+ -0.13279601 -0.18648645 -0.01067784]",Autres industries extractives
+farm,Shop or roadside stand focused on selling freshly harvested farm produce,"[-0.23892904  0.23929675  0.68475616 -0.34312037  0.69501564 -0.0728346
+ -0.13257739 -0.20317648 -0.00465895]",Industries alimentaires
+food,"Shop focused on selling food, more specific value should be used if possible.
+shop=food + food=prepared_meals was also proposed/used for type of shop selling prepared meals, not ready for eating immediately (and requiring for example heating/boiling or other simple preparation).","[-0.19079776  0.2430073   0.62946548 -0.38569921  0.65498971 -0.01642002
+ -0.16663959 -0.20382338 -0.01104939]",Autres industries manufacturières
+frozen_food,Shop focused on selling frozen food.,"[-0.23667939  0.22882785  0.58759654 -0.29466966  0.58317083 -0.04583272
+ -0.1188158  -0.17488575 -0.02920862]",Industries alimentaires
+greengrocer,Shop focused on selling vegetables and fruits.,"[-0.210864    0.23971821  0.64766236 -0.36807702  0.63189343 -0.03526317
+ -0.16684221 -0.2016828  -0.0062836 ]",Industries alimentaires
+health_food,"A health food shop; selling wholefoods, vitamins, nutrition supplements and meat and dairy alternatives.","[-0.18906699  0.25562304  0.65223837 -0.41470786  0.63583003 -0.00344404
+ -0.21515101 -0.22829992 -0.01878847]",Industrie pharmaceutique
+ice_cream,Shop selling ice cream. See also amenity=ice_cream.,"[-0.20935466  0.25286814  0.58559255 -0.33258294  0.62511769 -0.04471067
+ -0.16105793 -0.1688026   0.01988359]",Restauration
+nuts,"Shop selling dried nuts/fruits, edible seeds, etc. Not to be confused with shop=spices.","[-0.19056296  0.24794285  0.6222764  -0.36570439  0.65288154 -0.01877675
+ -0.14393772 -0.1499088   0.0115534 ]",Autres industries manufacturières
+pasta,"Shop focused on selling (fresh) pasta, ravioli, etc.","[-0.22172737  0.2094206   0.58219055 -0.33394445  0.57253884 -0.02744452
+ -0.11364222 -0.14771431  0.01057435]",Industries alimentaires
+pastry,"Shop focused on selling baked sweets like cakes, biscuits, strudel and pies.","[-0.16586139  0.22002853  0.54686639 -0.3087204   0.55967443 -0.01849869
+ -0.14419469 -0.19500893  0.00750175]",Autres industries manufacturières
+seafood,Shop focused on selling fish/seafood.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+spices,Shop focused on selling spices.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+tea,Shop focused on selling tea.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+tortilla,Shop focused on selling tortillas.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]","Commerce de détail, à l’exception des automobiles et des motocycles"
+water,Shop focused on selling drinking water.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries extractives
+wine,Shop selling wine.,"[-0.15550708  0.28461845  0.53542258 -0.29416395  0.51653801 -0.05262451
+ -0.15334463 -0.17071217 -0.03251839]",Restauration
+department_store,A single large store – often multiple storeys high – selling a large variety of goods (see also shop=mall),"[-0.1752834   0.22555411  0.62444588 -0.37080105  0.62632682 -0.00156712
+ -0.2000372  -0.21277171 -0.00268773]","Commerce de détail, à l’exception des automobiles et des motocycles"
+general,A store that carries a general line of merchandise. (see also shop=convenience if it sells food).,"[-0.19446078  0.22520679  0.61965411 -0.3967049   0.65436198  0.01868835
+ -0.21525125 -0.24208653  0.01835388]",Industries alimentaires
+kiosk,"A small shop on the pavement that sells magazines, tobacco, newspapers, sweets and stamps.","[-0.19129821  0.25466905  0.58583294 -0.38930673  0.60177427  0.0042388
+ -0.17674541 -0.24900081  0.0166287 ]","Commerce de détail, à l’exception des automobiles et des motocycles"
+mall,A shopping mall – multiple stores under one roof (also known as a shopping centre),"[-0.16171757  0.23054853  0.59966734 -0.37712973  0.61603642 -0.00865502
+ -0.20416173 -0.1998437   0.01307504]","Commerce de détail, à l’exception des automobiles et des motocycles"
+supermarket,Supermarket – a large store with groceries and other items,"[-0.1754564   0.24290359  0.63672328 -0.36975862  0.63751213 -0.00907382
+ -0.202568   -0.20063259 -0.00213308]","Commerce de détail, à l’exception des automobiles et des motocycles"
+wholesale,Wholesale/warehouse club or cash and carry – a store that sells items in bulk to retailers. The branch of industry can be defined with wholesale=*.,"[-0.21445394  0.26807339  0.69235409 -0.40481411  0.72559805 -0.01798165
+ -0.20192591 -0.24529787  0.0181641 ]",Industries alimentaires
+baby_goods,"Shop focused on selling objects for babies (clothes, prams, cots, toys).","[-0.18894467  0.22900362  0.5426775  -0.33641216  0.57435146 -0.01847674
+ -0.12964194 -0.17634584 -0.00277088]",Autres industries manufacturières
+bag,Shop focused on selling bags.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Fabrication de textiles
+boutique,"A small shopping outlet, especially one that specializes in elite and fashionable items","[-0.19942085  0.23328135  0.5928127  -0.39492708  0.60092983 -0.01446587
+ -0.21812361 -0.21223626  0.02107356]",Industries alimentaires
+clothes,Shop focused on selling clothes and/or underwear (other related value in use is fashion),"[-0.19350488  0.27467548  0.55475347 -0.35871427  0.59712899 -0.02628218
+ -0.15520898 -0.20916633  0.00808823]",Fabrication de textiles
+fabric,"Shop focused on selling fabric and other materials for the purpose of making clothes and other products, eg dress making.","[-0.190894    0.2534902   0.56220426 -0.33262498  0.59735239 -0.03401142
+ -0.15889775 -0.19594272  0.01455607]",Fabrication de textiles
+fashion,"Shop focused on selling fashion. This is deprecated, please use shop=clothes.","[-0.19619186  0.27789358  0.56328001 -0.36437301  0.57658196 -0.00267479
+ -0.16635381 -0.21227001 -0.00750431]",Fabrication de textiles
+fashion_accessories,Shop focused on selling fashion accessories.,"[-1.87053217e-01  2.43234809e-01  5.39103329e-01 -3.04547071e-01
+  5.28145713e-01 -4.21261229e-04 -1.11341928e-01 -1.58150265e-01
+  9.60765579e-03]",Fabrication de textiles
+jewelry,Jewellers shops.,"[-0.22858323  0.29582331  0.75904232 -0.321136    0.62801802 -0.10046265
+ -0.11665809 -0.14423695 -0.04537519]",Autres industries manufacturières
+leather,Shop focused on selling products made out of leather.,"[-0.19619798  0.18758185  0.55341378 -0.28863275  0.5318684  -0.03623034
+ -0.11255317 -0.15514899 -0.01536928]",Autres industries manufacturières
+sewing,"A shop that sells sewing supplies (fabric, thread, yarn, knitting needles, sewing machines, etc.)","[-0.19451942  0.24262004  0.63510803 -0.3802364   0.61819543  0.00494632
+ -0.15297671 -0.22263948  0.02985889]",Fabrication de textiles
+shoes,Shop focused on selling shoes.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+shoe_repair,Shop focused on repairing shoes.,"[-0.20580241  0.17809785  0.56375473 -0.2607695   0.50878138 -0.06755146
+ -0.11128916 -0.14844104 -0.04850425]",Autres industries manufacturières
+tailor,"A place where clothing is made, repaired, or altered professionally, especially suits and men's clothing","[-0.19723364  0.24666776  0.66088239 -0.40384547  0.72181149  0.00962284
+ -0.21679713 -0.27207615  0.00412058]",Fabrication de textiles
+watches,Shop focused on selling watches.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+wool,Shop selling wool for making of clothes or other products.,"[-0.20737091  0.26354057  0.60287657 -0.34023147  0.6356833  -0.0510645
+ -0.15566236 -0.1990651   0.00860426]",Fabrication de textiles
+charity,"A charity shop is a shop operated by a charity, for the purposes of fundraising.","[-0.18486375  0.26532952  0.64738798 -0.40838837  0.67723198 -0.00926947
+ -0.1862725  -0.22212975 -0.02119773]",Autres industries manufacturières
+second_hand,A shop buying and selling used clothes and other things. See also shop=pawnbroker,"[-0.18551607  0.27070253  0.60618949 -0.397813    0.64817516 -0.00949081
+ -0.19720658 -0.23539323  0.02938025]","Activités des services financiers, hors assurance et caisses de retraite"
+variety_store,"A variety store retailer is a retail store that sells inexpensive items, sometimes with a single price point for all items in the store.","[-0.20309265  0.26548514  0.67176906 -0.42010665  0.68236984  0.01282707
+ -0.21655756 -0.22499801  0.0063363 ]",Industries alimentaires
+beauty,"A non-hairdresser beauty shop, spa, nail salon, etc.. See also shop=hairdresser.","[-0.19705507  0.21007304  0.59562147 -0.36975591  0.61004109  0.00807984
+ -0.16875477 -0.17679769  0.02545773]",Autres industries manufacturières
+chemist,"Shop focused on selling articles of personal hygiene, cosmetics, and household cleaning products (for a shop that potentially dispenses prescription drugs, cf. pharmacy. U.S. drug store, see amenity=pharmacy)","[-0.17977904  0.23811103  0.61278272 -0.35050387  0.60697687  0.00304934
+ -0.17504205 -0.20709405 -0.00665898]",Industrie pharmaceutique
+cosmetics,Shop focused on selling cosmetics,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+erotic,"Shop focused on selling erotic toys, -clothes or other erotic stuff.","[-0.21044914  0.23570212  0.55542154 -0.31190324  0.61874415 -0.05264211
+ -0.12692006 -0.19554293  0.01250687]",Autres industries manufacturières
+hairdresser,"Here you can get your hair cut, coloured, … See also shop=beauty","[-0.202629    0.25416674  0.53728278 -0.32305527  0.60908118 -0.01305967
+ -0.15958026 -0.2145118   0.00368806]",Fabrication de boissons
+hairdresser_supply,"A shop, where you can buy hairdressing supplies.","[-0.21546339  0.24883169  0.61954517 -0.34353862  0.67252298 -0.00719658
+ -0.15885836 -0.22162984  0.0170966 ]",Autres industries manufacturières
+hearing_aids,Shop focused on selling hearing aids devices,"[-0.20341181  0.22909624  0.54778347 -0.30856552  0.5641645  -0.04540557
+ -0.11910073 -0.17297847  0.00462965]",Industries alimentaires
+herbalist,"Shop focused on selling herbs, often for medical purposes. (See also: healthcare:speciality=herbalism and healthcare=alternative).","[-0.17528859  0.23161509  0.58470719 -0.35661667  0.60953405 -0.02389224
+ -0.16392355 -0.1842394   0.01411781]",Industrie pharmaceutique
+massage,A massage shop,"[-0.19737231  0.25765818  0.71677637 -0.42316601  0.68530142 -0.00839275
+ -0.20039304 -0.20914152 -0.03090017]",Autres industries manufacturières
+medical_supply,Shop focused on selling medical supplies.,"[-0.20730264  0.22820116  0.61116232 -0.28814637  0.61405857 -0.05059859
+ -0.10408441 -0.19325421  0.002873  ]",Industrie pharmaceutique
+nutrition_supplements,"Shops that sells one or more nutritional supplements (of vitamins, minerals and/or herbs)","[-0.23023517  0.25234222  0.65991671 -0.39144983  0.69356762 -0.04193874
+ -0.15433352 -0.22365052  0.02120963]",Autres industries extractives
+optician,"Shop focused on selling eyeglasses, contact lenses (may also check your eyes).","[-0.22212458  0.24220019  0.60389854 -0.34138756  0.62713955 -0.05928474
+ -0.12411568 -0.18080389  0.01196622]",Autres industries manufacturières
+perfumery,Shop focused on selling perfumery,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+tattoo,A tattoo parlour.,"[-0.16616139  0.21949306  0.67451042 -0.52519602  0.74258482  0.08367716
+ -0.28412798 -0.27404609 -0.01642515]",Fabrication de textiles
+agrarian,"Shop focused on selling agrarian products, like seeds, agricultural machinery, animal feed, etc.","[-0.20276638  0.20942909  0.55247076 -0.30337377  0.53320193 -0.03082616
+ -0.10829801 -0.14347449  0.01141708]",Industries alimentaires
+appliance,"Shop focused on selling large electrical items (aka white goods) washing machines, fridges, cookers, ovens, fans, etc.","[-2.10123885e-01  2.15312997e-01  5.72109647e-01 -3.15543793e-01
+  5.31684525e-01 -2.72868878e-02 -1.29317419e-01 -1.41971086e-01
+  4.47805185e-04]",Industries alimentaires
+bathroom_furnishing,Shop focused on selling bathroom furniture and accessories,"[-0.15944334  0.24142094  0.56310331 -0.3229965   0.56323556 -0.01907766
+ -0.13953603 -0.18508718 -0.00891328]",Industrie pharmaceutique
+country_store,Shop focused on selling rural supplies – a range of goods specifically aimed at country dwellers,"[-0.16458577  0.22506633  0.60287041 -0.33675922  0.62988045 -0.03225328
+ -0.1416636  -0.20755426  0.00888528]","Commerce de détail, à l’exception des automobiles et des motocycles"
+doityourself,"Shop focused on selling tools and supplies to do-it-yourself householders, gardening, …","[-0.17839848  0.22757012  0.5909397  -0.33722183  0.61794339 -0.00762291
+ -0.16261647 -0.21988865 -0.00993352]",Industries alimentaires
+electrical,Shop focused on selling electrical supplies and devices,"[-0.17860169  0.22534792  0.5656515  -0.30691755  0.5585938  -0.03645513
+ -0.1435353  -0.18661576  0.00885866]",Industries alimentaires
+energy,Shop focused on selling energy,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+fireplace,"Shop focused on selling electric fireplaces, stoves or masonry heaters and required fuels","[-0.22014345  0.24019146  0.64973433 -0.35348311  0.67003873 -0.03924466
+ -0.16417962 -0.21923872  0.01701701]",Autres industries manufacturières
+florist,Shop focused on selling bouquets of flowers (see shop=garden_centre for potted flowers).,"[-1.54698194e-01  2.09337919e-01  5.35405595e-01 -3.30877744e-01
+  5.93439639e-01 -2.82413239e-02 -1.33270091e-01 -2.07275311e-01
+  2.54609186e-04]",Restauration
+garden_centre,"Shop focused on selling potted flowers, maybe even trees (see also shop=florist for flower bouquets).","[-0.16089686  0.21405629  0.523516   -0.32747062  0.58072763 -0.03035075
+ -0.12450372 -0.1844519   0.01292449]",Restauration
+garden_furniture,"Shop focused on selling garden furniture (sheds, outdoor tables, gates, fences, ...). See shop=garden_centre if also plants are sold.","[-0.18822789  0.20566664  0.50977283 -0.32694677  0.54212085 -0.02969855
+ -0.16419745 -0.2042701   0.00942576]",Restauration
+gas,"Shop focused on selling technical gas, such as argon, oxygen, acetylene, nitrogen, carbon dioxide, etc. in pressurized containers","[-0.23379092  0.21262583  0.58106907 -0.33025746  0.58313466 -0.02712538
+ -0.13576409 -0.15462923  0.00705969]",Autres industries manufacturières
+glaziery,Shop focused on selling and installing glazing for windows and doors.,"[-0.18303958  0.23869642  0.67006922 -0.40866588  0.63868487 -0.00398542
+ -0.19364419 -0.22106966 -0.00981832]",Autres industries manufacturières
+groundskeeping,"Shop focused on selling outdoor groundskeeping equipment (lawnmowers, chainsaws, small tractors, ...","[-2.00308123e-01  2.01225358e-01  5.09295647e-01 -2.96270157e-01
+  5.27738879e-01 -2.30986204e-02 -1.59498407e-01 -1.98849743e-01
+ -8.41264070e-05]",Industries alimentaires
+hardware,"Shop focused on selling building supplies including screws, bolts & paints, … See also shop=doityourself","[-0.2023658   0.2179544   0.53849654 -0.29655777  0.58986495 -0.03683877
+ -0.12724588 -0.20368198  0.0054918 ]",Fabrication de textiles
+houseware,"Shop focused on selling crockery, cutlery, kitchenware, small household appliances.","[-0.22109393  0.20057434  0.49142976 -0.29503767  0.5183477  -0.05939423
+ -0.11963042 -0.1712341  -0.01763755]",Industries alimentaires
+locksmith,"Shop focused on selling keys, see also craft=locksmith and craft=key_cutter","[-0.20781231  0.22741146  0.61021293 -0.34915904  0.62893928 -0.02513583
+ -0.17009111 -0.19766382  0.01452392]",Autres industries manufacturières
+paint,Shop focused on selling paints.,"[-0.23453453  0.22916905  0.56717625 -0.29181796  0.59319955 -0.06520883
+ -0.10369957 -0.19009003 -0.0093243 ]",Autres industries manufacturières
+pottery,"Shop focused on selling earthenware, stoneware and porcelain and other ceramic ware.","[-0.19696565  0.2431857   0.6280187  -0.36672332  0.63229361 -0.02782225
+ -0.18448388 -0.22147352  0.00489759]",Industries alimentaires
+security,"Shop focused on selling security items like burglar alarms, vaults, locking systems, video surveillance cameras, firefighting equipment, alarm systems, warning systems, etc.","[-0.21752409  0.20168305  0.58909428 -0.3075143   0.55471109  0.01373895
+ -0.10856164 -0.20247402 -0.00190327]",Industries alimentaires
+tool_hire,Shop hiring out tools,"[-0.1184645   0.16502885  0.47811054 -0.23613624  0.40679127 -0.00847325
+ -0.09737056 -0.12622826 -0.05684745]",Autres industries extractives
+trade,"A place of business that sells to a particular trade or trades, but normally also retails to normal consumers. See also shop=doityourself","[-0.19798331  0.23016788  0.65672537 -0.39338226  0.72349715 -0.0032321
+ -0.18993935 -0.23924458  0.03051342]",Industries alimentaires
+antiques,Shop focused on selling antiques.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+bed,"Shop focused on selling beds, mattresses and other bedding products.","[-0.21554022  0.24434612  0.58275811 -0.32236393  0.59019346 -0.03989332
+ -0.14106402 -0.18458796 -0.00153454]",Autres industries manufacturières
+candles,"Shop focused on selling candles and candle accessories (holders, etc)","[-0.18965426  0.22535586  0.59848613 -0.35523136  0.57221374  0.00119419
+ -0.13000076 -0.16896563  0.00473436]","Commerce de détail, à l’exception des automobiles et des motocycles"
+carpet,Shop focused on selling carpets,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+curtain,Shop focused on selling curtains or drapes (see also shop=fabric),"[-0.22652234  0.22713048  0.63494213 -0.33252127  0.67102076 -0.05018345
+ -0.1472479  -0.19865961  0.01560701]",Fabrication de textiles
+doors,Shop focused on selling doors,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+flooring,Shop focused on selling floorings,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+furniture,"Shop focused on selling furniture, might range from small decorational items to a whole flat interior","[-0.19593845  0.22585274  0.58113869 -0.35153731  0.61252343 -0.03024555
+ -0.18441158 -0.19742562  0.00431317]",Fabrication de textiles
+household_linen,Shop focused on selling household linen.,"[-0.21727241  0.2210534   0.51867229 -0.27733699  0.52334935 -0.05872619
+ -0.09654877 -0.15972095 -0.03486902]",Fabrication de textiles
+interior_decoration,Shop focused on selling interior decorations.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Fabrication de textiles
+kitchen,"A shop where you can plan and buy your kitchen. (Sometimes called ""kitchen studio"" and the like, but plain kitchen is the most frequently used tag so far.)","[-0.20102537  0.2806091   0.65260794 -0.38609802  0.68046121 -0.00765474
+ -0.1802481  -0.24374164  0.01668126]",Industries alimentaires
+lighting,A shop selling lighting fixtures and lamps.,"[-0.18595539  0.26900326  0.67051654 -0.43730332  0.66698815 -0.01243271
+ -0.21944796 -0.21808311 -0.00994734]",Autres industries manufacturières
+tiles,Shop focused on selling tiles.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+window_blind,Shop focused on selling window blinds.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+computer,"Shop focused on selling computers, peripherals, software, …","[-0.21193826  0.23125437  0.55841534 -0.33547788  0.58926363 -0.04379208
+ -0.14079278 -0.18140857 -0.02789143]",Industries alimentaires
+electronics,"Shop focused on selling consumer electronics (TV, radio, …). Larger ones may also sell computers, fridges, …","[-0.2199721   0.23374541  0.53141463 -0.34525315  0.5920341  -0.02904616
+ -0.14333264 -0.18253227  0.01300905]",Industries alimentaires
+hifi,Shop focused on selling High Fidelity or High End environment to listen music or watch films at home,"[-0.17986177  0.2273932   0.66666552 -0.34205158  0.66661572 -0.07269865
+ -0.17296705 -0.21941906  0.00790275]",Restauration
+mobile_phone,Shop focused on selling mobile phones and accessories,"[-0.19016254  0.24453645  0.62339807 -0.35031735  0.59994836 -0.01195637
+ -0.13803891 -0.18546802 -0.00968099]",Industries alimentaires
+printer_ink,A shop that sells or refills printer ink cartridges.,"[-0.22130184  0.27412993  0.72621942 -0.4243026   0.71989205 -0.02524262
+ -0.18840444 -0.25781445  0.01444289]",Fabrication d’équipements électriques
+radiotechnics,"Shop focused on selling electronic components, electrical products, radio measuring devices, supplies for radio and electronics.","[-0.1729147   0.2121846   0.54071097 -0.31254707  0.56406044 -0.00542292
+ -0.12603169 -0.18113484  0.01662442]",Industries alimentaires
+telecommunication,"Shop selling internet, television or similar services, and related hardware.","[-0.21421397  0.26826758  0.67976879 -0.36689587  0.64684478 -0.03789548
+ -0.14231575 -0.21173911 -0.01633352]",Industries alimentaires
+vacuum_cleaner,Shop focused on selling vacuum cleaners and associated products.,"[-0.21971257  0.24329574  0.61097991 -0.34449669  0.58918636 -0.03556135
+ -0.14189193 -0.1775491  -0.01086956]",Industries alimentaires
+atv,"Shop focused on selling atvs (quads), atv equipment and may rent or repair them","[-0.19224598  0.25995969  0.58656451 -0.3425163   0.62567686 -0.03103839
+ -0.160938   -0.1719633   0.00346045]",Industries alimentaires
+bicycle,"Shop focused on selling bicycles, bicycle equipment and may rent or repair them","[-0.19224598  0.25995969  0.58656451 -0.3425163   0.62567686 -0.03103839
+ -0.160938   -0.1719633   0.00346045]","Commerce de détail, à l’exception des automobiles et des motocycles"
+boat,"Shop focused on selling boats, boat equipment and may rent or repair them","[-0.19224598  0.25995969  0.58656451 -0.3425163   0.62567686 -0.03103839
+ -0.160938   -0.1719633   0.00346045]",Industries alimentaires
+car,Car store – a place primarily to buy cars or to additionally get your car repaired,"[-0.16741149  0.21094313  0.67111497 -0.37166597  0.67088241  0.01712533
+ -0.18411148 -0.20711369  0.00461716]",Industrie automobile
+car_parts,"Shop focused on selling auto parts, auto accessories, motor oil, car chemicals, etc.","[-0.17451695  0.19814503  0.56794399 -0.34076417  0.55449564 -0.0077915
+ -0.11253236 -0.14132375  0.00627911]","Commerce de détail, à l’exception des automobiles et des motocycles"
+car_repair,Shop focused on repairing cars.,"[-0.19499932  0.16637764  0.58441687 -0.29616519  0.51854957 -0.04448642
+ -0.12254641 -0.15521624 -0.02903704]",Industrie automobile
+caravan,"A shop for caravans, motorhomes & similar recreational vehicles.","[-0.1982539   0.21955225  0.56684296 -0.34597813  0.55791785  0.02956809
+ -0.13867767 -0.21329968 -0.02818702]",Autres industries manufacturières
+fishing,Shop focused on selling fishing equipment.,"[-0.19996645  0.23972282  0.57789586 -0.27210606  0.59499219 -0.02456971
+ -0.13805566 -0.18594901 -0.00744546]",Industries alimentaires
+fuel,"Shop selling fuels (motor fuel, wood, coal, gas) that can't be considered a amenity=fuel (fuel station). Use fuel:*=yes/no to indicate which fuels are available.","[-0.21356389  0.25611161  0.5707633  -0.36258164  0.64943745  0.00406065
+ -0.18245647 -0.21577167  0.03914295]",Industries alimentaires
+golf,Shop focused on selling golf equipment.,"[-0.19996645  0.23972282  0.57789586 -0.27210606  0.59499219 -0.02456971
+ -0.13805566 -0.18594901 -0.00744546]",Industries alimentaires
+hunting,Shop focused on selling gun and hunting equipment.,"[-0.18870505  0.24190692  0.60947942 -0.32095118  0.61018555 -0.01252129
+ -0.17096652 -0.20922474 -0.0040805 ]",Industries alimentaires
+military_surplus,Shop selling used military equipment,"[-0.18892354  0.29743537  0.5766375  -0.31649259  0.6206848  -0.0061096
+ -0.1414007  -0.20172159  0.00950449]",Industries alimentaires
+motorcycle,"Shop focused on selling motorcycles and/or related accessories, clothes, parts, and rental services.","[-0.17171051  0.22970248  0.57205658 -0.3536059   0.57034054 -0.01375618
+ -0.13193373 -0.17490778  0.00353157]","Commerce de détail, à l’exception des automobiles et des motocycles"
+motorcycle_repair,Shop focused on motorcycle repair.,"[-0.19727841  0.20876616  0.49908623 -0.27612726  0.52764978 -0.0148091
+ -0.11703073 -0.15096127 -0.01335469]","Commerce de détail, à l’exception des automobiles et des motocycles"
+outdoor,"Shop focused on selling camping, walking, climbing, and other outdoor sports equipment (GPSes, etc.)","[-0.18636493  0.21479854  0.54058794 -0.31495172  0.5459776  -0.0044324
+ -0.15929723 -0.19804692  0.00994224]",Industries alimentaires
+scooter,"Shop focused on selling scooters (small 2 wheeled, low platformed motorcycles).","[-0.21652639  0.19182886  0.49978461 -0.29539783  0.52662669 -0.03484519
+ -0.14103879 -0.17328871  0.00970181]","Commerce de détail, à l’exception des automobiles et des motocycles"
+scuba_diving,Shop focused on selling scuba diving equipment.,"[-0.19996645  0.23972282  0.57789586 -0.27210606  0.59499219 -0.02456971
+ -0.13805566 -0.18594901 -0.00744546]",Industries alimentaires
+ski,"Shop focused on selling skis, ski equipment and may rent or repair them","[-0.19224598  0.25995969  0.58656451 -0.3425163   0.62567686 -0.03103839
+ -0.160938   -0.1719633   0.00346045]",Industries alimentaires
+snowmobile,"Shop focused on selling snowmobiles, snowmobile equipment and may rent or repair them","[-0.19224598  0.25995969  0.58656451 -0.3425163   0.62567686 -0.03103839
+ -0.160938   -0.1719633   0.00346045]",Industries alimentaires
+sports,Shop focused on selling sporting goods.,"[-0.20123874  0.24338223  0.59065194 -0.32837217  0.60596938 -0.03341833
+ -0.10938894 -0.18198352  0.01524262]",Industries alimentaires
+surf,"Shop selling surfboards, sailboards, wakeboards, and other types of surf style boards. and/or related accessories, clothes, parts, repair and rental services.","[-0.16797167  0.25335697  0.59283721 -0.39247055  0.6256368  -0.0222451
+ -0.16091645 -0.18929472  0.00146968]",Autres industries manufacturières
+swimming_pool,A store that sells swimming pool equipment and supplies.,"[-0.16643143  0.2573358   0.64712691 -0.37988518  0.65706688  0.03468468
+ -0.21595503 -0.26283111  0.02772613]",Fabrication de textiles
+trailer,Shop focused on selling trailers and parts and/or repairing / renting them,"[-0.17565012  0.21454316  0.54097419 -0.3615984   0.57817946 -0.03459204
+ -0.14720298 -0.14998291 -0.00691688]",Industries alimentaires
+truck,Shop focused on selling trucks and other commercial vehicles,"[-0.20696248  0.21135766  0.54360669 -0.31382232  0.56924516 -0.02297093
+ -0.14562474 -0.1963376   0.01564858]","Commerce de détail, à l’exception des automobiles et des motocycles"
+tyres,Shop focused on selling tyres.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+art,"Shop which sells works of art. May be paintings, sculpture, or other types of art","[-0.22908919  0.2263789   0.6482634  -0.37909335  0.66688822 -0.04305426
+ -0.16564708 -0.21385728  0.0008442 ]",Autres industries manufacturières
+camera,A shop mainly selling cameras and lenses,"[-0.18595539  0.26900326  0.67051654 -0.43730332  0.66698815 -0.01243271
+ -0.21944796 -0.21808311 -0.00994734]",Autres industries manufacturières
+collector,"A shop for different collector's items like stamps, coins, action figures, etc.","[-1.75723365e-01  2.23953279e-01  6.33531665e-01 -3.84444634e-01
+  5.81015110e-01  2.44031971e-04 -1.71738615e-01 -1.77222397e-01
+ -1.75295987e-03]",Fabrication de textiles
+craft,"An arts and crafts supply store. Commonly sold items are paper, canvas, paint, pencils, crafting wood, crafting tools, etc. – look at craft=*","[-0.18659463  0.2218267   0.57542472 -0.34330379  0.56301611 -0.02729368
+ -0.16487289 -0.20567653 -0.00796932]",Fabrication de textiles
+frame,Shop focused on selling frames.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Industries alimentaires
+games,"Shop focused on selling board games, card games and/or role-playing games.","[-0.21886201  0.21817396  0.51472014 -0.29592206  0.5376359  -0.07333054
+ -0.09163915 -0.15148667 -0.05585909]",Autres industries manufacturières
+model,Shop specialising in the sale of scale models.,"[-0.24063666  0.26218455  0.6712449  -0.35087121  0.66428401 -0.03930772
+ -0.15578628 -0.24228523 -0.01367664]",Autres industries manufacturières
+music,Shop focused on selling recorded music (vinyl/CDs/...),"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Restauration
+musical_instrument,"Shop focused on selling musical instruments, lyrics, scores. If focused on a specific instrument, specify with musical_instrument=*","[-0.1881153   0.20038566  0.58732181 -0.34155794  0.62452041 -0.02315838
+ -0.14407446 -0.19024217  0.00792137]","Programmation, conseil et autres activités informatiques"
+photo,Shop focused on selling products or services related with photography.,"[-0.20913673  0.23955001  0.63495329 -0.3241455   0.63201732 -0.05308782
+ -0.10417205 -0.16464475  0.00295674]",Industries alimentaires
+trophy,"Store selling trophies, awards, plaques etc.","[-0.18746714  0.23636926  0.58209126 -0.39876225  0.60582419  0.02126994
+ -0.19147503 -0.14370896  0.04056568]","Activités des services financiers, hors assurance et caisses de retraite"
+video,Shop focused on selling or renting out videos/DVDs.,"[-0.18974171  0.18714426  0.60876254 -0.30256715  0.58436143 -0.05218063
+ -0.11895948 -0.16656845 -0.00869856]",Restauration
+video_games,Shop focused on selling video games.,"[-0.22807974  0.23253791  0.56797966 -0.29394292  0.56958959 -0.07272991
+ -0.10938489 -0.160377   -0.0346846 ]",Autres industries manufacturières
+anime,Shop focused on selling anime stuff.,"[-0.23326553  0.23607651  0.61827858 -0.31865881  0.61887157 -0.05890836
+ -0.1215863  -0.16813452 -0.01150457]",Autres industries manufacturières
+books,"Shop focused on selling books (for a library that lends books, see amenity=library)","[-1.81587246e-01  2.37622345e-01  6.27295583e-01 -3.78834895e-01
+  6.42040891e-01  1.13105070e-02 -1.83021600e-01 -2.12442260e-01
+ -1.18532850e-04]",Activités auxiliaires de services financiers et d’assurance
+gift,"Shop focused on selling gifts, greeting cards, or tourist gifts (souvenirs)","[-0.23892904  0.23929675  0.68475616 -0.34312037  0.69501564 -0.0728346
+ -0.13257739 -0.20317648 -0.00465895]","Commerce de détail, à l’exception des automobiles et des motocycles"
+lottery,A shop of which the main or only purpose is the sale of lottery tickets.,"[-2.05673089e-01  2.51349131e-01  6.21871385e-01 -3.74628853e-01
+  6.45466087e-01 -1.60471554e-02 -1.49135054e-01 -2.43551006e-01
+ -1.03611118e-04]","Commerce de gros, à l’exception des automobiles et des motocycles"
+newsagent,"Shop focused on selling newspapers, cigarettes, other goods","[-0.19876508  0.22184872  0.50417108 -0.27116901  0.53311292 -0.02883173
+ -0.12477008 -0.17014185  0.02921623]",Industries alimentaires
+stationery,Shop focused on selling office supplies,"[-0.20730264  0.22820116  0.61116232 -0.28814637  0.61405857 -0.05059859
+ -0.10408441 -0.19325421  0.002873  ]",Industrie pharmaceutique
+ticket,"Shop focused on selling tickets for concerts, events, public transport, …","[-0.19100722  0.21846364  0.55706124 -0.3372236   0.55243083 -0.01039046
+ -0.1237979  -0.18710262 -0.03842658]","Activités des agences de voyage, voyagistes, services de réservation et activités connexes"
+bookmaker,A shop that takes bets on sporting and other events at agreed upon odds.,"[-0.15471542  0.2462994   0.6190674  -0.37438114  0.63401694 -0.01779328
+ -0.19344943 -0.20940081  0.01634585]",Autres industries manufacturières
+cannabis,a shop primarily and legally selling non-medical cannabis products,"[-0.19246156  0.25278545  0.60194495 -0.36335988  0.58345348 -0.01972229
+ -0.16329862 -0.16997581 -0.01930373]",Industries alimentaires
+copyshop,Shop focused on selling photocopying and printing services.,"[-0.2023375   0.22591929  0.65572212 -0.38124084  0.62986417 -0.01090528
+ -0.16397352 -0.18797283 -0.01785804]",Industries alimentaires
+dry_cleaning,Shop or kiosk offering a clothes dry cleaning service. The actual cleaning may be done elsewhere.,"[-0.18478109  0.27013233  0.67538544 -0.37100233  0.66690497 -0.00600438
+ -0.16345134 -0.2299722   0.00346997]",Fabrication de textiles
+e-cigarette,Shop focused on selling electronic cigarettes.,"[-0.22318842  0.20404871  0.51890133 -0.26445041  0.50904643 -0.03862223
+ -0.13472479 -0.14438458  0.00866815]",Industries alimentaires
+funeral_directors,"Providing services related to funeral arrangements, may also be known as a ""funeral parlour"" or ""undertakers"".","[-0.22114447  0.24714872  0.69433714 -0.38210499  0.71076496 -0.02486503
+ -0.16826723 -0.19717037  0.01135604]",Services d’information
+laundry,"A shop to get your normal clothes washed. Might be self service coin operated, with service staff for drop off, …","[-0.17189082  0.24529562  0.63793556 -0.38273227  0.67065941 -0.00849117
+ -0.16281056 -0.19978938 -0.0195615 ]",Fabrication de textiles
+money_lender,A money lender offers small personal loans at high rates of interest.,"[-0.15239595  0.17953381  0.54909602 -0.36753469  0.59406319 -0.04467609
+ -0.20876955 -0.23001098  0.00859651]",Activités auxiliaires de services financiers et d’assurance
+outpost,Shop primarily used to pick-up items ordered online.,"[-0.21307411  0.26934361  0.65562604 -0.3413274   0.63407598 -0.01965634
+ -0.14621588 -0.17655319  0.00261308]",Industries alimentaires
+party,"A shop for party and festival supplies, like costumes, etc.","[-0.14866213  0.2119909   0.63555298 -0.37667415  0.59985667  0.01474393
+ -0.16997136 -0.21171602  0.01180849]",Autres industries manufacturières
+pawnbroker,A pawnbroker (or pawnshop) is an individual or business that offers secured loans to people. See also shop=second_hand,"[-0.2043028   0.25480342  0.68566003 -0.40159914  0.72648118 -0.01932732
+ -0.19685912 -0.25517147  0.01741882]","Activités des services financiers, hors assurance et caisses de retraite"
+pest_control,"Shop selling pest control goods to exterminate rats, insects etc.","[-1.79763114e-01  2.44045010e-01  6.10233670e-01 -3.68200630e-01
+  6.24103010e-01  9.85324383e-05 -1.45253381e-01 -1.70833085e-01
+  4.33149027e-02]",Autres industries manufacturières
+pet,"A shop for pets, animals and toys or food for them.","[-0.17972921  0.22581206  0.61195194 -0.38432066  0.62849116  0.0138156
+ -0.16936858 -0.19332475 -0.01427384]",Activités vétérinaires
+pet_grooming,A shop offering grooming services for pets (most frequently dogs),"[-0.16852455  0.22717559  0.70386653 -0.4358959   0.65648162  0.03780215
+ -0.1862928  -0.19219377 -0.04227775]",Activités vétérinaires
+pyrotechnics,"Store of pyrotechnics: fireworks, firecrackers, sparklers etc.","[-0.19542532  0.19339194  0.64339428 -0.39834252  0.65519162  0.03269646
+ -0.20133693 -0.20158164  0.03514462]",Fabrication d’équipements électriques
+religion,"Shop focused on selling religious articles, church shop. See also religion=*","[-0.22196628  0.23494146  0.61408437 -0.31662643  0.62178245 -0.047825
+ -0.13909913 -0.17131537  0.00539817]",Autres industries extractives
+rental,Shop that rents different kinds of vehicles or (sport) equipment,"[-0.19054536  0.22964855  0.60684733 -0.311034    0.62171122 -0.01948186
+ -0.15716445 -0.21074534  0.01532137]",Industries alimentaires
+storage_rental,self storage,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Réparation et installation de machines et d’équipements
+tobacco,"Shop focused on selling tobacco, cigarettes and their related accessories.","[-0.19424199  0.23317317  0.57700962 -0.30371246  0.534846   -0.02281383
+ -0.13108157 -0.16622613  0.01256486]",Industries alimentaires
+toys,Shop focused on selling toys.,"[-0.2186467   0.18984686  0.50210881 -0.27567893  0.5539899  -0.02914957
+ -0.09287219 -0.13300322 -0.01855872]",Autres industries manufacturières
+travel_agency,Shop focused on selling tickets for travelling. Also known as a tour operator.,"[-0.20217736  0.22854004  0.58812603 -0.34699626  0.59285331 -0.00874539
+ -0.14210307 -0.18410852 -0.01145364]","Activités des agences de voyage, voyagistes, services de réservation et activités connexes"
+vacant,"An unused vacant shop. Can be used for an empty or abandoned retail space that seems to be available for lease or purchase where a retail store (or similar businesses) may be opened. No store is being operated in a vacant shop, and neither goods nor services are being offered. This tag can be used after a store was closed or for a newly built shop before any busisness was operated in the shop.","[-0.21973296  0.25629409  0.68424411 -0.39687153  0.71623321 -0.02113274
+ -0.17935414 -0.22710228 -0.00886697]",Activités de location et location‑bail
+weapons,"Shop focused on selling weapons like knives, guns etc.","[-0.19229829  0.19979373  0.57011489 -0.31401345  0.5561707  -0.02964058
+ -0.12153946 -0.15596652  0.01954318]",Industries alimentaires
+yes,"A shop of unspecified type – it is always better to use another value that gives info about shop type, if possible. Used also as indicator that feature such as fuel station has a shop.","[-0.18372054  0.27257626  0.64306153 -0.41358089  0.67891869 -0.00261065
+ -0.19486082 -0.21996328  0.01074513]",Autres industries manufacturières

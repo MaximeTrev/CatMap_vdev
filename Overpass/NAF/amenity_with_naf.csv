@@ -1,0 +1,128 @@
+amenity,description,vector,naf_section
+bar,"Bar, bistrot.  voir aussi amenity=cafe",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+biergarten,Brasserie en plein air.  Spécifique à l'Allemagne. Voir Biergarten.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+cafe,Café.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Construction
+food_court,"Zone de restauration avec de multiples caisses et une zone de consommation commune. Souvent trouvée dans les centres commerciaux, aéroports, etc","[-0.18711288  0.1294529   0.47392645 -0.37980139  0.43354064  0.066947
+ -0.08980997 -0.0864537   0.0768111 ]",Hébergement et restauration
+ice_cream,Glacier (magasin où l'on vend des glaces; salon de dégustation de glaces). La balise shop=ice_cream est obsolète.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+pub,"Pub, typiquement irlandais.  voir aussi amenity=cafe et amenity=bar",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+restaurant,"Restaurant  Ajouter name=* pour le nom du restaurant + cuisine=* pour le type de cuisine (ethnique, régional, etc)
+Voir amenity=fast_food pour la restauration rapide.","[-0.1731213   0.19916912  0.52954687 -0.44747767  0.57810751  0.01983398
+ -0.1503773  -0.10596645  0.03781151]",Hébergement et restauration
+college,Établissement d'enseignement supérieur non universitaire. +  school:FR=* pour une équivalence plus affinée avec le système français. N'a aucun rapport avec les collèges (faux amis en anglais).,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Enseignement
+driving_school,"Auto-école, école de conduite",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Transports et entreposage
+kindergarten,"Établissement de garde d'enfants, jardin d'enfants.  Ajouter school:FR=* pour une description détailée avec le système français.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Enseignement
+language_school,École de langues,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+library,"Bibliothèque publique (municipale, universitaire, etc).voir shop=books pour les librairies.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Administration publique
+toy_library,"Ludothèque, lieu qui dispose de jeux pour emprunter ou pour jouer sur place","[-0.12879947  0.22703694  0.46821848 -0.24545209  0.63696498  0.08063923
+ -0.15745133 -0.15650177 -0.04678198]",Hébergement et restauration
+music_school,École de musique,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+school,"École maternelle, école primaire, collège, lycée, gymnase (Suisse) (cycles primaires et secondaires). Ajouter school:FR=* pour une équivalence plus affinée avec le système français. S'applique à un noeud (node) ou un bâtiment (combiné avec building=*) ou au périmètre réservé).",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+traffic_park,Piste de sécurité routière éducative,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Activités de services administratifs et de soutien
+university,"Université, campus universitaire. Ajouter school:FR=* pour une équivalence plus affinée avec le système français.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Enseignement
+bicycle_parking,Parking à vélos,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Construction
+bicycle_repair_station,"Point de réparation pour vélos en self-service. Il est composé de divers outils (réparation de chaîne, pompe,...)",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+bicycle_rental,Location de vélos (généralement pour les grands réseaux de type Vélib').,"[-0.15912971  0.26888534  0.58516729 -0.51515394  0.72267437 -0.02727903
+ -0.21094462 -0.12547919 -0.00118808]",Autres activités de services
+boat_rental,Loueur de bateau,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+boat_sharing,Partage de bateaux,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+bus_station,Gare routière  voir aussi highway=bus_stop pour les arrêts de bus,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Transports et entreposage
+car_rental,Location de voitures,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+car_sharing,Station d'autopartage (ne pas confondre avec le covoiturage). Voir Autopartage.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+compressed_air,Appareil de gonflage à air comprimé,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+vehicle_inspection,Centre de contrôle technique,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Activités spécialisées, scientifiques et techniques"
+charging_station,Installation de recharge pour véhicules électriques.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+driver_training,Lieu d’entraînement à la conduite,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+fuel,"Station-service.  Ajouter operator=* pour le nom de la compagnie pétrolière  + name=* si la station porte elle-même un nom  + shop=kiosk si la station vend d'autres articles comme des boissons, journaux, etc.","[-0.18711288  0.1294529   0.47392645 -0.37980139  0.43354064  0.066947
+ -0.08980997 -0.0864537   0.0768111 ]",Autres activités de services
+grit_bin,Boîte contenant du sable ou un mélange de sel et de sable pour lutter contre le verglas.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+motorcycle_parking,Parking pour véhicules deux-roues motorisés.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Commerce ; réparation d'automobiles et de motocycles
+parking,"Parking, aire de stationnementavec highway=service pour les voies à l'intérieur du parking  (voir aussi Concept example)",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+parking_entrance,Entrée ou sortie de parking souterrain simple ou à plusieurs étages,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+parking_space,Place de parking unique à l'intérieur d'un parking,"[-0.12879947  0.22703694  0.46821848 -0.24545209  0.63696498  0.08063923
+ -0.15745133 -0.15650177 -0.04678198]",Hébergement et restauration
+taxi,Station de taxis. Endroit où les taxis attendent des passagers,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+weighbridge,Bascule publique pour peser des véhicules,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+atm,"Distributeur automatique de billets.  Seul sur un nœud (node) ou combiné avec amenity=bank et atm=yes, voir ci-dessous.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+bank,Banque  Ajouter atm=yes sur le même nœud (node) si la banque dispose de distributeur automatique de billets,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+payment_centre,Guichet de paiement,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+baby_hatch,"Tour d'abandon ou « boîte à bébé ». Lieu où on peut abandonner un bébé de façon anonyme en vue de son adoption. Dans certains pays uniquement, n'existe pas en France.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Commerce ; réparation d'automobiles et de motocycles
+clinic,"Clinique. Centre de santé de taille moyenne, qui peut avoir des caractéristiques particulières.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Agriculture, sylviculture et pêche"
+dentist,"Dentiste, chirurgien dentiste",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+doctors,"Cabinet médical, médecin généraliste ou spécialiste.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Activités de services administratifs et de soutien
+hospital,Hôpital. Utilisé en conjonction avec emergency=* lorsque l'hôpital possède des urgences.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+nursing_home,"Ancien attribut pour un centre d'hébergement de personnes handicapées ou âgées ayant besoin de soins permanents.
+Remplacé par amenity=social_facility + social_facility=nursing_home",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+pharmacy,Pharmacie Ajouter dispensing=yes si la pharmacie peut délivrer des médicaments sur ordonnance ou dispensing=no si elle ne délivre que des médicaments sans ordonnance ou rien pour les parapharmacies uniquements,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+social_facility,"Services sociaux. Établissement qui offre un ou plusieurs services sociaux tels que : hébergement d'urgence, soins ambulatoires, banque alimentaire, assistance et conseil, ateliers adaptés pour handicapés, …
+
+Pour plus de détails voir la clé social_facility=*
+Attention: Ne pas confondre avec amenity=social_centre qui est un faux-ami.","[-0.16147315  0.1860784   0.58491598 -0.4179091   0.58131136  0.05820312
+ -0.16780325 -0.16249888 -0.06845454]",Autres activités de services
+veterinary,Vétérinaire,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Agriculture, sylviculture et pêche"
+arts_centre,"Centre des arts, centre culturel","[-0.19043595  0.15164252  0.63318229 -0.38218403  0.48777252 -0.01675854
+ -0.1747146  -0.17357558 -0.0325201 ]","Arts, spectacles et activités récréatives"
+brothel,Maison close. Établissement dédié à la prostitution (réglementé dans certains pays).,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+casino,"Casino. Endroit possédant au moins une table de jeux (roulette, blackjack,…), où l'on peut jouer à des jeux d'argent et qui permet de prendre des paris sur les sports et autres événements.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+cinema,Cinéma,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+community_centre,"Maison de quartier, salle des fêtes, salle municipale, salle polyvalente, mise à disposition d'associations et parfois au public. Voir aussi amenity=social_facility.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+events_venue,Établissement indépendant organisant ou accueillant des évènements,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+fountain,Fontaine décorative ou historique,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+love_hotel,"Love hotel, hôtel destiné à de courts séjours et permettant les relations sexuelles.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+nightclub,Boîte de nuit,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+planetarium,Planétarium,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+public_bookcase,Une microbibliothèque publique est un élément de mobilier urbain en libre accès dans lequel sont rangés des livres. Vous pouvez en prendre et en déposer à votre gré.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+social_centre,"Pôle d'organisation⋅s à but non lucratif.
+
+Il est préférable d'utiliser amenity=community_centre avec community_centre=social_centre ou amenity=social_facility à la place.
+Attention : Ne pas confondre avec un « centre social » tel qu'il peut être défini en France. Dans ce cas il faudra utiliser amenity=social_facility.","[-0.12879947  0.22703694  0.46821848 -0.24545209  0.63696498  0.08063923
+ -0.15745133 -0.15650177 -0.04678198]",Autres activités de services
+stripclub,Boîte de striptease,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+swingerclub,Club échangiste. Un club où les gens utilisent leur sexualité librement et sans restrictions avec différents partenaires.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+theatre,Théâtre,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+fire_station,Caserne de pompiers,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+police,"Poste de police, Gendarmerie",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Activités de services administratifs et de soutien
+post_box,Boîte aux lettresAjouter operator=compagnie lorsque plusieurs opérateurs postaux coexistent.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+post_depot,Centre de tri postal,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+post_office,Bureau de poste,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Activités de services administratifs et de soutien
+prison,Prison,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Construction
+ranger_station,Services publics des Parcs Nationaux.,"[-0.1682315   0.17072362  0.68796116 -0.43389609  0.62174714  0.0865263
+ -0.15249877 -0.13313295 -0.0641558 ]",Autres activités de services
+townhall,Mairie,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Information et communication
+bbq,"Barbecue, un gril public pour la cuisson de viandes ou de légumes, le plus souvent à l'extérieur",[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+bench,Banc public,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Administration publique
+dog_toilet,"Caniparc, zone prévue pour que les chiens fasse leurs besoins",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+dressing_room,"Vestiaire, infrastructure prévue pour changer de tenue",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Transports et entreposage
+drinking_water,Point d'accès à de l'eau potable. Voir aussi natural=spring pour une source naturelle  amenity=water_point pour ravitaillement en eau potable pour plaisanciers et campingcaristes  amenity=fountain pour une fontaine (potable ou non).,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+give_box,Boîte à dons,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+mailroom,Une pièce servant à recevoir et envoyer du courriers,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+parcel_locker,Casiers prévus pour recevoir et envoyer des colis,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Transports et entreposage
+shelter,Abri contre le mauvais temps. Ajoutez shelter_type=* pour préciser le type d'abri,"[-0.15912971  0.26888534  0.58516729 -0.51515394  0.72267437 -0.02727903
+ -0.21094462 -0.12547919 -0.00118808]",Santé humaine et action sociale
+telephone,"Téléphone public, cabine téléphonique Ajouter operator=* quand plusieurs opérateurs téléphoniques coexistent",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Activités de services administratifs et de soutien
+toilets,Toilettes publiques,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Administration publique
+water_point,Point d'eau potable pour remplir des réservoirs (par exemple pour les camping-cars),[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+watering_place,"Point d'eau mis à disposition des animauxBalise analogue à amenity=drinking_water, mais à priori pas prévu pour la consommation humaine.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+sanitary_dump_station,"Station de vidange sanitaire. Une station pour vider les réservoirs d'eaux usées des camping-cars, bus et navires.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Transports et entreposage
+recycling,"Point de collecte pour le recyclage (bouteilles, papier, etc).À combiner avec recycling_type=container pour des conteneurs en libre accès ou recycling_type=centre pour une déchèterie.",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Commerce ; réparation d'automobiles et de motocycles
+waste_basket,Poubelle publique,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Administration publique
+waste_disposal,Un réceptacle destiné à recevoir des déchets domestiques ou industriels enveloppés dans des sacs en plastique.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+animal_boarding,Pension. Lieu où vous pouvez laisser votre animal pour une période limitée moyennant des frais.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+animal_breeding,Élevage,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Construction
+animal_shelter,Refuge animalier. Lieu qui recueille les animaux délaissés.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+baking_oven,Four à pain. Un four utilisé pour la cuisson du pain et autres denrées similaires.Voir aussi building=bakehouse,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+crematorium,Crématorium,[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+grave_yard,"Petit cimetière, situé le plus souvent à côté d'une église et généralement en libre accès, souvent abandonné.On trouve ce genre de cimetières essentiellement dans les petites localités en zone rurale. Voir Cimetière paroissial. Utiliser landuse=cemetery pour les cimetières « normaux ».",[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Arts, spectacles et activités récréatives"
+hunting_stand,Affût de chasse,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Autres activités de services
+lounger,"Transat, chaise longue",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+marketplace,"Marché, place du marché","[-0.12879947  0.22703694  0.46821848 -0.24545209  0.63696498  0.08063923
+ -0.15745133 -0.15650177 -0.04678198]",Autres activités de services
+monastery,Monastère,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+mortuary,"Morgue, chambre mortuaire",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+photo_booth,Cabine photographique automatique.,[0. 0. 0. 0. 0. 0. 0. 0. 0.],Santé humaine et action sociale
+place_of_mourning,"Chambre funéraire, funérarium",[0. 0. 0. 0. 0. 0. 0. 0. 0.],Hébergement et restauration
+place_of_worship,"Édifice religieux (église, chapelle, mosquée, temple, synagogue, etc.) Ajouter religion=la_religion (exemple: ""christian"") + denomination=* (exemple: ""anglican"") + name=nom de l'édifice (ex.: ""Église Notre-Dame"")","[-0.18711288  0.1294529   0.47392645 -0.37980139  0.43354064  0.066947
+ -0.08980997 -0.0864537   0.0768111 ]",Administration publique
+public_bath,"Bains publics, lieu de baignade partagé tel que les sources chaudes, hammams, thermes",[0. 0. 0. 0. 0. 0. 0. 0. 0.],"Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"
+vending_machine,"Distributeur automatique de boissons, tickets, etc. Tout sauf de l'argent, voir amenity=atm.","[-0.18714055  0.14627743  0.44434017 -0.29893801  0.3787473   0.04915238
+ -0.03876996 -0.133038    0.0004861 ]",Autres activités de services
