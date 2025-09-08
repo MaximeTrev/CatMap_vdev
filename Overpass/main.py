@@ -226,6 +226,21 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             
             #st.markdown(f'<span style="font-size:12px; margin-left:10px;"> {dfOut.shape[0]} results </span>', unsafe_allow_html=True)
             st.write(f"{dfOut.shape[0]} results")
+
+            # Bloc NAF
+                # Amenity -> section NAF
+            amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
+            dfOut = dfOut.merge(amenity_NAF[["amenity", "naf_section"]], on="amenity", how="left")
+
+                # Shop -> sous section NAF
+            shop_NAF = pd.read_csv(r"Overpass/NAF/shop_with_naf.csv")
+            dfOut = dfOut.merge(shop_NAF[["amenity", "naf_division"]], on="amenity", how="left")
+
+                # Regroupement des sous-section en section
+            #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
+            dfOut = NAF_division_to_section(dfOut)
+            df["naf_section_f"] = df["naf_section"].fillna(df["naf_section_estime"])
+
             st.dataframe(dfOut)
             show_map(dfOut)
                
@@ -251,14 +266,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             dfOut, Pays = mc.findCountry(listeFichiers)
             st.write(f"{dfOut.shape[0]} results (download available)")
             st.write(f"No result for: {', '.join(no_results)}")
-            entreprises.pop()
-            st.dataframe(dfOut)
-            show_map(dfOut) 
-            
-    try:
-        if dfOut is not None:
-            st.session_state.dfOut = dfOut
-            
+
             # Bloc NAF
                 # Amenity -> section NAF
             amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
@@ -272,9 +280,15 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
             dfOut = NAF_division_to_section(dfOut)
             df["naf_section_f"] = df["naf_section"].fillna(df["naf_section_estime"])
-
-
             
+            entreprises.pop()
+            st.dataframe(dfOut)
+            show_map(dfOut) 
+            
+    try:
+        if dfOut is not None:
+            st.session_state.dfOut = dfOut
+                        
         else:
             st.write("Erreur : dfOut is void")
         col_fig1, col_fig2 = st.columns(2)
