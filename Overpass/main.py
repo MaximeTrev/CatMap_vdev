@@ -33,8 +33,8 @@ def get_pays_counts(df):
 
 #A adapter plus tard en fonction de la target: amenity + shop
 def get_amenity_counts(df):
-    amenity_counts = df["amenity"].value_counts().reset_index()
-    amenity_counts.columns = ["amenity", "count"]
+    amenity_counts = df["naf_section_estimee"].value_counts().reset_index()
+    amenity_counts.columns = ["naf_section_estimee", "count"]
     return amenity_counts
 
 
@@ -342,12 +342,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 amenity_counts = amenity_counts.sort_values(by="count", ascending=False)
                 top_amenity = amenity_counts.iloc[:10]
                 other_count2 = amenity_counts.iloc[10:]["count"].sum()
-                other_amenity = pd.DataFrame([["Autres", other_count2]], columns=["amenity", "count"])
+                other_amenity = pd.DataFrame([["Autres", other_count2]], columns=["naf_section_estimee", "count"])
                 amenity_counts = pd.concat([top_amenity, other_amenity], ignore_index=True)
                 
             # Afficher le Pie Chart
             # Création des colonnes pour la mise en page
-            fig2 = px.pie(amenity_counts, names="amenity", values="count")
+            fig2 = px.pie(amenity_counts, names="naf_section_estimee", values="count")
             fig2.update_layout(
                 legend=dict(font=dict(size=8)),
                 margin=dict(l=5, r=50))
