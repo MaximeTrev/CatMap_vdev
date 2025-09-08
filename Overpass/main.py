@@ -230,7 +230,8 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             # Bloc NAF
                 # Amenity -> section NAF
             amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
-            print(dfOut, flush = True)
+            print(amenity_NAF.columns, flush = True)
+            print(dfOut.columns, flush = True)
             dfOut = dfOut.merge(amenity_NAF[["amenity", "naf_section"]], on="amenity", how="left")
 
                 # Shop -> sous section NAF
