@@ -241,7 +241,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 # Regroupement des sous-section en section
             #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
             dfOut = NAF_division_to_section(dfOut)
-            dfOut["naf_section_f"] = dfOut["naf_section"].fillna(dfOut["naf_section_estime"])
+            dfOut["naf_section_f"] = dfOut["naf_section"].fillna(dfOut["naf_section_estimee"])
 
             st.dataframe(dfOut)
             show_map(dfOut)
@@ -281,7 +281,7 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
                 # Regroupement des sous-section en section
             #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
             dfOut = NAF_division_to_section(dfOut)
-            dfOut["naf_section_f"] = dfOut["naf_section"].fillna(dfOut["naf_section_estime"])
+            dfOut["naf_section_f"] = dfOut["naf_section"].fillna(dfOut["naf_section_estimee"])
             
             entreprises.pop()
             st.dataframe(dfOut)
