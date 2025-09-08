@@ -230,8 +230,6 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             # Bloc NAF
                 # Amenity -> section NAF
             amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
-            print(amenity_NAF.columns, flush = True)
-            print(dfOut.columns, flush = True)
             dfOut = dfOut.merge(amenity_NAF[["amenity", "naf_section"]], on="amenity", how="left")
 
                 # Shop -> sous section NAF
@@ -294,6 +292,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         else:
             st.write("Erreur : dfOut is void")
         col_fig1, col_fig2 = st.columns(2)
+
+        # Contrôle qualité 
+        df_out["pays"] = df["pays"].replace("", pd.NA)
+        df_out["naf_section_f"] = df["naf_section_f"].replace("", pd.NA)
+        print(f"Complétude - pays : {round(df["pays"].notna().mean() * 100, 1)} %", flush = True)
+        print(f"Complétude - NAF final : {round(df["naf_section_f"].notna().mean() * 100, 1)} %", flush = True)        
         
         with col_fig1:
             # Plot camembert de la repartition de la sélection par pays en fonction des noms
