@@ -230,11 +230,12 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             # Bloc NAF
                 # Amenity -> section NAF
             amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
+            print(dfOut, flush = True)
             dfOut = dfOut.merge(amenity_NAF[["amenity", "naf_section"]], on="amenity", how="left")
 
                 # Shop -> sous section NAF
             shop_NAF = pd.read_csv(r"Overpass/NAF/shop_with_naf.csv")
-            dfOut = dfOut.merge(shop_NAF[["shop", "naf_division"]], on="amenity", how="left")
+            dfOut = dfOut.merge(shop_NAF[["shop", "naf_division"]], on="shop", how="left")
 
                 # Regroupement des sous-section en section
             #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
