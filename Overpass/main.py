@@ -37,6 +37,150 @@ def get_amenity_counts(df):
     amenity_counts.columns = ["amenity", "count"]
     return amenity_counts
 
+
+def NAF_division_to_section(df, col_division="naf_division", col_section="naf_section_estimee"):
+    """
+    Ajoute une colonne avec la section NAF estimée à partir de l'intitulé de division.
+
+    Source: Ensemble des postes de la NAF rév. 2, Libellés longs, courts et abrégés de tous les postes
+    -> https://www.insee.fr/fr/information/2120875
+    """
+    naf_dict = {
+    # SECTION A
+    "Culture et production animale, chasse et services annexes": "AGRICULTURE, SYLVICULTURE ET PÊCHE",
+    "Sylviculture et exploitation forestière": "AGRICULTURE, SYLVICULTURE ET PÊCHE",
+    "Pêche et aquaculture": "AGRICULTURE, SYLVICULTURE ET PÊCHE",
+
+    # SECTION B
+    "Extraction de houille et de lignite": "INDUSTRIES EXTRACTIVES",
+    "Extraction d'hydrocarbures": "INDUSTRIES EXTRACTIVES",
+    "Extraction de minerais métalliques": "INDUSTRIES EXTRACTIVES",
+    "Autres industries extractives": "INDUSTRIES EXTRACTIVES",
+    "Services de soutien aux industries extractives": "INDUSTRIES EXTRACTIVES",
+
+    # SECTION C
+    "Industries alimentaires": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de boissons": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de produits à base de tabac": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de textiles": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie de l'habillement": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie du cuir et de la chaussure": "INDUSTRIE MANUFACTURIÈRE",
+    "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie du papier et du carton": "INDUSTRIE MANUFACTURIÈRE",
+    "Imprimerie et reproduction d'enregistrements": "INDUSTRIE MANUFACTURIÈRE",
+    "Cokéfaction et raffinage": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie chimique": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie pharmaceutique": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de produits en caoutchouc et en plastique": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication d'autres produits minéraux non métalliques": "INDUSTRIE MANUFACTURIÈRE",
+    "Métallurgie": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de produits métalliques, à l’exception des machines et des équipements": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de produits informatiques, électroniques et optiques": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication d'équipements électriques": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de machines et équipements n.c.a.": "INDUSTRIE MANUFACTURIÈRE",
+    "Industrie automobile": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication d'autres matériels de transport": "INDUSTRIE MANUFACTURIÈRE",
+    "Fabrication de meubles": "INDUSTRIE MANUFACTURIÈRE",
+    "Autres industries manufacturières": "INDUSTRIE MANUFACTURIÈRE",
+    "Réparation et installation de machines et d'équipements": "INDUSTRIE MANUFACTURIÈRE",
+
+    # SECTION D
+    "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné": "PRODUCTION ET DISTRIBUTION D'ÉLECTRICITÉ, DE GAZ, DE VAPEUR ET D'AIR CONDITIONNÉ",
+
+    # SECTION E
+    "Captage, traitement et distribution d'eau": "PRODUCTION ET DISTRIBUTION D'EAU ; ASSAINISSEMENT, GESTION DES DÉCHETS ET DÉPOLLUTION",
+    "Collecte et traitement des eaux usées": "PRODUCTION ET DISTRIBUTION D'EAU ; ASSAINISSEMENT, GESTION DES DÉCHETS ET DÉPOLLUTION",
+    "Collecte, traitement et élimination des déchets ; récupération": "PRODUCTION ET DISTRIBUTION D'EAU ; ASSAINISSEMENT, GESTION DES DÉCHETS ET DÉPOLLUTION",
+    "Dépollution et autres services de gestion des déchets": "PRODUCTION ET DISTRIBUTION D'EAU ; ASSAINISSEMENT, GESTION DES DÉCHETS ET DÉPOLLUTION",
+
+    # SECTION F
+    "Construction de bâtiments": "CONSTRUCTION",
+    "Génie civil": "CONSTRUCTION",
+    "Travaux de construction spécialisés": "CONSTRUCTION",
+
+    # SECTION G
+    "Commerce et réparation d'automobiles et de motocycles": "COMMERCE ; RÉPARATION D'AUTOMOBILES ET DE MOTOCYCLES",
+    "Commerce de gros, à l’exception des automobiles et des motocycles": "COMMERCE ; RÉPARATION D'AUTOMOBILES ET DE MOTOCYCLES",
+    "Commerce de détail, à l’exception des automobiles et des motocycles": "COMMERCE ; RÉPARATION D'AUTOMOBILES ET DE MOTOCYCLES",
+
+    # SECTION H
+    "Transports terrestres et transport par conduites": "TRANSPORTS ET ENTREPOSAGE",
+    "Transports par eau": "TRANSPORTS ET ENTREPOSAGE",
+    "Transports aériens": "TRANSPORTS ET ENTREPOSAGE",
+    "Entreposage et services auxiliaires des transports": "TRANSPORTS ET ENTREPOSAGE",
+    "Activités de poste et de courrier": "TRANSPORTS ET ENTREPOSAGE",
+
+    # SECTION I
+    "Hébergement": "HÉBERGEMENT ET RESTAURATION",
+    "Restauration": "HÉBERGEMENT ET RESTAURATION",
+
+    # SECTION J
+    "Édition": "INFORMATION ET COMMUNICATION",
+    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale": "INFORMATION ET COMMUNICATION",
+    "Programmation et diffusion": "INFORMATION ET COMMUNICATION",
+    "Télécommunications": "INFORMATION ET COMMUNICATION",
+    "Programmation, conseil et autres activités informatiques": "INFORMATION ET COMMUNICATION",
+    "Services d'information": "INFORMATION ET COMMUNICATION",
+
+    # SECTION K
+    "Activités des services financiers, hors assurance et caisses de retraite": "ACTIVITÉS FINANCIÈRES ET D'ASSURANCE",
+    "Assurance": "ACTIVITÉS FINANCIÈRES ET D'ASSURANCE",
+    "Activités auxiliaires de services financiers et d'assurance": "ACTIVITÉS FINANCIÈRES ET D'ASSURANCE",
+
+    # SECTION L
+    "Activités immobilières": "ACTIVITÉS IMMOBILIÈRES",
+
+    # SECTION M
+    "Activités juridiques et comptables": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Activités des sièges sociaux ; conseil de gestion": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Recherche-développement scientifique": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Publicité et études de marché": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Autres activités spécialisées, scientifiques et techniques": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+    "Activités vétérinaires": "ACTIVITÉS SPÉCIALISÉES, SCIENTIFIQUES ET TECHNIQUES",
+
+    # SECTION N
+    "Activités de location et location-bail": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+    "Activités liées à l'emploi": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+    "Activités des agences de voyage, voyagistes, services de réservation et activités connexes": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+    "Enquêtes et sécurité": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+    "Services relatifs aux bâtiments et aménagement paysager": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+    "Activités administratives et autres activités de soutien aux entreprises": "ACTIVITÉS DE SERVICES ADMINISTRATIFS ET DE SOUTIEN",
+
+    # SECTION O
+    "Administration publique et défense ; sécurité sociale obligatoire": "ADMINISTRATION PUBLIQUE",
+
+    # SECTION P
+    "Enseignement": "ENSEIGNEMENT",
+
+    # SECTION Q
+    "Activités pour la santé humaine": "SANTÉ HUMAINE ET ACTION SOCIALE",
+    "Hébergement médico-social et social": "SANTÉ HUMAINE ET ACTION SOCIALE",
+    "Action sociale sans hébergement": "SANTÉ HUMAINE ET ACTION SOCIALE",
+
+    # SECTION R
+    "Activités créatives, artistiques et de spectacle": "ARTS, SPECTACLES ET ACTIVITÉS RÉCRÉATIVES",
+    "Bibliothèques, archives, musées et autres activités culturelles": "ARTS, SPECTACLES ET ACTIVITÉS RÉCRÉATIVES",
+    "Organisation de jeux de hasard et d'argent": "ARTS, SPECTACLES ET ACTIVITÉS RÉCRÉATIVES",
+    "Activités sportives, récréatives et de loisirs": "ARTS, SPECTACLES ET ACTIVITÉS RÉCRÉATIVES",
+
+    # SECTION S
+    "Activités des organisations associatives": "AUTRES ACTIVITÉS DE SERVICES",
+    "Réparation d'ordinateurs et de biens personnels et domestiques": "AUTRES ACTIVITÉS DE SERVICES",
+    "Autres services personnels": "AUTRES ACTIVITÉS DE SERVICES",
+
+    # SECTION T
+    "Activités des ménages en tant qu'employeurs de personnel domestique": "ACTIVITÉS DES MÉNAGES EN TANT QU'EMPLOYEURS ; ACTIVITÉS INDIFFÉRENCIÉES DES MÉNAGES EN TANT QUE PRODUCTEURS DE BIENS ET SERVICES POUR USAGE PROPRE",
+    "Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre": "ACTIVITÉS DES MÉNAGES EN TANT QU'EMPLOYEURS ; ACTIVITÉS INDIFFÉRENCIÉES DES MÉNAGES EN TANT QUE PRODUCTEURS DE BIENS ET SERVICES POUR USAGE PROPRE",
+
+    # SECTION U
+    "Activités des organisations et organismes extraterritoriaux": "ACTIVITÉS EXTRA-TERRITORIALES"
+
+    df[col_section] = df[col_division].map(naf_dict)
+    
+    return df
+
+
 def show_map(df):
     m = folium.Map(location=[48.8566, 2.3522], zoom_start=5)
     
@@ -114,6 +258,22 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
     try:
         if dfOut is not None:
             st.session_state.dfOut = dfOut
+            
+            # Bloc NAF
+                # Amenity -> section NAF
+            amenity_NAF = pd.read_csv(r"Overpass/NAF/amenity_with_naf.csv")
+            dfOut = dfOut.merge(amenity_NAF[["amenity", "naf_section"]], on="amenity", how="left")
+
+                # Shop -> sous section NAF
+            shop_NAF = pd.read_csv(r"Overpass/NAF/shop_with_naf.csv")
+            dfOut = dfOut.merge(shop_NAF[["amenity", "naf_division"]], on="amenity", how="left")
+
+                # Regroupement des sous-section en section
+            dfOut = NAF_division_to_section(dfOut)
+            df[naf_section_f] = df[naf_section].fillna(df[naf_section_estime])
+
+
+            
         else:
             st.write("Erreur : dfOut is void")
         col_fig1, col_fig2 = st.columns(2)
