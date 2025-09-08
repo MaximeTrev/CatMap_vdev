@@ -174,7 +174,7 @@ def NAF_division_to_section(df, col_division="naf_division", col_section="naf_se
     "Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre": "ACTIVITÉS DES MÉNAGES EN TANT QU'EMPLOYEURS ; ACTIVITÉS INDIFFÉRENCIÉES DES MÉNAGES EN TANT QUE PRODUCTEURS DE BIENS ET SERVICES POUR USAGE PROPRE",
 
     # SECTION U
-    "Activités des organisations et organismes extraterritoriaux": "ACTIVITÉS EXTRA-TERRITORIALES"
+    "Activités des organisations et organismes extraterritoriaux": "ACTIVITÉS EXTRA-TERRITORIALES"}
 
     df[col_section] = df[col_division].map(naf_dict)
     
