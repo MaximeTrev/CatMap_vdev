@@ -269,8 +269,9 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             dfOut = dfOut.merge(shop_NAF[["amenity", "naf_division"]], on="amenity", how="left")
 
                 # Regroupement des sous-section en section
+            #Si une division et une section sont estimées pour une même ligne, on considère uniquement la section pour la section finale
             dfOut = NAF_division_to_section(dfOut)
-            df[naf_section_f] = df[naf_section].fillna(df[naf_section_estime])
+            df["naf_section_f"] = df["naf_section"].fillna(df["naf_section_estime"])
 
 
             
