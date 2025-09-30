@@ -294,10 +294,10 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
         col_fig1, col_fig2 = st.columns(2)
 
         # Contrôle qualité 
-        df_out["pays"] = df["pays"].replace("", pd.NA)
-        df_out["naf_section_f"] = df["naf_section_f"].replace("", pd.NA)
-        st.write(f"Complétude - pays : {round(df["pays"].notna().mean() * 100, 1)} %", flush = True)
-        st.write(f"Complétude - NAF final : {round(df["naf_section_f"].notna().mean() * 100, 1)} %", flush = True)        
+        df_out["pays"] = df_out["pays"].replace("", pd.NA)
+        df_out["naf_section_f"] = df_out["naf_section_f"].replace("", pd.NA)
+        st.write(f"Complétude - pays : {round(df_out["pays"].notna().mean() * 100, 1)} %", flush = True)
+        st.write(f"Complétude - NAF final : {round(df_out["naf_section_f"].notna().mean() * 100, 1)} %", flush = True)        
         
         with col_fig1:
             # Plot camembert de la repartition de la sélection par pays en fonction des noms
