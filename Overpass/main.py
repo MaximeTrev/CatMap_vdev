@@ -358,8 +358,8 @@ def __main__(progress_container, option, NomEntreprise="", FichierCSV="") :
             fig2.update_traces(texttemplate="%{percent:.0%}")
             st.plotly_chart(fig2, use_container_width=True)
 
-    except Exception as e:
-    st.error(f"Erreur : {e}")
+   except Exception as e:
+        st.error(f"Erreur : {e}")
         
     
     
